@@ -1,0 +1,194 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta charset="utf-8" />
+	<title>User Profile</title>
+	{% load static %}
+	<title>UserHome</title>
+	<link href="{% static '/Content/bootstrap.min.css' %}" rel="stylesheet" type="text/css" />
+	<link href="{% static '/Content/bootstrap-theme.min.css' %}" rel="stylesheet" type="text/css" />
+	<link href="{% static '/CSS/line-awesome.css' %}" rel="stylesheet" type="text/css" />
+	<link href="{% static '/CSS/line-awesome-font-awesome.css' %}" rel="stylesheet" type="text/css" />
+	<link  href="{% static '/CSS/CustomStyle.css' %}" rel="stylesheet"/>
+	<link  href="{% static '/Scripts/jQueryDatePicker/jquery-ui.css' %}" rel="stylesheet"/>
+	
+	<script src="{% static '/Scripts/jquery-1.12.4.min.js' %}" type="text/javascript"></script>
+	<script src="{% static '/Scripts/bootstrap.min.js' %}" type="text/javascript"></script>
+	<script src="{% static '/Scripts/jQueryDatePicker/jquery-ui.js' %}" type="text/javascript"></script>
+</head>
+<body class="compBody">
+	<form method="POST" action="/user-Profile-edit/" enctype="multipart/form-data">
+		{% csrf_token %}
+		<div class="container-fluid GlbFont">
+			<div class="row">
+				<div class="col-xs-12 col-sm-12 GlbFont">
+					<h2 class="h2 ProjectsFont">
+						<i class="la la-xing-square"></i>&nbsp;My Profile
+					</h2>
+					<h6 class="h6">
+						<span class="breadcrumb col-xs-12 table-bordered bg-White">Home / Edit Profile</span>
+					</h6>
+				</div>
+			</div>
+			<div class="row form-group">
+				<div class="col-xs-12">
+					<div class="ProfileCoverContainer" style="background-image: url({% static '/Image/Drift.png' %});">
+						<div class="ProfileImageContainer">
+                            {% if UserImage.ImageBase64String == null  %}
+                                <img id="imgProfile" src="{% static '/Image/img_avatar.png' %}" class="img-respomnsive img-thumbnail" style="object-fit: cover; width: 100%; height: 100%;" />
+                            {% else %}
+                                <img id="imgProfile" src="{{UserImage.ImageBase64String}}" class="img-respomnsive img-thumbnail" style="object-fit: cover; width: 100%; height: 100%;" />
+                            {% endif %}
+						</div>
+					</div>
+					<div class="ProfileNameContainer GlbFont form-group">
+						<span>{{UserData.FullName}}</span>
+					</div>
+                    <div class="file-field cursor-pointer">
+                        <a class="btn-floating peach-gradient mt-0 float-left cursor-pointer">
+                          <i title="Update Image" class="la la-paperclip cursor-pointer" aria-hidden="true"></i>
+                            <input name="ProfilePic" type="file" class="cursor-pointer" onchange="UserProfile.PreviewImage(event)" title="Update Profile Image">
+                            <input type="hidden" name="UserProfImg" id="UserProfImg" />
+                            <input type="hidden" name="ImageName" id="ImageName" />
+                        </a>
+                        <button id="btnUpdate_{{UserData.RegUserId}}" class="btn CustomBoxBtn float-right UpdateDefSetting GlbFont">Update</button>
+                    </div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12 col-sm-6 col-md-4">
+					<div class="ContactForm form-group TextShadow">
+						<label class="ContactFormHeader"><i title="Edit" class="la la-user"></i>&nbsp;Full Name<i style="float: right; margin-left: 3px;" class="la la-edit cursor-pointer" title="edit"></i>&nbsp;</label>
+						<div class="row">
+							<div class="col-xs-12 ContactFormfeildCont">
+								<input type="text" class="ContactFormTxt disabled" name="fullname" value="{{UserData.FullName}}" />
+							</div>
+						</div>
+					</div>
+				</div>
+                <div class="col-xs-12 col-sm-6 col-md-4">
+					<div class="ContactForm form-group TextShadow">
+						<label class="ContactFormHeader"><i class="la la-tty"></i>&nbsp;Contact No<i style="float: right; margin-left: 3px;" class="la la-edit cursor-pointer" title="edit"></i>&nbsp;</label>
+						<div class="row">
+							<div class="col-xs-12 ContactFormfeildCont">
+                                {% if UserData.MobileNo == 0 %}
+                                    <input type="text" class="ContactFormTxt" name="contactNo" />
+                                {% else %}
+                                    <input type="text" class="ContactFormTxt" name="contactNo" value="{{UserData.MobileNo}}"/>
+                                {% endif %}
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-6 col-md-4">
+					<div class="ContactForm form-group TextShadow">
+						<label class="ContactFormHeader"><i class="la la-envelope"></i>&nbsp;Email Id<i style="float: right; margin-left: 3px;" class="la la-edit cursor-pointer" title="edit"></i>&nbsp;</label>
+						<div class="row">
+							<div class="col-xs-12 ContactFormfeildCont">
+								<input type="text" class="ContactFormTxt" name="emailId" value="{{UserData.EmailId}}"/>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-6 col-md-4">
+					<div class="ContactForm form-group TextShadow">
+						<label class="ContactFormHeader"><i class="la la-tty"></i>&nbsp;Gender<i style="float: right; margin-left: 3px;" class="la la-edit cursor-pointer" title="edit"></i>&nbsp;</label>
+						<div class="row">
+							<div class="col-xs-12 ContactFormfeildCont">
+                                <select name="gender" class="ContactFormTxt" id="gender">
+                                    <option>Male</option>
+                                    <option>Female</option>
+                                    <option>Other</option>
+                                </select>
+							</div>
+						</div>
+					</div>
+				</div>
+                <div class="col-xs-12 col-sm-6 col-md-4">
+					<div class="ContactForm form-group TextShadow">
+						<label class="ContactFormHeader"><i class="la la-tty"></i>&nbsp;Blood Group<i style="float: right; margin-left: 3px;" class="la la-edit cursor-pointer" title="edit"></i>&nbsp;</label>
+						<div class="row">
+							<div class="col-xs-12 ContactFormfeildCont">
+								<select name="bloodgroup" class="ContactFormTxt" id="bloodgroup">
+                                    <option>A-Positive&nbsp;(A+)</option>
+                                    <option>A-Negative&nbsp;(A-)</option>
+                                    <option>B-Positive&nbsp;(B+)</option>
+                                    <option>B-Negative&nbsp;(B-)</option>
+                                    <option>AB-Positive&nbsp;(AB+)</option>
+                                    <option>AB-Negative&nbsp;(AB-)</option>
+                                    <option>O-Positive&nbsp;(O+)</option>
+                                    <option>O-Negative&nbsp;(O-)</option>
+                                </select>
+							</div>
+						</div>
+					</div>
+				</div>
+                <div class="col-xs-12 col-sm-6 col-md-4">
+					<div class="ContactForm form-group TextShadow">
+						<label class="ContactFormHeader"><i class="la la-tty"></i>&nbsp;Address<i style="float: right; margin-left: 3px;" class="la la-edit cursor-pointer" title="edit"></i>&nbsp;</label>
+						<div class="row">
+							<div class="col-xs-12 ContactFormfeildCont">
+								<input type="text" class="ContactFormTxt" name="address" value="{{UserData.Address}}"/>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-6 col-md-4">
+					<div class="ContactForm form-group TextShadow">
+						<label class="ContactFormHeader"><i class="la la-tty"></i>&nbsp;City<i style="float: right; margin-left: 3px;" class="la la-edit cursor-pointer" title="edit"></i>&nbsp;</label>
+						<div class="row">
+							<div class="col-xs-12 ContactFormfeildCont">
+								<input type="text" class="ContactFormTxt" name="city" value="{{UserData.City}}"/>
+							</div>
+						</div>
+					</div>
+				</div>
+                <div class="col-xs-12 col-sm-6 col-md-4">
+					<div class="ContactForm form-group TextShadow">
+						<label class="ContactFormHeader"><i class="la la-tty"></i>&nbsp;State<i style="float: right; margin-left: 3px;" class="la la-edit cursor-pointer" title="edit"></i>&nbsp;</label>
+						<div class="row">
+							<div class="col-xs-12 ContactFormfeildCont">
+								<input type="text" class="ContactFormTxt" name="state" value="{{UserData.State}}"/>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-6 col-md-4">
+					<div class="ContactForm form-group TextShadow">
+						<label class="ContactFormHeader"><i class="la la-envelope"></i>&nbsp;Country<i style="float: right; margin-left: 3px;" class="la la-edit cursor-pointer" title="edit"></i>&nbsp;</label>
+						<div class="row">
+							<div class="col-xs-12 ContactFormfeildCont">
+								<input type="text" class="ContactFormTxt" name="country" value="{{UserData.Country}}"/>
+							</div>
+						</div>
+					</div>
+				</div>
+                <div id="backDrop" class="CustMask hidden"></div>
+                <div id="MessageModal" class="modal animated CustomModal CustomBoxDailog CustomBoxSuccess">
+                   <div class="GlbFont CustomBoxHeader">
+                      <i class="fa fa-envelope"></i>&nbsp;&nbsp;&nbsp;Message 
+                   </div>
+                   <div class="panel-body GlbFont boldFont CustomBoxContent">
+                      <i class="fa fa-check"></i>&nbsp; 
+                      <span> {{ ResponceStatus }} </span>
+                   </div>
+                   <div style="background-color: #f1f1f1; width: 100%; height: 40px;">
+                      <button type="button" class="CustomBoxBtn" id="btnNext" data-dismiss="#MessageModal">Next</button>
+                   </div>
+                </div>
+			</div>
+		</div>
+        <script src="{% static '/Scripts/UserProfile/UserProfile.js' %}" type="text/javascript"></script>
+        <script type="text/javascript"> 
+            $(document).ready(function () {
+                var ResponceStatus = "{{ ResponceStatus }}";
+                UserProfile.ShowMessage(ResponceStatus);
+                UserProfile.SetDropDwnData('gender','{{UserData.Gender}}');
+                UserProfile.SetDropDwnData('bloodgroup','{{UserData.BloodGroup}}');
+            });
+     
+        </script>
+	</form>
+</body>
+</html>

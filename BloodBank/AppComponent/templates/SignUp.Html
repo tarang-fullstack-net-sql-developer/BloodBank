@@ -1,0 +1,183 @@
+﻿<!DOCTYPE html>  
+<html lang="en">  
+<head> 
+    {% load static %}
+    <meta charset="UTF-8">  
+    <title>Index</title>
+    
+    <link href="{% static '/Content/bootstrap.min.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static '/Content/bootstrap-theme.min.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static '/Content/font-awesome.css' %}" rel="stylesheet" type="text/css" />
+    <link  href="{% static '/CSS/CustomStyle.css' %}" rel="stylesheet"/>
+    <link href="{% static '/CSS/animate.css' %}" rel="stylesheet" />
+
+    <script src="{% static '/Scripts/jquery-1.12.4.min.js' %}" type="text/javascript"></script>
+    <script src="{% static '/Scripts/bootstrap.min.js' %}" type="text/javascript"></script>
+    <script src="{% static '/Scripts/Chart.min.js' %}" type="text/javascript"></script>
+    <script src="{% static '/Scripts/utils.js' %}" type="text/javascript"></script>
+</head>
+<body>
+    <form id="signUpForm" method="POST" action="/SignUp_User/">
+        {% csrf_token %}
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="pageHeader navbar-fixed-top">
+                        <img alt="companyLogo" src="{% static '/Image/ComLogo.png' %}" id="comlogo" />
+                        <label class="CompContent boldFont GlbFont vcenter">
+                            C-Panel
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div id="SubFrm" class="row animated bounceInDown" style="margin-top: 150px;">
+                <div class="col-xs-12">
+                    <div class="panel panel-primary" style="box-shadow: 9px 13px 9px 0px #494b4e;">
+                        <div class="panel-heading GlbFont">
+                            <span class="FormHeader">Sign Up</span>
+                        </div>
+                        <div class="panel-body GlbFont">
+                            <div class="row form-group">
+                                <div class="col-xs-12 col-sm-2 vcenter">
+                                    <label class="input-small">
+                                        Full Name
+                                    </label>
+                                </div>
+                                <div class="col-xs-12 col-sm-4">
+                                    <input name="txtFullName" type="text" class="form-control TextShadow" />
+                                </div>
+                                <div class="col-xs-12 col-sm-2 vcenter">
+                                    <label class="input-small">
+                                        Gender
+                                    </label>
+                                </div>
+                                <div class="col-xs-12 col-sm-4">
+                                    <input name="txtGender" type="text" class="form-control TextShadow" />
+                                </div>
+                            </div>
+                            <div class="row  form-group">
+                                <div class="col-xs-12 col-sm-2 vcenter">
+                                    <label class="input-small">
+                                        Blood Group
+                                    </label>
+                                </div>
+                                <div class="col-xs-12 col-sm-4">
+                                    <input name="txtBldGrp" type="text" class="form-control TextShadow" />
+                                </div>
+                                <div class="col-xs-12 col-sm-2 vcenter">
+                                    <label class="input-small">
+                                        Mobile No.
+                                    </label>
+                                </div>
+                                <div class="col-xs-12 col-sm-4">
+                                    <input name="txtMoblieNumber" type="text" class="form-control TextShadow" />
+                                </div>
+                            </div>
+                            <div class="row  form-group">
+                                <div class="col-xs-12 col-sm-2 vcenter">
+                                    <label class="input-small">
+                                        Country
+                                    </label>
+                                </div>
+                                <div class="col-xs-12 col-sm-4">
+                                    <input name="txtCountry" type="text" class="form-control TextShadow" />
+                                </div>
+                                <div class="col-xs-12 col-sm-2 vcenter">
+                                    <label class="input-small">
+                                        State
+                                    </label>
+                                </div>
+                                <div class="col-xs-12 col-sm-4">
+                                    <input name="txtState" type="text" class="form-control TextShadow" />
+                                </div>
+                            </div>
+                            <div class="row  form-group">
+                                <div class="col-xs-12 col-sm-2 vcenter">
+                                    <label class="input-small">
+                                        City
+                                    </label>
+                                </div>
+                                <div class="col-xs-12 col-sm-4">
+                                    <input name="txtCity" type="text" class="form-control TextShadow" />
+                                </div>
+                                <div class="col-xs-12 col-sm-2 vcenter">
+                                    <label class="input-small">
+                                        PinCode
+                                    </label>
+                                </div>
+                                <div class="col-xs-12 col-sm-4">
+                                    <input name="txtPinCode" type="text" class="form-control TextShadow" />
+                                </div>
+                            </div>
+                            <div class="row  form-group">
+                                <div class="col-xs-12 col-sm-2 vcenter">
+                                    <label class="input-small">
+                                        User Id
+                                    </label>
+                                </div>
+                                <div class="col-xs-12 col-sm-4">
+                                    <input name="txtUserId" type="text" class="form-control TextShadow" />
+                                </div>
+                                <div class="col-xs-12 col-sm-2 vcenter">
+                                    <label class="input-small">
+                                        Email Id
+                                    </label>
+                                </div>
+                                <div class="col-xs-12 col-sm-4">
+                                    <input name="txtEmailId" type="text" class="form-control TextShadow" />
+                                </div>
+                            </div>
+                            <div class="row  form-group">
+                                <div class="col-xs-12 col-sm-2 vcenter">
+                                    <label class="input-small">
+                                        Password
+                                    </label>
+                                </div>
+                                <div class="col-xs-12 col-sm-4">
+                                    <input name="txtPassword" type="password" class="form-control  TextShadow text-password" />
+                                </div>
+                                <div class="col-xs-12 col-sm-2 vcenter">
+                                    <label class="input-small">
+                                        Retype-Password
+                                    </label>
+                                </div>
+                                <div class="col-xs-12 col-sm-4">
+                                    <input name="txtCnfPassword" type="password" class="form-control GlbFont TextShadow text-password" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <button type="submit" class="btn btn-success GlbFont" />
+                                        Submit
+                                    </button>
+                                    <button type="reset" class="btn btn-danger GlbFont">
+                                        Reset
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-footer">
+                            <a href="/login-user" class="form-control ProjectsFont" style="width: 200px; font-size: medium;text-decoration: none;">Already Account ?</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="MessageModal" class="modal animated CustomBoxDailog CustomBoxSuccess">
+            <div class="GlbFont CustomBoxHeader">
+                <i class="fa fa-envelope"></i>&nbsp;&nbsp;&nbsp;Message
+            </div>
+            <div class="panel-body GlbFont boldFont CustomBoxContent">
+                <i class="fa fa-check"></i>&nbsp;<span>
+                    {{ ResStatus }}
+                </span>
+            </div>
+        </div>
+        <script src="{% static '/Scripts/SignUp/SignUp.js' %}" type="text/javascript"></script>
+        <script type="text/javascript">
+            var ResStatus = "{{ ResStatus }}";
+            Validation.UserValidte(ResStatus);
+        </script>
+    </form>
+</body>
+</html>

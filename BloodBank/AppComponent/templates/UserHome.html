@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html>
+    <head> {% load static %} 
+        <title>UserHome</title>
+        <link href="{% static '/Content/bootstrap.min.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static '/Content/bootstrap-theme.min.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static '/CSS/line-awesome.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static '/CSS/line-awesome-font-awesome.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static '/CSS/CustomStyle.css' %}" rel="stylesheet"/>
+        <link href="{% static '/CSS/animate.css' %}" rel="stylesheet" />
+        <script src="{% static '/Scripts/jquery-1.12.4.min.js' %}" type="text/javascript"></script>
+        <script src="{% static '/Scripts/bootstrap.min.js' %}" type="text/javascript"></script>
+        <script src="{% static '/Scripts/Chart.min.js' %}" type="text/javascript"></script>
+        <script src="{% static '/Scripts/utils.js' %}" type="text/javascript"></script>
+        <!--jQVmaps-->
+        <link href="{% static '/CSS/jqvmap.css' %}" rel="stylesheet" type="text/css" />
+        <script src="{% static '/Scripts/jquery.vmap.js' %}" type="text/javascript"></script>
+        <script src="{% static '/Scripts/jquery.vmap.world.js' %}" type="text/javascript"></script>
+        <!--End of jQVmaps-->
+    </head>
+    <body class="compBody">
+        <div class="container-fluid GlbFont">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 GlbFont">
+                    <h2 class="h2 ProjectsFont">
+                        <i class="la la-laptop"></i>&nbsp;Dashboard 
+                    </h2>
+                    <h6 class="h6">
+                        <span class="breadcrumb col-xs-12 table-bordered bg-White">Home / Dashboard</span>
+                    </h6>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3 col-sm-6 form-group">
+                    <div class="ModalBox box-Shadow-3d" style="background-color: #57889c;">
+                        <div class="media GlbFont" style="color: White;">
+                            <div class="media-left">
+                                <i class="la la-thumbs-up" style="color: #b5e5f9; font-size: 70px; padding: 5px 10px 0px 10px;"></i>
+                            </div>
+                            <div class="media-body text-capitalize">
+                                <h3 class="h3 GlbFont"> Donor </h3>
+                                <h4 class="h4">
+                                    <span id="ttlDonorCnt">0</span>
+                                </h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 form-group">
+                    <div class="ModalBox box-Shadow-3d" style="background-color: #d1b993;">
+                        <div class="media GlbFont" style="color: White;">
+                            <div class="media-left">
+                                <i class="la la-group" style="color: #337ab7; font-size: 70px; padding: 5px 10px 0px 10px;"></i>
+                            </div>
+                            <div class="media-body text-capitalize">
+                                <h3 class="h3 GlbFont"> Users </h3>
+                                <h4 class="h4">
+                                    <span id="UserCont">0</span>
+                                </h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 form-group">
+                    <div class="ModalBox box-Shadow-3d" style="background-color: #26c281;">
+                        <div class="media GlbFont" style="color: White;">
+                            <div class="media-left">
+                                <i class="la la-cubes" style="color: #337ab7; font-size: 70px; padding: 5px 10px 0px 10px;"></i>
+                            </div>
+                            <div class="media-body">
+                                <h3 class="h3 GlbFont"> Stock </h3>
+                                <h4 class="h4">
+                                    <span id="stockCnt">0</span>
+                                </h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 form-group">
+                    <div class="ModalBox box-Shadow-3d" style="background-color: #1a2732;">
+                        <div class="media GlbFont" style="color: White;">
+                            <div class="media-left">
+                                <i class="la la-beer" style="color: #337ab7; font-size: 70px; padding: 5px 10px 0px 10px;"></i>
+                            </div>
+                            <div class="media-body">
+                                <h3 class="h3 GlbFont"> Donated </h3>
+                                <h4 class="h4">
+                                    <span id="DonatedCnt">0</span>
+                                </h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-xs-12 col-sm-12 col-md-6 GlbFont">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <i class="la la-book"></i>&nbsp;
+                            <span>Sales Report</span>
+                            <span style="float: right; font-size: large; cursor: pointer;">
+                                <i class="la la-refresh" title="Refresh"></i>&nbsp;&nbsp;
+                                <i title="Setting" class="la la-gear"></i>
+                            </span>
+                        </div>
+                        <div class="panel-body">
+                            <canvas id="canvas_1" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-6 GlbFont">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <i class="la la-book"></i>&nbsp;Production Report
+                            <span style="float: right; font-size: large; cursor: pointer;">
+                                <i class="la la-refresh" title="Refresh"></i>&nbsp;&nbsp;
+                                <i title="Setting" class="la la-gear"></i>
+                            </span>
+                        </div>
+                        <div class="panel-body">
+                            <canvas id="canvas_2" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-md-6 col-sm-5 col-lg-9">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <i class="glyphicon glyphicon-map-marker"></i>&nbsp;Map 
+                        </div>
+                        <div id="MapDisplay" style="width: 100%; height: 500px;" class="panel-body"></div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-6 col-sm-7 col-lg-3">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h5 class="h5">
+                                        <i class="fe fe-location-arrow"></i>&nbsp;Address 
+                                    </h5>
+                                </div>
+                                <div class="panel-body">
+                                    <h6 class="h6" style="line-height: 25px;"> JOHN E DOE
+                                        <span class="clearfix"></span> SOCIOLOGY DEPARTMENT 534-0000
+                                        <br /> UNIVERSITY OF CALIFORNIA SAN DIEGO
+                                        <br /> 9500 GILMAN DR DEPT 0533
+                                        <br /> LA JOLLA CA 92093-0533
+                                        <br />
+                                    </h6>
+                                </div>
+                                <div class="panel-footer">
+                                    <span class="boldFont">Avilable : 10:00 AM - 06:00 PM </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h5 class="h5">
+                                        <i class="fe fe-phone"></i>&nbsp;Contact Us 
+                                    </h5>
+                                </div>
+                                <div class="panel-body">
+                                    <h6 class="h6" style="line-height: 25px;"> Email : cpanel@gmail.com
+                                        <br /> Phone : +0140-8945878
+                                        <br />
+                                    </h6>
+                                </div>
+                                <div class="panel-footer" style="font-size: 25px;">
+                                    <span class="badge">Follow Us</span>
+                                    <span class="clearfix"></span>
+                                    <span style="margin-left: 20px;">
+                                        <i class="fe fe-facebook text-primary" title="facebook"></i>&nbsp; 
+                                        <i class="fe fe-twitter text-info" title="twitter"></i>&nbsp; 
+                                        <i class="fe fe-google-plus" title="googleplus"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <table class="table table-bordered table-hover table-responsive">
+                        <tr>
+                            <th colspan="6" class="bg-primary"> Donor List </th>
+                        </tr>
+                        <tr class="bg-danger">
+                            <th> Name </th>
+                            <th> Gender </th>
+                            <th> Blood Type </th>
+                            <th> Status </th>
+                            <th> Enail-Id </th>
+                            <th> Action </th>
+                        </tr>
+                        <tr>
+                            <td> Oliver Queen </td>
+                            <td> Male </td>
+                            <td> A-Positive&nbsp;(A+) </td>
+                            <td> Active </td>
+                            <td> oliver98@gmail.com </td>
+                            <td>
+                                <a href="#">Details</a>
+                            </td>
+                        </tr>
+                        <tr class="bg-info boldFont">
+                            <td> Jhon Diggle </td>
+                            <td> Male </td>
+                            <td> O-Negative&nbsp;(O-) </td>
+                            <td> In-Active </td>
+                            <td> jhon.d@gmail.com </td>
+                            <td>
+                                <a href="#">Details</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td> Kara Denvers </td>
+                            <td> Female </td>
+                            <td> AB-Positive&nbsp;(AB+) </td>
+                            <td> Active </td>
+                            <td> kara.d@gmail.com </td>
+                            <td>
+                                <a href="#">Details</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td> Barry Allen </td>
+                            <td> Male </td>
+                            <td> B-Negative&nbsp;(B-) </td>
+                            <td> Active </td>
+                            <td> Barry.A@gmail.com </td>
+                            <td>
+                                <a href="#">Details</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td> Katlin Dodge </td>
+                            <td> Female </td>
+                            <td> A-Negative&nbsp;(A-) </td>
+                            <td> Active </td>
+                            <td> Katlin.D@gmail.com </td>
+                            <td>
+                                <a href="#">Details</a>
+                            </td>
+                        </tr>
+                        <tr class="bg-info boldFont">
+                            <td> Jane Doe </td>
+                            <td> Female </td>
+                            <td> O-Negative&nbsp;(O-) </td>
+                            <td> In-Active </td>
+                            <td> jane.d@gmail.com </td>
+                            <td>
+                                <a href="#">Details</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td> Cisco Vibe </td>
+                            <td> Male </td>
+                            <td> AB-Positive&nbsp;(AB+) </td>
+                            <td> Active </td>
+                            <td> Cisco.V@gmail.com </td>
+                            <td>
+                                <a href="#">Details</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td> Laurel Lance </td>
+                            <td> Female </td>
+                            <td> O-Negative&nbsp;(O-) </td>
+                            <td> Active </td>
+                            <td> Laurel.L@gmail.com </td>
+                            <td>
+                                <a href="#">Details</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td> Jhon Jhonz </td>
+                            <td> Male </td>
+                            <td> B-Positive&nbsp;(B+) </td>
+                            <td> Active </td>
+                            <td> Jhon.J@gmail.com </td>
+                            <td>
+                                <a href="#">Details</a>
+                            </td>
+                        </tr>
+                        <tr class="bg-info boldFont">
+                            <td> Harrison Wells </td>
+                            <td> Male </td>
+                            <td> O-Positive&nbsp;(O+) </td>
+                            <td> In-Active </td>
+                            <td> Harrison.W@gmail.com </td>
+                            <td>
+                                <a href="#">Details</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td> Alex Danvers </td>
+                            <td> Female </td>
+                            <td> B-Positive&nbsp;(B+) </td>
+                            <td> Active </td>
+                            <td> Alex.D@gmail.com </td>
+                            <td>
+                                <a href="#">Details</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td> Flecity Smoak </td>
+                            <td> Female </td>
+                            <td> AB-Negative&nbsp;(AB-) </td>
+                            <td> Active </td>
+                            <td> Flecity.S@gmail.com </td>
+                            <td>
+                                <a href="#">Details</a>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <table class="table table-bordered table-hover table-responsive GlbFont">
+                        <thead>
+                            <tr class="bg-primary">
+                                <th colspan="7"> Users </th>
+                            </tr>
+                            <tr class="bg-danger">
+                                <th> S# </th>
+                                <th> Full Name </th>
+                                <th> User Id </th>
+                                <th> Registered On </th>
+                                <th> Last Login </th>
+                                <th> Status </th>
+                                <th> Action </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td> 1 </td>
+                                <td> Tine Allen </td>
+                                <td> tinan </td>
+                                <td> 18-Aug-2015 09:00:00 AM </td>
+                                <td> 15-Jan-2018 12:00:00 PM </td>
+                                <td> Active </td>
+                                <td>
+                                    <a href="#">Edit</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td> 2 </td>
+                                <td> Newt Schemnder </td>
+                                <td> newtsc </td>
+                                <td> 05-Jul-20015 01:02:03 PM </td>
+                                <td> 22-Dec-2018 05:37:15 PM </td>
+                                <td> Active </td>
+                                <td>
+                                    <a href="#">Edit</a>
+                                </td>
+                            </tr>
+                            <tr class="bg-info">
+                                <th> 3 </th>
+                                <th> Grindelwald </th>
+                                <th> grld </th>
+                                <th> 11-Dec-2010 11:11:11 AM </th>
+                                <th> 25-Mar-2018 03:30:00 PM </th>
+                                <th> In-Active </th>
+                                <th>
+                                    <a href="#">Edit</a>
+                                </th>
+                            </tr>
+                            <tr>
+                                <td> 4 </td>
+                                <td> Malcom Merlyn </td>
+                                <td> malcomm </td>
+                                <td> 19-Oct-2014 04:30:00 PM </td>
+                                <td> 23-Jun-2015 01:00:00 AM </td>
+                                <td> Active </td>
+                                <td>
+                                    <a href="#">Edit</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td> 5 </td>
+                                <td> Ras'a-Gul </td>
+                                <td> rgul </td>
+                                <td> 06-Sep-2016 08:50:33 AM </td>
+                                <td> 13-Jun-2017 07:00:00 AM </td>
+                                <td> Active </td>
+                                <td>
+                                    <a href="#">Edit</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <script src="{% static '/Scripts/Index/HelperClass.js' %}" type="text/javascript"></script>
+        <script type="text/javascript">
+            //IncreaseNumber 
+            HelperClass.IncrementCount('ttlDonorCnt', 3000, 6);
+            HelperClass.IncrementCount('UserCont', 3500, 7);
+            HelperClass.IncrementCount('stockCnt', 4000, 8);
+            HelperClass.IncrementCount('DonatedCnt', 6000, 12);
+            //Initializing Map Control 
+            HelperClass.MapDisplay('MapDisplay');
+            var CanvasCount = $("canvas"); console.log(CanvasCount);
+            for (var i = 0; i < CanvasCount.length; i++) {
+                HelperClass.CreateChart(CanvasCount[i].id);
+            }
+        </script>
+    </body>
+</html>     

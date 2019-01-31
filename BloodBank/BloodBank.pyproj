@@ -1,0 +1,446 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <Name>BloodBank</Name>
+    <RootNamespace>BloodBank</RootNamespace>
+  </PropertyGroup>
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>41a450a1-711e-4f7b-bc1b-734af9eff7c9</ProjectGuid>
+    <ProjectHome>.</ProjectHome>
+    <ProjectTypeGuids>{5F0BE9CA-D677-4A4D-8806-6076C0FAAD37};{349c5851-65df-11da-9384-00065b846f21};{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
+    <StartupFile>manage.py</StartupFile>
+    <SearchPath>
+    </SearchPath>
+    <WorkingDirectory>.</WorkingDirectory>
+    <LaunchProvider>Django launcher</LaunchProvider>
+    <DjangoSettingsModule>BloodBank.settings</DjangoSettingsModule>
+    <OutputPath>.</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="AppComponent\admin.py" />
+    <Compile Include="AppComponent\apps.py" />
+    <Compile Include="AppComponent\migrations\__init__.py" />
+    <Compile Include="AppComponent\models.py" />
+    <Compile Include="AppComponent\tests.py" />
+    <Compile Include="AppComponent\views.py" />
+    <Compile Include="AppComponent\__init__.py" />
+    <Compile Include="manage.py" />
+    <Compile Include="BloodBank\__init__.py" />
+    <Compile Include="BloodBank\settings.py" />
+    <Compile Include="BloodBank\urls.py" />
+    <Compile Include="BloodBank\wsgi.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="AppComponent\static\Content\bootstrap-theme.css" />
+    <Content Include="AppComponent\static\Content\bootstrap-theme.css.map" />
+    <Content Include="AppComponent\static\Content\bootstrap-theme.min.css" />
+    <Content Include="AppComponent\static\Content\bootstrap-theme.min.css.map" />
+    <Content Include="AppComponent\static\Content\bootstrap.css" />
+    <Content Include="AppComponent\static\Content\bootstrap.css.map" />
+    <Content Include="AppComponent\static\Content\bootstrap.min.css" />
+    <Content Include="AppComponent\static\Content\bootstrap.min.css.map" />
+    <Content Include="AppComponent\static\CSS\animate.css" />
+    <Content Include="AppComponent\static\CSS\bootstrap.min.css" />
+    <Content Include="AppComponent\static\CSS\CustomStyle.css" />
+    <Content Include="AppComponent\static\CSS\jquery.dataTables.css" />
+    <Content Include="AppComponent\static\CSS\jqvmap.css" />
+    <Content Include="AppComponent\static\CSS\line-awesome-font-awesome.css" />
+    <Content Include="AppComponent\static\CSS\line-awesome.css" />
+    <Content Include="AppComponent\static\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="AppComponent\static\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="AppComponent\static\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="AppComponent\static\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="AppComponent\static\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="AppComponent\static\fonts\line-awesome.eot" />
+    <Content Include="AppComponent\static\fonts\line-awesome.svg" />
+    <Content Include="AppComponent\static\fonts\line-awesome.ttf" />
+    <Content Include="AppComponent\static\fonts\line-awesome.woff" />
+    <Content Include="AppComponent\static\fonts\line-awesome.woff2" />
+    <Content Include="AppComponent\static\Image\ComLogo.png" />
+    <Content Include="AppComponent\static\Image\ComonyLogoTitle.png" />
+    <Content Include="AppComponent\static\Image\download.jpg" />
+    <Content Include="AppComponent\static\Image\Drift.png" />
+    <Content Include="AppComponent\static\Image\images %281%29.jpg" />
+    <Content Include="AppComponent\static\Image\images.jpg" />
+    <Content Include="AppComponent\static\Image\images.png" />
+    <Content Include="AppComponent\static\Image\img_avatar.png" />
+    <Content Include="AppComponent\static\Image\img_avatar1.png" />
+    <Content Include="AppComponent\static\Image\img_avatar5.png" />
+    <Content Include="AppComponent\static\Image\MYImage.jpeg" />
+    <Content Include="AppComponent\static\Image\OnlineBanking.jpg" />
+    <Content Include="AppComponent\static\Image\OnlineShopping.jpg" />
+    <Content Include="AppComponent\static\Image\StudentHelpDesk.jpg" />
+    <Content Include="AppComponent\static\Image\user_delete.png" />
+    <Content Include="AppComponent\static\Scripts\bootstrap.js" />
+    <Content Include="AppComponent\static\Scripts\bootstrap.min.js" />
+    <Content Include="AppComponent\static\Scripts\ChangePassword\ChangePassword.js" />
+    <Content Include="AppComponent\static\Scripts\Chart.js" />
+    <Content Include="AppComponent\static\Scripts\Chart.min.js" />
+    <Content Include="AppComponent\static\Scripts\ContactUs\ContactUs.js" />
+    <Content Include="AppComponent\static\Scripts\dnrList\dnrList.js" />
+    <Content Include="AppComponent\static\Scripts\DonorRegistration\DonorRegistration.js" />
+    <Content Include="AppComponent\static\Scripts\Index\HelperClass.js" />
+    <Content Include="AppComponent\static\Scripts\jquery-1.12.4.min.js" />
+    <Content Include="AppComponent\static\Scripts\jquery.dataTables.min.js" />
+    <Content Include="AppComponent\static\Scripts\jquery.vmap.js" />
+    <Content Include="AppComponent\static\Scripts\jquery.vmap.sampledata.js" />
+    <Content Include="AppComponent\static\Scripts\jquery.vmap.world.js" />
+    <Content Include="AppComponent\static\Scripts\jQueryDatePicker\jquery-ui.css" />
+    <Content Include="AppComponent\static\Scripts\jQueryDatePicker\jquery-ui.js" />
+    <Content Include="AppComponent\static\Scripts\jQueryMap.html" />
+    <Content Include="AppComponent\static\Scripts\Login\Login.js" />
+    <Content Include="AppComponent\static\Scripts\SampleReg\SampleReg.js" />
+    <Content Include="AppComponent\static\Scripts\SignUp\SignUp.js" />
+    <Content Include="AppComponent\static\Scripts\UserDetail\UserDetail.js" />
+    <Content Include="AppComponent\static\Scripts\UserProfile\UserProfile.js" />
+    <Content Include="AppComponent\static\Scripts\utils.js" />
+    <Content Include="AppComponent\static\svg-sprite\sprite.feathericon.svg" />
+    <Content Include="AppComponent\static\svg\activity.svg" />
+    <Content Include="AppComponent\static\svg\add-cart.svg" />
+    <Content Include="AppComponent\static\svg\align-bottom.svg" />
+    <Content Include="AppComponent\static\svg\align-center.svg" />
+    <Content Include="AppComponent\static\svg\align-left.svg" />
+    <Content Include="AppComponent\static\svg\align-right.svg" />
+    <Content Include="AppComponent\static\svg\align-top.svg" />
+    <Content Include="AppComponent\static\svg\align-vertically.svg" />
+    <Content Include="AppComponent\static\svg\angry.svg" />
+    <Content Include="AppComponent\static\svg\app-menu.svg" />
+    <Content Include="AppComponent\static\svg\apron.svg" />
+    <Content Include="AppComponent\static\svg\arrow-down.svg" />
+    <Content Include="AppComponent\static\svg\arrow-left.svg" />
+    <Content Include="AppComponent\static\svg\arrow-right.svg" />
+    <Content Include="AppComponent\static\svg\arrow-up.svg" />
+    <Content Include="AppComponent\static\svg\artboard.svg" />
+    <Content Include="AppComponent\static\svg\audio-player.svg" />
+    <Content Include="AppComponent\static\svg\backward.svg" />
+    <Content Include="AppComponent\static\svg\bar-chart.svg" />
+    <Content Include="AppComponent\static\svg\bar.svg" />
+    <Content Include="AppComponent\static\svg\beer.svg" />
+    <Content Include="AppComponent\static\svg\beginner.svg" />
+    <Content Include="AppComponent\static\svg\bell.svg" />
+    <Content Include="AppComponent\static\svg\birthday-cake.svg" />
+    <Content Include="AppComponent\static\svg\bold.svg" />
+    <Content Include="AppComponent\static\svg\bolt.svg" />
+    <Content Include="AppComponent\static\svg\book.svg" />
+    <Content Include="AppComponent\static\svg\bookmark.svg" />
+    <Content Include="AppComponent\static\svg\bread.svg" />
+    <Content Include="AppComponent\static\svg\browser.svg" />
+    <Content Include="AppComponent\static\svg\brush.svg" />
+    <Content Include="AppComponent\static\svg\bug.svg" />
+    <Content Include="AppComponent\static\svg\building.svg" />
+    <Content Include="AppComponent\static\svg\bus.svg" />
+    <Content Include="AppComponent\static\svg\cage.svg" />
+    <Content Include="AppComponent\static\svg\calendar.svg" />
+    <Content Include="AppComponent\static\svg\camera.svg" />
+    <Content Include="AppComponent\static\svg\car.svg" />
+    <Content Include="AppComponent\static\svg\cart.svg" />
+    <Content Include="AppComponent\static\svg\check-circle-o.svg" />
+    <Content Include="AppComponent\static\svg\check-circle.svg" />
+    <Content Include="AppComponent\static\svg\check-verified.svg" />
+    <Content Include="AppComponent\static\svg\check.svg" />
+    <Content Include="AppComponent\static\svg\clock.svg" />
+    <Content Include="AppComponent\static\svg\close.svg" />
+    <Content Include="AppComponent\static\svg\cloud.svg" />
+    <Content Include="AppComponent\static\svg\cocktail.svg" />
+    <Content Include="AppComponent\static\svg\code.svg" />
+    <Content Include="AppComponent\static\svg\codepen.svg" />
+    <Content Include="AppComponent\static\svg\coffee.svg" />
+    <Content Include="AppComponent\static\svg\columns.svg" />
+    <Content Include="AppComponent\static\svg\comment-o.svg" />
+    <Content Include="AppComponent\static\svg\comment.svg" />
+    <Content Include="AppComponent\static\svg\commenting.svg" />
+    <Content Include="AppComponent\static\svg\comments.svg" />
+    <Content Include="AppComponent\static\svg\compress.svg" />
+    <Content Include="AppComponent\static\svg\credit-card.svg" />
+    <Content Include="AppComponent\static\svg\crop.svg" />
+    <Content Include="AppComponent\static\svg\cry.svg" />
+    <Content Include="AppComponent\static\svg\cutlery.svg" />
+    <Content Include="AppComponent\static\svg\delete-link.svg" />
+    <Content Include="AppComponent\static\svg\desktop.svg" />
+    <Content Include="AppComponent\static\svg\diamond.svg" />
+    <Content Include="AppComponent\static\svg\difference.svg" />
+    <Content Include="AppComponent\static\svg\disabled.svg" />
+    <Content Include="AppComponent\static\svg\disappointed.svg" />
+    <Content Include="AppComponent\static\svg\distribute-horizontally.svg" />
+    <Content Include="AppComponent\static\svg\distribute-vertically.svg" />
+    <Content Include="AppComponent\static\svg\document.svg" />
+    <Content Include="AppComponent\static\svg\donut.svg" />
+    <Content Include="AppComponent\static\svg\download.svg" />
+    <Content Include="AppComponent\static\svg\drop-down.svg" />
+    <Content Include="AppComponent\static\svg\drop-left.svg" />
+    <Content Include="AppComponent\static\svg\drop-right.svg" />
+    <Content Include="AppComponent\static\svg\drop-up.svg" />
+    <Content Include="AppComponent\static\svg\edit.svg" />
+    <Content Include="AppComponent\static\svg\eject.svg" />
+    <Content Include="AppComponent\static\svg\elipsis-h.svg" />
+    <Content Include="AppComponent\static\svg\elipsis-v.svg" />
+    <Content Include="AppComponent\static\svg\equalizer.svg" />
+    <Content Include="AppComponent\static\svg\eraser.svg" />
+    <Content Include="AppComponent\static\svg\expand.svg" />
+    <Content Include="AppComponent\static\svg\export.svg" />
+    <Content Include="AppComponent\static\svg\eye.svg" />
+    <Content Include="AppComponent\static\svg\facebook.svg" />
+    <Content Include="AppComponent\static\svg\fast-backward.svg" />
+    <Content Include="AppComponent\static\svg\fast-forward.svg" />
+    <Content Include="AppComponent\static\svg\feather.svg" />
+    <Content Include="AppComponent\static\svg\feed.svg" />
+    <Content Include="AppComponent\static\svg\file-audio.svg" />
+    <Content Include="AppComponent\static\svg\file-excel.svg" />
+    <Content Include="AppComponent\static\svg\file-image.svg" />
+    <Content Include="AppComponent\static\svg\file-movie.svg" />
+    <Content Include="AppComponent\static\svg\file-powerpoint.svg" />
+    <Content Include="AppComponent\static\svg\file-word.svg" />
+    <Content Include="AppComponent\static\svg\file-zip.svg" />
+    <Content Include="AppComponent\static\svg\file.svg" />
+    <Content Include="AppComponent\static\svg\filter.svg" />
+    <Content Include="AppComponent\static\svg\flag.svg" />
+    <Content Include="AppComponent\static\svg\folder-open.svg" />
+    <Content Include="AppComponent\static\svg\folder.svg" />
+    <Content Include="AppComponent\static\svg\fork.svg" />
+    <Content Include="AppComponent\static\svg\forward.svg" />
+    <Content Include="AppComponent\static\svg\frowing.svg" />
+    <Content Include="AppComponent\static\svg\frying-pan.svg" />
+    <Content Include="AppComponent\static\svg\gamepad.svg" />
+    <Content Include="AppComponent\static\svg\gear.svg" />
+    <Content Include="AppComponent\static\svg\gift.svg" />
+    <Content Include="AppComponent\static\svg\git.svg" />
+    <Content Include="AppComponent\static\svg\github-alt.svg" />
+    <Content Include="AppComponent\static\svg\github.svg" />
+    <Content Include="AppComponent\static\svg\globe.svg" />
+    <Content Include="AppComponent\static\svg\google-plus.svg" />
+    <Content Include="AppComponent\static\svg\google.svg" />
+    <Content Include="AppComponent\static\svg\hash.svg" />
+    <Content Include="AppComponent\static\svg\headphone.svg" />
+    <Content Include="AppComponent\static\svg\heart-o.svg" />
+    <Content Include="AppComponent\static\svg\heart.svg" />
+    <Content Include="AppComponent\static\svg\home.svg" />
+    <Content Include="AppComponent\static\svg\import.svg" />
+    <Content Include="AppComponent\static\svg\info.svg" />
+    <Content Include="AppComponent\static\svg\insert-link.svg" />
+    <Content Include="AppComponent\static\svg\instagram.svg" />
+    <Content Include="AppComponent\static\svg\intersect.svg" />
+    <Content Include="AppComponent\static\svg\italic.svg" />
+    <Content Include="AppComponent\static\svg\key.svg" />
+    <Content Include="AppComponent\static\svg\keyboard.svg" />
+    <Content Include="AppComponent\static\svg\kitchen-cooker.svg" />
+    <Content Include="AppComponent\static\svg\laptop.svg" />
+    <Content Include="AppComponent\static\svg\layer.svg" />
+    <Content Include="AppComponent\static\svg\layout.svg" />
+    <Content Include="AppComponent\static\svg\line-chart.svg" />
+    <Content Include="AppComponent\static\svg\link-external.svg" />
+    <Content Include="AppComponent\static\svg\link.svg" />
+    <Content Include="AppComponent\static\svg\list-bullet.svg" />
+    <Content Include="AppComponent\static\svg\list-order.svg" />
+    <Content Include="AppComponent\static\svg\list-task.svg" />
+    <Content Include="AppComponent\static\svg\location.svg" />
+    <Content Include="AppComponent\static\svg\lock.svg" />
+    <Content Include="AppComponent\static\svg\login.svg" />
+    <Content Include="AppComponent\static\svg\logout.svg" />
+    <Content Include="AppComponent\static\svg\loop.svg" />
+    <Content Include="AppComponent\static\svg\magic.svg" />
+    <Content Include="AppComponent\static\svg\mail.svg" />
+    <Content Include="AppComponent\static\svg\map.svg" />
+    <Content Include="AppComponent\static\svg\mask.svg" />
+    <Content Include="AppComponent\static\svg\medal.svg" />
+    <Content Include="AppComponent\static\svg\megaphone.svg" />
+    <Content Include="AppComponent\static\svg\mention.svg" />
+    <Content Include="AppComponent\static\svg\messanger.svg" />
+    <Content Include="AppComponent\static\svg\minus.svg" />
+    <Content Include="AppComponent\static\svg\mitarashi-dango.svg" />
+    <Content Include="AppComponent\static\svg\mobile.svg" />
+    <Content Include="AppComponent\static\svg\money.svg" />
+    <Content Include="AppComponent\static\svg\moon.svg" />
+    <Content Include="AppComponent\static\svg\mouse.svg" />
+    <Content Include="AppComponent\static\svg\music.svg" />
+    <Content Include="AppComponent\static\svg\notice-active.svg" />
+    <Content Include="AppComponent\static\svg\notice-off.svg" />
+    <Content Include="AppComponent\static\svg\notice-on.svg" />
+    <Content Include="AppComponent\static\svg\notice-push.svg" />
+    <Content Include="AppComponent\static\svg\octpus.svg" />
+    <Content Include="AppComponent\static\svg\open-mouth.svg" />
+    <Content Include="AppComponent\static\svg\palette.svg" />
+    <Content Include="AppComponent\static\svg\paper-plane.svg" />
+    <Content Include="AppComponent\static\svg\pause.svg" />
+    <Content Include="AppComponent\static\svg\pencil.svg" />
+    <Content Include="AppComponent\static\svg\phone.svg" />
+    <Content Include="AppComponent\static\svg\picture-square.svg" />
+    <Content Include="AppComponent\static\svg\picture.svg" />
+    <Content Include="AppComponent\static\svg\pie-chart.svg" />
+    <Content Include="AppComponent\static\svg\pinterest.svg" />
+    <Content Include="AppComponent\static\svg\pizza.svg" />
+    <Content Include="AppComponent\static\svg\play.svg" />
+    <Content Include="AppComponent\static\svg\plug.svg" />
+    <Content Include="AppComponent\static\svg\plus.svg" />
+    <Content Include="AppComponent\static\svg\pocket.svg" />
+    <Content Include="AppComponent\static\svg\pot.svg" />
+    <Content Include="AppComponent\static\svg\print.svg" />
+    <Content Include="AppComponent\static\svg\prototype.svg" />
+    <Content Include="AppComponent\static\svg\question.svg" />
+    <Content Include="AppComponent\static\svg\quote-left.svg" />
+    <Content Include="AppComponent\static\svg\quote-right.svg" />
+    <Content Include="AppComponent\static\svg\rage.svg" />
+    <Content Include="AppComponent\static\svg\random.svg" />
+    <Content Include="AppComponent\static\svg\remove-cart.svg" />
+    <Content Include="AppComponent\static\svg\rice-cracker.svg" />
+    <Content Include="AppComponent\static\svg\rocket.svg" />
+    <Content Include="AppComponent\static\svg\scale.svg" />
+    <Content Include="AppComponent\static\svg\search-minus.svg" />
+    <Content Include="AppComponent\static\svg\search-plus.svg" />
+    <Content Include="AppComponent\static\svg\search.svg" />
+    <Content Include="AppComponent\static\svg\share.svg" />
+    <Content Include="AppComponent\static\svg\shield.svg" />
+    <Content Include="AppComponent\static\svg\shopping-bag.svg" />
+    <Content Include="AppComponent\static\svg\sitemap.svg" />
+    <Content Include="AppComponent\static\svg\smile-alt.svg" />
+    <Content Include="AppComponent\static\svg\smile-heart.svg" />
+    <Content Include="AppComponent\static\svg\smile-plus.svg" />
+    <Content Include="AppComponent\static\svg\smile.svg" />
+    <Content Include="AppComponent\static\svg\speaker.svg" />
+    <Content Include="AppComponent\static\svg\squid.svg" />
+    <Content Include="AppComponent\static\svg\star-o.svg" />
+    <Content Include="AppComponent\static\svg\star.svg" />
+    <Content Include="AppComponent\static\svg\step-backward.svg" />
+    <Content Include="AppComponent\static\svg\step-forward.svg" />
+    <Content Include="AppComponent\static\svg\stop.svg" />
+    <Content Include="AppComponent\static\svg\subtract.svg" />
+    <Content Include="AppComponent\static\svg\sunny-o.svg" />
+    <Content Include="AppComponent\static\svg\sunrise.svg" />
+    <Content Include="AppComponent\static\svg\sync.svg" />
+    <Content Include="AppComponent\static\svg\table.svg" />
+    <Content Include="AppComponent\static\svg\tablet.svg" />
+    <Content Include="AppComponent\static\svg\tag.svg" />
+    <Content Include="AppComponent\static\svg\target.svg" />
+    <Content Include="AppComponent\static\svg\taxi.svg" />
+    <Content Include="AppComponent\static\svg\terminal.svg" />
+    <Content Include="AppComponent\static\svg\text-align-center.svg" />
+    <Content Include="AppComponent\static\svg\text-align-justify.svg" />
+    <Content Include="AppComponent\static\svg\text-align-left.svg" />
+    <Content Include="AppComponent\static\svg\text-align-right.svg" />
+    <Content Include="AppComponent\static\svg\text-size.svg" />
+    <Content Include="AppComponent\static\svg\ticket.svg" />
+    <Content Include="AppComponent\static\svg\tiled.svg" />
+    <Content Include="AppComponent\static\svg\timeline.svg" />
+    <Content Include="AppComponent\static\svg\tired.svg" />
+    <Content Include="AppComponent\static\svg\train.svg" />
+    <Content Include="AppComponent\static\svg\trash.svg" />
+    <Content Include="AppComponent\static\svg\trophy.svg" />
+    <Content Include="AppComponent\static\svg\truck.svg" />
+    <Content Include="AppComponent\static\svg\tumbler-glass.svg" />
+    <Content Include="AppComponent\static\svg\twitter.svg" />
+    <Content Include="AppComponent\static\svg\umbrella.svg" />
+    <Content Include="AppComponent\static\svg\underline.svg" />
+    <Content Include="AppComponent\static\svg\union.svg" />
+    <Content Include="AppComponent\static\svg\unlock.svg" />
+    <Content Include="AppComponent\static\svg\upload.svg" />
+    <Content Include="AppComponent\static\svg\usb.svg" />
+    <Content Include="AppComponent\static\svg\user-minus.svg" />
+    <Content Include="AppComponent\static\svg\user-plus.svg" />
+    <Content Include="AppComponent\static\svg\user.svg" />
+    <Content Include="AppComponent\static\svg\users.svg" />
+    <Content Include="AppComponent\static\svg\vector.svg" />
+    <Content Include="AppComponent\static\svg\video.svg" />
+    <Content Include="AppComponent\static\svg\vr.svg" />
+    <Content Include="AppComponent\static\svg\wallet.svg" />
+    <Content Include="AppComponent\static\svg\warning.svg" />
+    <Content Include="AppComponent\static\svg\watch-alt.svg" />
+    <Content Include="AppComponent\static\svg\watch.svg" />
+    <Content Include="AppComponent\static\svg\wine-glass.svg" />
+    <Content Include="AppComponent\static\svg\wordpress-alt.svg" />
+    <Content Include="AppComponent\static\svg\wordpress.svg" />
+    <Content Include="AppComponent\static\svg\wrench.svg" />
+    <Content Include="AppComponent\static\svg\yaki-dango.svg" />
+    <Content Include="AppComponent\static\svg\youtube.svg" />
+    <Content Include="AppComponent\templates\ChangePassword.html" />
+    <Content Include="AppComponent\templates\CommentLIst.html" />
+    <Content Include="AppComponent\templates\ContactUs.html" />
+    <Content Include="AppComponent\templates\dnrList.html" />
+    <Content Include="AppComponent\templates\DonorRegistration.html" />
+    <Content Include="AppComponent\templates\Index.html" />
+    <Content Include="AppComponent\templates\Login.html" />
+    <Content Include="AppComponent\templates\SignUp.Html" />
+    <Content Include="AppComponent\templates\SiteMaster.html" />
+    <Content Include="AppComponent\templates\StockMaster.html" />
+    <Content Include="AppComponent\templates\UserDetail.html" />
+    <Content Include="AppComponent\templates\UserHistory.html" />
+    <Content Include="AppComponent\templates\UserHome.html" />
+    <Content Include="AppComponent\templates\UserProfile.html" />
+    <Content Include="BloodBank.sqlite3" />
+    <Content Include="requirements.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="AppComponent\" />
+    <Folder Include="AppComponent\migrations\" />
+    <Folder Include="AppComponent\static\" />
+    <Folder Include="AppComponent\static\Content\" />
+    <Folder Include="AppComponent\static\CSS\" />
+    <Folder Include="AppComponent\static\fonts\" />
+    <Folder Include="AppComponent\static\Image\" />
+    <Folder Include="AppComponent\static\Scripts\" />
+    <Folder Include="AppComponent\static\Scripts\ChangePassword\" />
+    <Folder Include="AppComponent\static\Scripts\ContactUs\" />
+    <Folder Include="AppComponent\static\Scripts\dnrList\" />
+    <Folder Include="AppComponent\static\Scripts\DonorRegistration\" />
+    <Folder Include="AppComponent\static\Scripts\Index\" />
+    <Folder Include="AppComponent\static\Scripts\jQueryDatePicker\" />
+    <Folder Include="AppComponent\static\Scripts\Login\" />
+    <Folder Include="AppComponent\static\Scripts\SampleReg\" />
+    <Folder Include="AppComponent\static\Scripts\SignUp\" />
+    <Folder Include="AppComponent\static\Scripts\UserDetail\" />
+    <Folder Include="AppComponent\static\Scripts\UserProfile\" />
+    <Folder Include="AppComponent\static\svg-sprite\" />
+    <Folder Include="AppComponent\static\svg\" />
+    <Folder Include="AppComponent\templates\" />
+    <Folder Include="BloodBank\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.Django.targets" />
+  <!-- Specify pre- and post-build commands in the BeforeBuild and 
+       AfterBuild targets below. -->
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <AutoAssignPort>True</AutoAssignPort>
+          <UseCustomServer>True</UseCustomServer>
+          <CustomServerUrl>http://localhost</CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}" User="">
+        <WebProjectProperties>
+          <StartPageUrl>
+          </StartPageUrl>
+          <StartAction>CurrentPage</StartAction>
+          <AspNetDebugging>True</AspNetDebugging>
+          <SilverlightDebugging>False</SilverlightDebugging>
+          <NativeDebugging>False</NativeDebugging>
+          <SQLDebugging>False</SQLDebugging>
+          <ExternalProgram>
+          </ExternalProgram>
+          <StartExternalURL>
+          </StartExternalURL>
+          <StartCmdLineArguments>
+          </StartCmdLineArguments>
+          <StartWorkingDirectory>
+          </StartWorkingDirectory>
+          <EnableENC>False</EnableENC>
+          <AlwaysStartWebServerOnDebug>False</AlwaysStartWebServerOnDebug>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

@@ -1,0 +1,582 @@
+﻿.pageHeader {
+    font-size: medium; /*font-family: 'Lucida Sans' , 'Lucida Sans Regular' , 'Lucida Grande' , 'Lucida Sans Unicode' , Geneva, Verdana, sans-serif;*/
+    font-family: Roboto, sans-serif;
+    font-weight: bolder;
+    padding: 5px;
+    /*background-color: #323639;*/
+    background-color: #555;
+    box-shadow: 0px 7px 4px 0px black;
+}
+
+.pageFooter {
+    font-size: medium; /*font-family: 'Lucida Sans' , 'Lucida Sans Regular' , 'Lucida Grande' , 'Lucida Sans Unicode' , Geneva, Verdana, sans-serif;*/
+    font-weight: bolder;
+    padding: 5px;
+    background-color: #2F3129;
+}
+
+.compBody {
+    margin-left: -1%;
+    margin-right: 1%;
+    background-color: #f5f6f8;
+    overflow-y: scroll !important;
+}
+
+.CompContent {
+    color: White;
+    font-weight: bolder;
+    font-size: medium;
+}
+
+.SideMenuItem {
+    padding: 8px;
+    font-size: medium;
+    color: White;
+}
+
+body {
+    overflow: hidden;
+    background-color: #E4EAE6;
+    -webkit-user-select: none;
+    -moz-user-select: -moz-none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+#header {
+    font-weight: bolder;
+    font-size: large;
+    font-family: Constantia;
+    padding: 3px;
+    color: #FFFFFF;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+#comlogo {
+    width: 50px;
+    height: 40px; /*border: 2px solid green;*/
+}
+
+#CompName {
+    margin-left: 5px;
+}
+
+.GlbFont {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.DashBoardFonts {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.vcenter {
+    margin-top: 10px;
+    padding-left: 10px;
+}
+
+.vMiddle {
+    margin-top: 7px;
+    padding-left: 10px;
+}
+
+.FormHeader {
+    padding: 3px;
+    font-size: medium;
+    font-weight: bolder;
+    color: white;
+}
+
+.boldFont {
+    font-weight: bolder;
+}
+
+#SidMenu {
+    border-radius: 10px;
+}
+
+    #SidMenu a {
+        font-size: medium;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        font-weight: bolder;
+        padding: 5px;
+        text-decoration: none;
+    }
+
+    #SidMenu li:hover {
+        cursor: pointer;
+        background-color: #5c628a;
+    }
+
+        #SidMenu li:hover a {
+            color: white;
+            font-weight: bolder;
+            text-decoration: none;
+        }
+
+.scrollbar {
+    height: 300px;
+}
+
+.scrollbar-active {
+    min-height: 450px;
+}
+
+#scroll::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    background-color: #F5F5F5;
+}
+
+#scroll::-webkit-scrollbar {
+    width: 10px;
+    background-color: #F5F5F5;
+}
+
+#scroll::-webkit-scrollbar-thumb {
+    background-color: #000000;
+    border: 2px solid #555555;
+}
+
+#BodyFrame {
+    width: 100%;
+    height: 700px;
+    border: 0px solid black;
+    padding: 10px;
+}
+
+
+#SideBarContainer {
+    width: 108%;
+    height: 900px;
+    position: relative;
+    background: #394a59;
+    padding-top: 20px;
+    z-index: 0;
+}
+
+    #SideBarContainer a {
+        text-decoration: none;
+        padding: 3px;
+        color: White;
+    }
+
+    #SideBarContainer div:hover {
+        cursor: pointer;
+        background-color: #5c628a;
+    }
+
+.ProjectsFont {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.CustomTextBox {
+    padding: 8px;
+    font-family: Lucida Sans Unicode;
+    border-radius: 5px;
+    border: 1px solid #c0c1ba;
+    outline: none;
+    width: 100%;
+}
+
+.TopRightNav {
+    float: right;
+    color: #00cc99;
+    margin: 8px 8px 0px 8px;
+    font-family: Lucida Sans Unicode;
+    font-size: larger;
+}
+
+.TextShadow {
+    box-shadow: 5px 6px 9px 2px #6d6363;
+}
+
+.CustomBoxDailog {
+    box-shadow: 5px 7px 8px #000000;
+    width: 400px;
+    height: 140px;
+}
+
+.CustomModal {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    overflow: hidden !important;
+    width: 500px;
+}
+
+.CustomBoxHeader {
+    padding: 15px;
+    color: white;
+}
+
+.CustomBoxContent {
+    background-color: white;
+    padding-left: 25px;
+}
+
+.CustomBoxBtn {
+    background-color: #6c757d; /*#343a40;#002240;*/
+    padding: 5px;
+    width: 80px;
+    color: #ffffff;
+    border: 1px solid #6c757d;
+    margin: 5px;
+    float: right;
+}
+
+.CustomBoxSuccess {
+    background-color: #294050;
+}
+
+.CustomBoxError {
+    background-color: #878bad;
+}
+
+.SubOptionMenu {
+    font-family: Lucida Fax;
+    word-spacing: 10px;
+    /* color: #73e4ea; */
+    font-size: large !important;
+    /* letter-spacing: 1px; */
+    cursor: pointer;
+}
+
+ul > li:hover {
+    color: greenyellow;
+}
+
+.text-password {
+    font-weight: 900;
+    font-family: sans-serif;
+    font-size: x-large;
+}
+
+.text-fs-larger {
+    font-size: larger;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+#mainBodyFrame {
+    margin-top: 15px;
+    overflow: hidden;
+}
+
+#bodyFrame {
+    min-width: 100%;
+    position: absolute;
+    border: 0;
+    height: 100%;
+    padding-bottom: 0px;
+}
+
+.modal-backdrop-trans {
+    background-color: transparent;
+}
+
+.resizeTxtArea {
+    resize: none;
+}
+
+.CustMask {
+    height: 1500px;
+    background-color: transparent;
+    width: 100%;
+    position: fixed;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+
+.CustomModalHeader {
+    font-size: medium;
+    padding: 8px;
+    /*background-color: #F2F2F2;*/
+    margin: 8px 8px 0px 8px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-weight: bolder;
+    border: 1px solid #d9d9d9;
+}
+
+.CustomModalBody {
+    padding: 8px;
+    margin: 0px 8px 8px 8px;
+    border: 1px solid #d9d9d9;
+    border-top-width: 0px;
+    outline: none;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: small;
+    background-color: white;
+}
+
+.ModalBox {
+    padding: 20px;
+    box-shadow: 8px 8px 7px 0px #5a4f4f;
+}
+
+
+.box-Shadow-3d {
+    box-shadow: 0px 34px 27px rgba(0, 0, 0, 0.32), inset 0 0 1px rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+}
+
+
+.ActiveLink {
+    text-decoration: underline;
+    cursor: pointer;
+    color: forestgreen;
+}
+
+.InActiveLink {
+    text-decoration: underline;
+    cursor: pointer;
+    color: palevioletred;
+}
+
+.DnrCreFrm {
+    padding: 15px !important;
+}
+
+.Customfooter {
+    margin-top: 6px;
+}
+
+.bg-White {
+    background-color: white;
+}
+
+textarea {
+    resize: none;
+}
+
+.font-large {
+    font-size: large;
+}
+
+
+.ContactForm {
+    border: 1px solid #337ab7;
+    padding: 10px 10px;
+    background-color: white;
+    border-spacing: 5px;
+}
+
+.ContactFormHeader {
+    padding: 8px;
+    color: black;
+    width: 100%;
+    font-weight: normal !important;
+    font-size: large;
+    font-variant: small-caps;
+}
+
+.ContactFormTxt {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #d3cfcf;
+    border-spacing: 0px;
+}
+
+.ContactFormTitle {
+    width: 100%;
+    display: block;
+    font-size: 30px;
+    color: #FFFFFF;
+    line-height: 1.2;
+    text-align: left;
+    padding: 12px;
+    border: 1px solid #337ab7;
+    background-color: #337ab7;
+}
+
+.ContactAdressCont {
+    width: 98%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.ContactAddressTitle {
+    padding: 8px;
+    color: #f9e4dc;
+    border: 0px solid #607D8B;
+    border-bottom-width: 2px;
+    font-variant: small-caps;
+    letter-spacing: 1px;
+    font-size: large;
+    width: 60%;
+}
+
+.ContactAddressBody {
+    padding: 10px 10px 10px 0px;
+}
+
+    .ContactAddressBody ul li {
+        font-variant: small-caps;
+        color: #f1f5bd;
+        font-size: medium;
+        letter-spacing: 1px;
+    }
+
+.CommentFooter {
+    display: flex;
+    float: right;
+    margin-top: -4px;
+    font-size: 15pt;
+    cursor: pointer;
+}
+
+    .CommentFooter span i {
+        letter-spacing: 5pt;
+    }
+
+        .CommentFooter span i:hover {
+            font-size: 20pt;
+        }
+
+.CommentHidden {
+    opacity: 0.6;
+}
+
+
+.ProfileNameContainer {
+    padding: 5px;
+    background-color: #00BCD4;
+}
+
+    .ProfileNameContainer span {
+        margin: 1px 0px 0px 10px;
+        font-weight: bolder;
+        font-variant: small-caps;
+        font-stretch: expanded;
+    }
+
+.ProfileImageContainer {
+    bottom: 0;
+    width: 150px;
+    height: 150px;
+    margin: 130px 0px 0px 10px;
+    float: left;
+    background-color: #ede1a3;
+}
+
+.ProfileCoverContainer {
+    height: 200px;
+    background-color: #333;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+
+}
+
+
+.file-field {
+    position: relative;
+}
+
+.btn-floating {
+    -webkit-box-shadow: 0 5px 11px 0 rgba(0,0,0,.18), 0 4px 15px 0 rgba(0,0,0,.15);
+    box-shadow: 0 5px 11px 0 rgba(0,0,0,.18), 0 4px 15px 0 rgba(0,0,0,.15);
+    width: 40px;
+    height: 40px;
+    position: relative;
+    z-index: 1;
+    vertical-align: middle;
+    display: inline-block;
+    overflow: hidden;
+    -webkit-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+    margin: 10px;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    padding: 0;
+    cursor: pointer;
+}
+
+.peach-gradient {
+    background: #0097a7 !important;
+}
+
+.mt-0, .my-0 {
+    margin-top: -7px !important;
+}
+
+.float-left {
+    float: left;
+}
+
+.file-field input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+    opacity: 0;
+}
+
+.file-field a {
+    padding: 7px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.file-field i {
+    font-size: x-large;
+    color: white;
+    cursor: pointer;
+}
+
+
+.float-right {
+    float: right;
+}
+
+.UpdateDefSetting {
+    margin-top: -5px;
+    -webkit-box-shadow: 0 5px 11px 0 rgba(0,0,0,.18), 0 4px 15px 0 rgba(0,0,0,.15);
+    box-shadow: 0 5px 11px 0 rgba(0,0,0,.18), 0 4px 15px 0 rgba(0,0,0,.15);
+    background-color: #ffa000 !important;
+    border-color: #ffa000 !important;
+}
+
+    .UpdateDefSetting:hover {
+        color: white;
+    }
+
+
+.center-screen {
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    margin: auto;
+    display: table;
+}
+
+
+.border-less-txt {
+    width: 100%;
+    border-width: 0px;
+    padding: 5px;
+    outline: none;
+}
+.label-control {
+    font-size: 12px;
+    font-weight: bolder;
+    color: #555;
+    text-align: center;
+    border-radius: 4px;
+    display: table-cell;
+}

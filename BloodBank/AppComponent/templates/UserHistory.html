@@ -1,0 +1,75 @@
+﻿<html>
+	<head> {% load static %} 
+		<meta charset="UTF-8">
+		<title>Detail</title>
+		<link href="{% static '/Content/bootstrap.min.css' %}" rel="stylesheet" type="text/css" />
+		<link href="{% static '/Content/bootstrap-theme.min.css' %}" rel="stylesheet" type="text/css" />
+		<link href="{% static '/CSS/line-awesome.css' %}" rel="stylesheet" type="text/css" />
+		<link href="{% static '/CSS/line-awesome-font-awesome.css' %}" rel="stylesheet" type="text/css" />
+		<link href="{% static '/CSS/CustomStyle.css' %}" rel="stylesheet"/>
+		<link href="{% static '/CSS/animate.css' %}" rel="stylesheet" />
+		<!--JqueryDataTable CSS-->
+		<link href="{% static '/CSS/jquery.dataTables.css' %}" rel="stylesheet" />
+		<!--End JqueryDataTable CSS-->
+		<script src="{% static '/Scripts/jquery-1.12.4.min.js' %}" type="text/javascript"></script>
+		<script src="{% static '/Scripts/bootstrap.min.js' %}" type="text/javascript"></script>
+		<script src="{% static '/Scripts/Chart.min.js' %}" type="text/javascript"></script>
+		<script src="{% static '/Scripts/utils.js' %}" type="text/javascript"></script>
+	</head>
+	<body class="compBody"> {% csrf_token %} 
+		<div class="container-fluid GlbFont">
+			<div class="row">
+				<div class="col-xs-12 col-sm-12 GlbFont">
+					<h2 class="h2 ProjectsFont">
+						<i class="la la-history text-primary"></i>&nbsp;User Log History 
+					</h2>
+					<h6 class="h6">
+						<span class="breadcrumb col-xs-12 table-bordered bg-White">Home / Login History</span>
+					</h6>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12">
+					<div style="border-radius: 10px 10px;">
+						<div class="table-responsive">
+							<table id="userTab" class="table table-bordered table-hover GlbFont" style="background-color: white;">
+								<thead>
+									<tr class="bg-primary">
+										<th>S.No. 
+											<i class="la la-sort-numeric-desc" style="float: right; margin-top: 2%; font-size: larger;"></i>
+										</th>
+										<th>UserId 
+											<i class="la la-sort-alpha-desc" style="float: right; margin-top: 2%; font-size: larger;"></i>
+										</th>
+										<th>First Login 
+											<i class="la la-sort-alpha-desc" style="float: right; margin-top: 2%; font-size: larger;"></i>
+										</th>
+										<th>Latest Login
+											<i class="la la-sort-numeric-desc" style="float: right; margin-top: 2%; font-size: larger;"></i>
+										</th>
+										<th>Total Login
+											<i class="la la-sort-numeric-desc" style="float: right; margin-top: 2%; font-size: larger;"></i>
+										</th>
+									</tr>
+								</thead>
+								<tbody> 
+									{% for item in ResponceStatus %}
+										<tr>
+											<td>{{ forloop.counter }}</td>
+											<td>{{item.UserId}}</td>
+											<td>{{item.FirstLog}}</td>
+											<td>{{item.LatstLog}}</td>
+											<td>{{item.TtlLog}}</td>
+										</tr>
+									{% endfor %} 
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="{% static '/Scripts/jquery.dataTables.min.js' %}" type="text/javascript"></script>
+		<script type="text/javascript">$("#userTab").dataTable();</script>
+	</body>
+</html>

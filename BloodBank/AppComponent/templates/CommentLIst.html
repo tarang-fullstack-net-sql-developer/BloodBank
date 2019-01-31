@@ -1,0 +1,90 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Comment List</title>
+    {% load static %}
+	<link href="{% static '/Content/bootstrap.min.css' %}" rel="stylesheet" type="text/css" />
+	<link href="{% static '/Content/bootstrap-theme.min.css' %}" rel="stylesheet" type="text/css" />
+	<link href="{% static '/CSS/line-awesome.css' %}" rel="stylesheet" type="text/css" />
+	<link href="{% static '/CSS/line-awesome-font-awesome.css' %}" rel="stylesheet" type="text/css" />
+	<link  href="{% static '/CSS/CustomStyle.css' %}" rel="stylesheet"/>
+	<link  href="{% static '/Scripts/jQueryDatePicker/jquery-ui.css' %}" rel="stylesheet"/>
+    <link href="{% static '/CSS/animate.css' %}" rel="stylesheet" />
+	
+	<script src="{% static '/Scripts/jquery-1.12.4.min.js' %}" type="text/javascript"></script>
+	<script src="{% static '/Scripts/bootstrap.min.js' %}" type="text/javascript"></script>
+	<script src="{% static '/Scripts/jQueryDatePicker/jquery-ui.js' %}" type="text/javascript"></script>
+</head>
+<body class="compBody">
+    <form method="post" action="/Comment-List/">
+        {% csrf_token %}
+        <div class="container-fluid GlbFont">
+			<div class="row">
+				<div class="col-xs-12 col-sm-12 GlbFont">
+					<h2 class="h2 ProjectsFont">
+						<i class="la la-phone-square"></i>&nbsp;User Messages
+					</h2>
+					<h6 class="h6">
+						<span class="breadcrumb col-xs-12 table-bordered bg-White">Home / Comments</span>
+					</h6>
+				</div>
+			</div>
+            <div class="row form-group GlbFont">
+                {% for item in MessageList %}
+                    <div class="col-xs-12 col-sm-6 col-md-4">
+                        {% if item.isActive == 0 %}
+                            <div class="panel panel-info animated zoomIn CommentHidden">
+                        {% else %}
+                            <div class="panel panel-primary animated zoomIn">
+                        {% endif %}
+                                <div class="panel-heading">
+                                    <span>Posted By: </span> {{item.Name}}
+                                </div>
+                                <div class="panel-body">
+                                    {{item.Comments}}
+                                </div>
+                                <div class="panel-footer">
+                                    <span>Posted On: </span> {{item.PostedOn}}
+                                    <span class="CommentFooter">
+                                        {% if item.isActive == 0 %}
+                                            <span id="UnhideCmt_{{item.ContactPkId}}" title="Un-Hide" onclick="CntctUs.EleClickEvent('hide-Cmt',this, 1, 'Un-Hide')">
+                                                <i class="la la-eye"></i>
+                                            </span>
+                                        {% else %}
+                                            <span id="hideCmt_{{item.ContactPkId}}" title="Hide" class="hideCmt" onclick="CntctUs.EleClickEvent('hide-Cmt',this, 0, 'Hide')">
+                                                <i class="la la-eye-slash"></i>
+                                            </span>
+                                        {% endif %}                                        
+                                        <span id="deleteCmt_{{item.ContactPkId}}" title="Delete" class="deleteCmt" onclick="CntctUs.EleClickEvent('del-Cmt',this, 1, 'Deleted')">
+                                            <i class="la la-trash"></i>
+                                        </span>
+                                    </span>
+                                </div>
+                            </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div id="backDrop" class="CustMask hidden"></div>
+        <div id="MessageModal" class="modal animated CustomModal CustomBoxDailog CustomBoxSuccess">
+            <div class="GlbFont CustomBoxHeader">
+                <i class="fa fa-envelope"></i>&nbsp;&nbsp;&nbsp;Message 
+            </div>
+            <div class="panel-body GlbFont boldFont CustomBoxContent">
+                <i class="fa fa-check"></i>&nbsp; 
+                <span> {{ ResponceStatus }} </span>
+            </div>
+            <div style="background-color: #f1f1f1; width: 100%; height: 40px;">
+                <button type="button" class="CustomBoxBtn" id="btnNext" data-dismiss="#MessageModal">Next</button>
+            </div>
+        </div>
+    </form>
+    <script src="{% static '/Scripts/ContactUs/ContactUs.js' %}" type="text/javascript"></script>
+    <script type="text/javascript"> 
+        var ResponceStatus = "{{ ResponceStatus }}";
+        CntctUs.ShowMessage(ResponceStatus);
+    </script>
+</body>
+</html>

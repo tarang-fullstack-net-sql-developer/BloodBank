@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <link href="../CSS/jqvmap.css" rel="stylesheet" type="text/css" />
+    <script src="jquery-1.12.4.min.js" type="text/javascript"></script>
+    <script src="jquery.vmap.js" type="text/javascript"></script>
+    <script src="jquery.vmap.world.js" type="text/javascript"></script>
+</head>
+<body>
+    <div id="vmap" style="width: 600px; height: 400px;">
+    </div>
+    <script>
+        jQuery('#vmap').vectorMap(
+        {
+            map: 'world_en',
+            backgroundColor: '#a5bfdd',
+            borderColor: '#818181',
+            borderOpacity: 0.25,
+            borderWidth: 1,
+            color: '#f4f3f0',
+            enableZoom: true,
+            hoverColor: '#c9dfaf',
+            hoverOpacity: null,
+            normalizeFunction: 'linear',
+            scaleColors: ['#b6d6ff', '#005ace'],
+            selectedColor: '#c9dfaf',
+            selectedRegions: null,
+            showTooltip: true,
+            onRegionClick: function (element, code, region) {
+                var message = 'You clicked "'
+                    + region
+                    + '" which has the code: '
+                    + code.toUpperCase();
+
+                alert(message);
+            }
+        });
+    </script>
+</body>
+</html>

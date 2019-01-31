@@ -1,0 +1,256 @@
+﻿<html>
+   <head> {% load static %} 
+     <meta charset="UTF-8" />
+     <title>Detail</title>
+     <link href="{% static '/Content/bootstrap.min.css' %}" rel="stylesheet" type="text/css" />
+     <link href="{% static '/Content/bootstrap-theme.min.css' %}" rel="stylesheet" type="text/css" />
+     <link href="{% static '/CSS/line-awesome.css' %}" rel="stylesheet" type="text/css" />
+     <link href="{% static '/CSS/line-awesome-font-awesome.css' %}" rel="stylesheet" type="text/css" />
+     <link href="{% static '/CSS/CustomStyle.css' %}" rel="stylesheet"/>
+     <link href="{% static '/CSS/animate.css' %}" rel="stylesheet" />
+     <!--JqueryDataTable CSS-->
+     <link href="{% static '/CSS/jquery.dataTables.css' %}" rel="stylesheet" />
+     <!--End JqueryDataTabCSS-->
+     <script src="{% static '/Scripts/jquery-1.12.4.min.js' %}" type="text/javascript"></script>
+     <script src="{% static '/Scripts/bootstrap.min.js' %}" type="text/javascript"></script>
+     <script src="{% static '/Scripts/Chart.min.js' %}" type="text/javascript"></script>
+     <script src="{% static '/Scripts/utils.js' %}" type="text/javascript"></script>
+
+    <link  href="{% static '/Scripts/jQueryDatePicker/jquery-ui.css' %}" rel="stylesheet"/>
+    <script src="{% static '/Scripts/jQueryDatePicker/jquery-ui.js' %}" type="text/javascript"></script>
+  </head>
+  <body class="compBody"> {% csrf_token %} 
+     <div class="container-fluid GlbFont">
+        <div class="row">
+           <div class="col-xs-12 col-sm-12 GlbFont">
+              <h2 class="h2 ProjectsFont">
+                 <i class="la la-coffee text-primary"></i>&nbsp;Donors 
+              </h2>
+              <h6 class="h6">
+                 <span class="breadcrumb col-xs-12 table-bordered bg-White">Home / Donors List</span>
+              </h6>
+           </div>
+        </div>
+        <div class="row">
+           <div class="col-xs-12">
+              <div style="border-radius: 10px 10px;">
+                 <div class="table-responsive">
+                    <table id="dnrListTab" class="table table-bordered table-hover GlbFont" style="background-color: white;">
+                       <thead>
+                          <tr class="bg-primary">
+                             <th>S.No. 
+                                <i class="la la-sort-numeric-desc" style="float: right; margin-top: 2%; font-size: larger;"></i>
+                             </th>
+                             <th>Reg No 
+                                <i class="la la-sort-alpha-desc" style="float: right; margin-top: 2%; font-size: larger;"></i>
+                             </th>
+                             <th>Full Name 
+                                <i class="la la-sort-alpha-desc" style="float: right; margin-top: 2%; font-size: larger;"></i>
+                             </th>
+                             <th>Gender 
+                                <i class="la la-sort-numeric-desc" style="float: right; margin-top: 2%; font-size: larger;"></i>
+                             </th>
+                             <th>Age 
+                                <i class="la la-sort-numeric-desc" style="float: right; margin-top: 2%; font-size: larger;"></i>
+                             </th>
+                             <th>Blood Group 
+                                <i class="la la-sort-alpha-desc" style="float: right; margin-top: 2%; font-size: larger;"></i>
+                             </th>
+                             <th>Contact No 
+                                <i class="la la-sort-numeric-desc" style="float: right; margin-top: 2%; font-size: larger;"></i>
+                             </th>
+                             <th>Status 
+                                <i class="la la-sort-numeric-desc" style="float: right; margin-top: 2%; font-size: larger;"></i>
+                             </th>
+                             <th>Action 
+                                <i class="la la-sort-numeric-desc" style="float: right; margin-top: 2%; font-size: larger;"></i>
+                             </th>
+                          </tr>
+                       </thead>
+                       <tbody>
+                           {% for item in DonorListData %} 
+                                <tr>
+                                    <td>{{forloop.counter}}</td>
+                                    <td>{{item.DonorRegNumber}}</td>
+                                    <td>{{item.FullName}}</td>
+                                    <td>{{item.Gender}}</td>
+                                    <td>{{item.Age}}</td>
+                                    <td>{{item.BloodGroup}}</td>
+                                    <td>{{item.ContactNo}}</td>
+                                    {% if item.isActive == 0 %} 
+                                            <td>
+                                            <span id="Deac_{{item.pk}}" href="#" class="InActiveLink">In-Active</span>
+                                            </td> 
+                                    {% else %} 
+                                            <td>
+                                            <span id="Deac_{{item.pk}}" href="#" class="ActiveLink">Active</span>
+                                            </td> 
+                                    {% endif %} 
+                                    <td>
+                                        <i id="Edit_{{item.pk}}" class="la la-edit cursor-pointer editUser"></i>&nbsp; 
+                                        <i id="Delete_{{item.pk}}" class="la la-trash-o cursor-pointer deleteUser"></i>
+                                        <input type="hidden" name="UserRowPkId" value="{{item.pk}}" />
+                                    </td>
+                                </tr> 
+                           {% endfor %} 
+                       </tbody>
+                    </table>
+                 </div>
+              </div>
+           </div>
+        </div>
+        <div class="row">
+           <div class="col-xs-12">
+              <button id="OpenModal" href="#" class="btn btn-success GlbFont" style="font-size: larger;">
+                 <i class="la la-user-plus"></i>&nbsp;Add Donor 
+              </button>
+           </div>
+        </div>
+     </div>
+     <form method="post" action="/Donor-Creation/"> {% csrf_token %} 
+        <input type="hidden" value="{{ MyLatestId }}" name="DnrRegNoHid" />
+        <div id="backDrop" class="CustMask hidden"></div>
+        <div id="dnrReg-Modal" class="CustomModal animated hidden flipInX" style="height: 480px; width: 99%; margin-left: -0.5%;">
+           <div class="CustomModalHeader bg-success TextShadow"> Donor Creation </div>
+           <div class="DnrCreFrm CustomModalBody TextShadow">
+              <div class="row form-group">
+                 <div class="col-xs-12 col-sm-2 vcenter">
+                    <label class="input-small"> Reg No. </label>
+                 </div>
+                 <div class="col-xs-12 col-sm-4">
+                    <input name="txtDnrRegNo" type="text" class="form-control disabled" readonly="readonly" value='{{ MyLatestId }}' />
+                 </div>
+                 <div class="col-xs-12 col-sm-2 vcenter">
+                    <label class="input-small"> Donor Name </label>
+                 </div>
+                 <div class="col-xs-12 col-sm-4">
+                    <input name="txtDnrName" type="text" class="form-control TextShadow" />
+                 </div>
+              </div>
+              <div class="row form-group">
+                 <div class="col-xs-12 col-sm-2 vcenter">
+                    <label class="input-small"> Address </label>
+                 </div>
+                 <div class="col-xs-12 col-sm-4">
+                    <input name="txtDnrAddress" type="text" class="form-control TextShadow" />
+                 </div>
+                 <div class="col-xs-12 col-sm-2 vcenter">
+                    <label class="input-small"> Gender </label>
+                 </div>
+                 <div class="col-xs-12 col-sm-4">
+                    <select name="ddlDnrGender" class="form-control TextShadow">
+                       <option>Male</option>
+                       <option>Female</option>
+                    </select>
+                 </div>
+              </div>
+              <div class="row form-group">
+                 <div class="col-xs-12 col-sm-2 vcenter">
+                    <label class="input-small"> Age </label>
+                 </div>
+                 <div class="col-xs-12 col-sm-4">
+                    <input name="txtAge" type="text" class="form-control TextShadow" />
+                 </div>
+                 <div class="col-xs-12 col-sm-2 vcenter">
+                    <label class="input-small"> Date of Birth </label>
+                 </div>
+                 <div class="col-xs-12 col-sm-4">
+                    <input name="txtDob" type="text" class="form-control TextShadow datepicker" />
+                 </div>
+              </div>
+              <div class="row form-group">
+                 <div class="col-xs-12 col-sm-2 vcenter">
+                    <label class="input-small"> Blood Group </label>
+                 </div>
+                 <div class="col-xs-12 col-sm-4">
+                    <select name="ddlBldGrp" class="form-control TextShadow boldFont">
+                       <option>A-Positive&nbsp;(A+)</option>
+                       <option>A-Negative&nbsp;(A-)</option>
+                       <option>B-Positive&nbsp;(B+)</option>
+                       <option>B-Negative&nbsp;(B-)</option>
+                       <option>AB-Positive&nbsp;(AB+)</option>
+                       <option>AB-Negative&nbsp;(AB-)</option>
+                       <option>O-Positive&nbsp;(O+)</option>
+                       <option>O-Negative&nbsp;(O-)</option>
+                    </select>
+                 </div>
+                 <div class="col-xs-12 col-sm-2 vcenter">
+                    <label class="input-small"> Weight </label>
+                 </div>
+                 <div class="col-xs-12 col-sm-4">
+                    <input name="txtWeight" type="text" class="form-control TextShadow" />
+                 </div>
+              </div>
+              <div class="row form-group">
+                 <div class="col-xs-12 col-sm-2 vcenter">
+                    <label class="input-small"> Email Id </label>
+                 </div>
+                 <div class="col-xs-12 col-sm-4">
+                    <input name="txtEmailId" type="text" class="form-control TextShadow" />
+                 </div>
+                 <div class="col-xs-12 col-sm-2 vcenter">
+                    <label class="input-small"> Contact No </label>
+                 </div>
+                 <div class="col-xs-12 col-sm-4">
+                    <input name="txtMobNo" type="text" class="form-control TextShadow" />
+                 </div>
+              </div>
+              <div class="row form-group">
+                 <div class="col-xs-12 col-sm-2 vcenter">
+                    <label class="input-small"> Last Blood Donated </label>
+                 </div>
+                 <div class="col-xs-12 col-sm-4">
+                    <input name="txtLstBldDon" type="text" class="form-control TextShadow datepicker" />
+                 </div>
+                 <div class="col-xs-12 col-sm-2 vcenter">
+                    <label class="input-small"> Country </label>
+                 </div>
+                 <div class="col-xs-12 col-sm-4">
+                    <input name="txtCountry" type="text" class="form-control TextShadow" />
+                 </div>
+              </div>
+              <div class="row form-group">
+                 <div class="col-xs-12 col-sm-2 vcenter">
+                    <label class="input-small"> State </label>
+                 </div>
+                 <div class="col-xs-12 col-sm-4">
+                    <input name="txtState" type="text" class="form-control TextShadow" />
+                 </div>
+                 <div class="col-xs-12 col-sm-2 vcenter">
+                    <label class="input-small"> City </label>
+                 </div>
+                 <div class="col-xs-12 col-sm-4">
+                    <input name="txtCity" type="text" class="form-control TextShadow" />
+                 </div>
+              </div>
+              <div class="row">
+                 <div class="col-md-12">
+                    <div class="form-group no-margin">
+                       <span class="Customfooter ">
+                          <button type="button" id="btnClose" class="btn btn-secondary waves-effect" data-dismiss="modal">Close</button>
+                          <button id="btnSubmit" type="submit" class="btn btn-info waves-effect waves-light">Submit</button>
+                       </span>
+                    </div>
+                 </div>
+              </div>
+           </div>
+        </div>
+        <div id="MessageModal" class="modal animated CustomModal CustomBoxDailog CustomBoxSuccess">
+           <div class="GlbFont CustomBoxHeader">
+              <i class="fa fa-envelope"></i>&nbsp;&nbsp;&nbsp;Message 
+           </div>
+           <div class="panel-body GlbFont boldFont CustomBoxContent">
+              <i class="fa fa-check"></i>&nbsp; 
+              <span> {{ ResponceStatus }} </span>
+           </div>
+           <div style="background-color: #f1f1f1; width: 100%; height: 40px;">
+              <button type="button" class="CustomBoxBtn" id="btnNext" data-dismiss="#MessageModal">Next</button>
+           </div>
+        </div>
+     </form>
+     <script src="{% static '/Scripts/jquery.dataTables.min.js' %}" type="text/javascript"></script>
+     <script src="{% static '/Scripts/dnrList/dnrList.js' %}" type="text/javascript"></script>
+     <script type="text/javascript"> 
+      var ResponceStatus = "{{ ResponceStatus }}"; ResStatus.ValidateMessage(ResponceStatus); </script>
+  </body>
+</html>
