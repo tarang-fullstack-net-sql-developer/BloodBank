@@ -13,8 +13,8 @@ from django.template import loader
 from AppComponent.models import LoginUser
 from AppComponent.models import RegisterUser
 from AppComponent.models import DonorRegistration
-from AppComponent.models import StockDetail
 from AppComponent.models import LoginHistory
+from AppComponent.models import StockDetail
 from AppComponent.models import ContactUs
 from AppComponent.models import UsersImage
 from django.db.models import *
