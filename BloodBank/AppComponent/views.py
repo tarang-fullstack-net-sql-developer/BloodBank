@@ -456,7 +456,7 @@ def HideCmt(request):
         ResponceStatus = "Something went wrong !!"
     return render(request,'CommentList.html',{'ResponceStatus':ResponceStatus,'MessageList':Join_Query})
 #End of Contact Us
-
+    
 #User Profile
 def ImagetoBase64(ImagePath):
     imageString = ""
@@ -524,8 +524,27 @@ def ChangePassword(request):
             EncryptPassword = str(base64.b64encode(LoginDetail.Password.encode()))[2:-1]
             ResponceStatus = "Password Updated Successfully !!"
 
-    except Exceptin as e:
+    except Exception as e:
         ResponceStatus = "Something went wrong !!"
     return render(request,'ChangePassword.html',{"EncryptPassword":EncryptPassword,'ResponceStatus':ResponceStatus})
+
+def ForgotPassword(request):
+
+    try:
+        ResponceStatus = ''
+        if request.method == "POST":
+            try:
+                LoginDetail = LoginUser.objects.get(UserId = request.POST.get("UserID"))
+                LoginDetail.Password = request.POST.get('password')
+                LoginDetail.ModifiedOn = str(datetime.date.today())
+                LoginDetail.save()
+                ResponceStatus = "Password Changed Successfully !!"
+            except LoginUser.DoesNotExist as e:
+                ResponceStatus = "Wrong User Id !!"
+            
+    except Exception as e:
+        ResponceStatus = "Something went wrong !!"
+
+    return render(request,'ForogtPassword.html',{'ResponceStatus':ResponceStatus})
 
 #ENd of ChangePassword

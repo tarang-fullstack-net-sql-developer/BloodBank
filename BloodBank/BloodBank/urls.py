@@ -1,4 +1,4 @@
-"""BloodBank URL Configuration
+"""CtrlPanel URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/2.0/topics/http/urls/
@@ -47,5 +47,6 @@ urlpatterns = [path('', views.loginUser),
 
     #User Personal Data
     path('user-Profile-edit/', views.EditProfile),
-    path('chng-password/', views.ChangePassword)
+    path('chng-password/', views.ChangePassword),
+    path('password-reset/', views.ForgotPassword)
 ]

@@ -90,6 +90,7 @@
     <Content Include="AppComponent\static\Scripts\ContactUs\ContactUs.js" />
     <Content Include="AppComponent\static\Scripts\dnrList\dnrList.js" />
     <Content Include="AppComponent\static\Scripts\DonorRegistration\DonorRegistration.js" />
+    <Content Include="AppComponent\static\Scripts\ForgotPassword\ForgotPassword.js" />
     <Content Include="AppComponent\static\Scripts\Index\HelperClass.js" />
     <Content Include="AppComponent\static\Scripts\jquery-1.12.4.min.js" />
     <Content Include="AppComponent\static\Scripts\jquery.dataTables.min.js" />
@@ -366,6 +367,7 @@
     <Content Include="AppComponent\templates\ContactUs.html" />
     <Content Include="AppComponent\templates\dnrList.html" />
     <Content Include="AppComponent\templates\DonorRegistration.html" />
+    <Content Include="AppComponent\templates\ForogtPassword.html" />
     <Content Include="AppComponent\templates\Index.html" />
     <Content Include="AppComponent\templates\Login.html" />
     <Content Include="AppComponent\templates\SignUp.Html" />
@@ -391,6 +393,7 @@
     <Folder Include="AppComponent\static\Scripts\ContactUs\" />
     <Folder Include="AppComponent\static\Scripts\dnrList\" />
     <Folder Include="AppComponent\static\Scripts\DonorRegistration\" />
+    <Folder Include="AppComponent\static\Scripts\ForgotPassword\" />
     <Folder Include="AppComponent\static\Scripts\Index\" />
     <Folder Include="AppComponent\static\Scripts\jQueryDatePicker\" />
     <Folder Include="AppComponent\static\Scripts\Login\" />

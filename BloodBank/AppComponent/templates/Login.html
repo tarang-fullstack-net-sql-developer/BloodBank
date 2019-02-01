@@ -29,43 +29,55 @@
                         </label>
                     </div>
                 </div>
-                <div id="loginCont" class="col-xs-12 col-sm-6 col-md-5 col-lg-4 col-md-push-4 col-sm-push-3 animated GlbFont" style="padding: 150px 30px 0px 20px;">
-                    <div class="row box-Shadow-3d">
-                        <div class="col-xs-12 GlbFont" style="padding: 10px; background-color: #337ab7;color: white;">
-                            <h4 class="h4">
-                                <span>
-                                    <i class="la la-location-arrow"></i>&nbsp;Log In
-                                </span>
-                            </h4>
-                        </div>
-                        <div class="col-xs-12">
-                            <div class="row" style="background-color: #8d9fbb;color: white; padding: 15px;">
-                                <div class="col-xsl-12 form-group">
-                                    <label>
-                                        User Id :
-                                    </label>
-                                </div>
-                                <div class="col-xsl-12 form-group">
-                                    <input id="userTxt" name="userTxt" type="text" class="form-control input-lg text-fs-larger" style="box-shadow: 4px 8px 18px 0px rgba(8, 8, 8, 0.6196078431372549);" />
-                                </div>
-                                <div class="col-xsl-12 form-group">
-                                    <label>
-                                        Pasword :
-                                    </label>
-                                </div>
-                                <div class="col-xsl-12 form-group">
-                                    <input id="userPass" name="userPass" type="password" class="form-control input-lg text-password" style="box-shadow: 4px 8px 18px 0px rgba(8, 8, 8, 0.6196078431372549);" />
+                <div id="loginCont" class="col-xs-12 animated GlbFont">
+                    <div class="center-screen" style="max-width: 430px; position: fixed;padding: 0px 20px 0px 20px;">
+                        <div class="row box-Shadow-3d">
+                            <div class="col-xs-12 GlbFont" style="padding: 10px; background-color:  #8d9fbb;color: white;">
+                                <h4 class="h4">
+                                    <span>
+                                        <i class="la la-location-arrow"></i>&nbsp;Log In
+                                    </span>
+                                </h4>
+                            </div>
+                            <div class="col-xs-12">
+                                <div class="row" style="background-color:white;color: black; padding: 15px;">
+                                    <div class="col-xsl-12 form-group">
+                                        <label>
+                                            User Id :
+                                        </label>
+                                    </div>
+                                    <div class="col-xsl-12 form-group">
+                                        <!--<input id="userTxt" name="userTxt" type="text" class="form-control input-lg text-fs-larger" style="box-shadow: 4px 8px 18px 0px rgba(8, 8, 8, 0.6196078431372549);" required />-->
+                                        <div class="input-group GlbFont">
+                                            <span class="input-group-addon"><i class="label-control la la-user text-fs-larger" id="userIdIndicator">
+                                            </i></span>
+                                            <input type="text" name="userTxt" id="userTxt" class="input-lg form-control" required  autofocus/>
+                                        </div>
+                                    </div>
+                                    <div class="col-xsl-12 form-group">
+                                        <label>
+                                            Pasword :
+                                        </label>
+                                    </div>
+                                    <div class="col-xsl-12 form-group">
+    <!--                                    <input id="userPass" name="userPass" type="password" class="form-control input-lg text-password" style="box-shadow: 4px 8px 18px 0px rgba(8, 8, 8, 0.6196078431372549);" required />-->
+                                        <div class="input-group GlbFont">
+                                            <i class="label-control la la-key input-group-addon" id="passwordIndicator">
+                                            </i>
+                                            <input type="password" name="userPass" id="userPass" class="form-control input-lg textbox-outline" required/>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-xs-12">
-                            <div class="row">
-                                <div class="text-center col-xs-12" style="padding: 8px; background-color: #66e6af;font-size: x-large;">
-                                    <button class="btn btn-lg" id="btnLogin" style="border-width: 0px; margin:5px;background-color: #66e6af;width: 100%;outline: none;">Log In</button>
+                            <div class="col-xs-12">
+                                <div class="row">
+                                    <div class="text-center col-xs-6" style="padding: 8px; background-color: #66e6af;font-size: x-large;">
+                                        <button class="btn btn-lg GlbFont" id="btnLogin" style="border-width: 0px; margin:5px;background-color: #66e6af;width: 100%;outline: none;">Log In</button>
+                                    </div>
+                                    <div class="text-center col-xs-6" style="padding: 8px; background-color: #df9c9c;font-size: x-large;">
+                                        <a href="/password-reset/" class="btn btn-lg GlbFont" id="btnfLogin" style="color: white;border-width: 0px; padding-left: 5px; margin:5px;background-color: #df9c9c;width: 100%;outline: none;text-align: center;">Forgot Password</a>
+                                    </div>
                                 </div>
-                                <!-- <div class="text-center col-xs-6" style="padding: 8px; background-color: #808080;font-size: x-large;">
-                                    <button type="button" class="btn btn-lg" id="btnSignUp" style="border-width: 0px; margin:5px;color: white;background-color: #808080;width: 100%;outline: none;">Sign Up</button>
-                                </div>                                 -->
                             </div>
                         </div>
                     </div>
