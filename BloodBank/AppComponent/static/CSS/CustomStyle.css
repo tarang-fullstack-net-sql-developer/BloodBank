@@ -600,3 +600,48 @@ input:focus, textarea:focus, select:focus {
         right: 15px;
     }
 }
+
+
+.Right-Side-Menu {
+    position: absolute;
+    right: 56px;
+    top: 0px;
+    width: auto;
+}
+
+
+#MailBoxItem {
+    font-size: medium;
+    list-style: none;
+    display: none;
+}
+
+    #MailBoxItem li {
+        padding: 5px;
+    }
+
+
+.MailItemContainer {
+    padding: 15px;
+    border-radius: 10px;
+    font-size: medium;
+    height: 500px;
+}
+
+.MailItem {
+    padding: 10px;
+    border: 1px solid silver;
+    border-radius: 15px;
+    background-color: white;
+    width: 80%;
+    border: 1px solid #337ab7;
+}
+
+    .MailItem:hover {
+        background-color: #F0F0F0;
+        cursor: pointer;
+    }
+
+.font-small {
+    font-size: small;
+}

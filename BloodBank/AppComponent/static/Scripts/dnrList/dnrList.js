@@ -8,17 +8,13 @@ $("#btnSubmit").on('click', function () {
     $("#dnrReg-Modal").toggleClass("hidden");
 });
 
-$("#btnNext").on('click', function () {
-    $("#backDrop").toggleClass("hidden");
-    $("#MessageModal").hide();
-});
-
-$("#btnClose").on('click', function () {
-    $("#backDrop").toggleClass("hidden");
-    $("#dnrReg-Modal").toggleClass("hidden");
-});
-
 $("#dnrListTab").dataTable();
+
+$(".closeModal").on('click', function () {
+    var CurModal = window.event.srcElement.attributes["data-target"].value;
+    $(CurModal).toggleClass("hidden");
+    $("#backDrop").toggleClass("hidden");
+});
 
 var ResStatus = {
     ValidateMessage: function (ResponceStatus) {
@@ -26,17 +22,30 @@ var ResStatus = {
             $("#backDrop").toggleClass("hidden");
             $("#MessageModal").show();
         }
+    },
+    SetDropValue: function (objId, SelectedSample) {
+        $("#" + objId + " option:contains(" + SelectedSample + ")").attr('selected', 'selected');
+    },
+    DisplayEditForm: function (DonorData) {
+        if (DonorData != "") {
+            $("#backDrop").toggleClass("hidden");
+            $("#dnrEditReg-Modal").toggleClass("hidden");
+        }
+    },
+    CloseModal: function (obj) {
+        $("#backDrop").toggleClass("hidden");
+        $("#dnrEditReg-Modal").toggleClass("hidden");
     }
 }
 
-$(".deacUser").on("click", function () {
+$(".editUser").on("click", function () {
     var eleSrc = (this).id.split("_")[1];
-    window.location = "/deac-user?UserPkId=" + eleSrc;
+    window.location = "/donor-edit?DonorPkId=" + eleSrc;
 });
 
 $(".deleteUser").on("click", function () {
     var eleSrc = (this).id.split("_")[1];
-    window.location = "/delete-user?UserPkId=" + eleSrc;
+    window.location = "/donor-delete?DonorPkId=" + eleSrc;
 });
 
 

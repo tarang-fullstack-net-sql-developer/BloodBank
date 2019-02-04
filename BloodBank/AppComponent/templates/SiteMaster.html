@@ -4,8 +4,7 @@
 		<title>UserHome</title>
 		<link href="{% static '/Content/bootstrap.min.css' %}" rel="stylesheet" type="text/css" />
 		<link href="{% static '/Content/bootstrap-theme.min.css' %}" rel="stylesheet" type="text/css" />
-		<link href="{% static '/CSS/line-awesome.css' %}" rel="stylesheet" type="text/css" />
-		<link href="{% static '/CSS/line-awesome-font-awesome.css' %}" rel="stylesheet" type="text/css" />
+		<link href="{% static '/CSS/font-awesome.css' %}" rel="stylesheet" type="text/css" />
 		<link href="{% static '/CSS/CustomStyle.css' %}" rel="stylesheet"/>
 		<link href="{% static '/CSS/animate.css' %}" rel="stylesheet" />
 		<script src="{% static '/Scripts/jquery-1.12.4.min.js' %}" type="text/javascript"></script>
@@ -16,8 +15,8 @@
 		<link href="{% static '/CSS/jqvmap.css' %}" rel="stylesheet" type="text/css" />
 		<script src="{% static '/Scripts/jquery.vmap.js' %}" type="text/javascript"></script>
 		<script src="{% static '/Scripts/jquery.vmap.world.js' %}" type="text/javascript"></script>
-        <link  href="{% static '/Scripts/jQueryDatePicker/jquery-ui.css' %}" rel="stylesheet"/>
-        <script src="{% static '/Scripts/jQueryDatePicker/jquery-ui.js' %}" type="text/javascript"></script>
+		<link  href="{% static '/Scripts/jQueryDatePicker/jquery-ui.css' %}" rel="stylesheet"/>
+		<script src="{% static '/Scripts/jQueryDatePicker/jquery-ui.js' %}" type="text/javascript"></script>
 		<!--End of jQVmaps-->
 	</head>
 	<body style="background-color: #f5f6f8; overflow: hidden;">
@@ -26,41 +25,52 @@
 				<div class="pageHeader navbar-fixed-top">
 					<img alt="companyLogo" src="{% static '/Image/ComLogo.png' %}" id="comlogo" />
 					<label class="CompContent boldFont GlbFont vcenter">C Panel</label>
-					<ul class="list-inline vcenter SubOptionMenu" style="float: right; margin-right: 10px; color: white; font-size: large;">
-						<li title="User Profile">
-							<div class="dropdown">
-								<i class="fa fa-user"></i>
-								<span class="vcenter dropdown-toggle" style="color: white;" data-toggle="dropdown">{{ UsrId }} 
-									<span class="caret"></span>
-								</span>
-								<ul class="dropdown-menu" style="margin-left: -25px; margin-top: 19px;">
-									<li>
-										<a href="#" id="MyProfTab" onclick="SideMenuClick.Navigate('/user-Profile-edit/');">
-											<i class="fa fa-edit"></i>&nbsp;My-Profile
-										</a>
-									</li>
-									<li class="divider"></li>
-									<li>
-										<a href="#" onclick="SideMenuClick.Navigate('/chng-password/');">
-											<i class="fa fa-shopping-cart"></i>&nbsp;Change-Password
-										</a>
-									</li>
-									<li class="divider"></li>
-									<li>
-										<a href="#">
-											<i class="fa fa-th-list"></i> Order-Status
-										</a>
-									</li>
-									<li class="divider"></li>
-									<li>
-										<a href="/login-user/">
-											<i class="fa fa-sign-out"></i> Sign-Out
-										</a>
-									</li>
-								</ul>
-							</div>
-						</li>
-					</ul>
+					<div class="Right-Side-Menu">
+						<ul class="list-inline vcenter SubOptionMenu" style="/* float: right; */margin-right: 20px;color: white;font-size: large;/* Right: 20px; */">
+							<li title="User Profile">
+								<div class="dropdown">
+									<span class="vcenter dropdown-toggle" style="color: white;" data-toggle="dropdown" aria-expanded="false">
+										{% if UserImage.ImageBase64String == null  %}
+											<img src="{% static '/Image/img_avatar.png' %}" class="img-circle" style="width: 40px; height: 40px;" />
+										{% else %}
+											<img src="{{UserImage.ImageBase64String}}" class="img-circle" style="width: 40px; height: 40px;" />
+										{% endif %}
+										{{ UsrId }}
+											<span class="caret"></span>
+									</span>
+									<ul class="dropdown-menu" style="/* margin-left: -25px; */margin-top: 15px;/* width: 1%; *//* position: fixed; */">
+										<li>
+											<a href="#" id="MyProfTab" onclick="SideMenuClick.Navigate('/user-Profile-edit/');">
+												<i class="fa fa-edit"></i>&nbsp;My-Profile
+										
+											</a>
+										</li>
+										<li class="divider"></li>
+										<li>
+											<a href="#" onclick="SideMenuClick.Navigate('/chng-password/');">
+												<i class="fa fa-shopping-cart"></i>&nbsp;Change-Password
+										
+											</a>
+										</li>
+										<li class="divider"></li>
+										<li>
+											<a href="#">
+												<i class="fa fa-th-list"></i> Order-Status
+										
+											</a>
+										</li>
+										<li class="divider"></li>
+										<li>
+											<a href="/login-user/">
+												<i class="fa fa-sign-out"></i> Sign-Out
+										
+											</a>
+										</li>
+									</ul>
+								</div>
+							</li>
+						</ul>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -69,52 +79,82 @@
 				<div class="navbar-collapse" id="SideBarContainer">
 					<div class="GlbFont SideMenuItem boldFont nav-item">
 						<span id="HomeTab" href="#" onclick="SideMenuClick.Navigate('/UserHome/');">
-							<i class="la la-home"></i>&nbsp;Home
+							<i class="fa fa-home"></i>&nbsp;Home
 						</span>
 					</div>
+					{% if request.session.UserRoleId != 3 %}
+						<div class="GlbFont SideMenuItem boldFont">
+							<span id="TeamTab" href="#" onclick="SideMenuClick.Navigate('/donor-list/');">
+								<i class="fa fa-check-circle"></i>&nbsp;Donor List
+							</span>
+						</div>
+					{% endif %}
 					<div class="GlbFont SideMenuItem boldFont">
-						<span id="TeamTab" href="#" onclick="SideMenuClick.Navigate('/GetUserDetail/');">
-							<i class="la la-weixin"></i>&nbsp;User Detail
-						</span>
-					</div>
-					<div class="GlbFont SideMenuItem boldFont">
-						<span id="TeamTab" href="#" onclick="SideMenuClick.Navigate('/donor-list/');">
-							<i class="la la-check-circle"></i>&nbsp;Donor List
+						<span id="StockTab" onclick="SideMenuClick.Navigate('/Stock-Detail/');">
+							<i class="fa fa-cubes"></i>&nbsp;Stock Detail
 						</span>
 					</div>
                     <div class="GlbFont SideMenuItem boldFont">
-						<span id="TeamTab" href="#" onclick="SideMenuClick.Navigate('/user-history/');">
-							<i class="la la-history"></i>&nbsp;Login History
+						<span id="MailTab" onclick="SideMenuClick.Navigate('/Mail-Master/');">
+							<i class="fa fa-envelope-o"></i>&nbsp;Mail Box
 						</span>
 					</div>
-					<div class="GlbFont SideMenuItem boldFont">
-						<span id="ProjectTab" onclick="SideMenuClick.Navigate('/Stock-Detail/');">
-							<i class="la la-cubes"></i>&nbsp;Stock Detail
-						</span>
-					</div>
-					<div class="GlbFont SideMenuItem boldFont">
-						<span id="ContactUsTab" onclick="SideMenuClick.Navigate('/Contact-Us/');">
-							<i class="la la-phone-square"></i>&nbsp;Contact Us
-						</span>
-					</div>
-					<div class="GlbFont SideMenuItem boldFont">
-						<span id="CommentListTab" onclick="SideMenuClick.Navigate('/Comment-List/');">
-							<i class="la la-question-circle"></i>&nbsp;Comment List
-						</span>
-					</div>
+					{% if request.session.UserRoleId == 1 %}
+						<div class="GlbFont SideMenuItem boldFont">
+							<span id="TeamTab" href="#" onclick="SideMenuClick.Navigate('/GetUserDetail/');">
+								<i class="fa fa-weixin"></i>&nbsp;User Detail
+							</span>
+						</div>
+						<div class="GlbFont SideMenuItem boldFont">
+							<span id="TeamTab" href="#" onclick="SideMenuClick.Navigate('/user-history/');">
+								<i class="fa fa-history"></i>&nbsp;Login History
+							</span>
+						</div>
+						<div class="GlbFont SideMenuItem boldFont">
+							<span id="ContactUsTab" onclick="SideMenuClick.Navigate('/Contact-Us/');">
+								<i class="fa fa-phone-square"></i>&nbsp;Contact Us
+							</span>
+						</div>  
+					{% endif %}
+					{% if request.session.UserRoleId == 3 %}
+						<div class="GlbFont SideMenuItem boldFont">
+							<span id="ContactUsTab" onclick="SideMenuClick.Navigate('/Contact-Us/');">
+								<i class="fa fa-phone-square"></i>&nbsp;Contact Us
+							</span>
+						</div>
+					{% endif %}
+					{% if request.session.UserRoleId != 3 %}
+						<div class="GlbFont SideMenuItem boldFont">
+							<span id="CommentListTab" onclick="SideMenuClick.Navigate('/Comment-List/');">
+								<i class="fa fa-question-circle"></i>&nbsp;Comment List
+							</span>
+						</div>
+					{% endif %}
 				</div>
 			</div>
 			<div id="mainBodyFrame" class="col-xs-12 col-md-10">
-				<div id="bodyContainer" style="height: 91vh; overflow: hidden; width: 110%;">
+				<div id="bodyContainer" style="height: 89vh; overflow: hidden; width: 110%;">
 					<iframe id="bodyFrame" src="/UserHome/"></iframe>
 				</div>
 			</div>
 		</div>
 		<script type="text/javascript">
-            var SideMenuClick = {
-                Navigate: function (params)
-                { $("#bodyFrame").attr("src", params); }
-            };
-        </script>
+			var SideMenuClick = {
+				Navigate: function (params)
+				{ $("#bodyFrame").attr("src", params); }
+			};
+
+            //MailTab
+			$(document).ready(function () {
+			    $("#MailTab").click(function () {
+			        if ($("#MailBoxItem").is(':hidden')) {
+			            $("#MailBoxItem").slideDown();
+			        }
+			        else {
+			            $("#MailBoxItem").slideUp();
+			        }
+			    });
+			});
+		</script>
 	</body>
 </html> 

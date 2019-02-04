@@ -13,8 +13,8 @@ from django.template import loader
 from AppComponent.models import LoginUser
 from AppComponent.models import RegisterUser
 from AppComponent.models import DonorRegistration
-from AppComponent.models import LoginHistory
 from AppComponent.models import StockDetail
+from AppComponent.models import LoginHistory
 from AppComponent.models import ContactUs
 from AppComponent.models import UsersImage
 from django.db.models import *
@@ -39,11 +39,12 @@ def loginUser(request):
                 if res.isActive == 1:
                     request.session['_UserId'] = res.UserId
                     request.session['_PkId'] = res.pk
+                    request.session['UserRoleId'] = res.UserRoleId
                     CreateLoginHistory(res.UserId)
                 else:
                     LoginStatus = 'User is In-Active !!'
                     return render(request,"Login.html",{'LoginStatus' : LoginStatus})
-            return redirect("/Site-Master/")
+            return redirect("/Site-Master/",{"UsrRoleId":request.session['UserRoleId']})
         else:
             LoginStatus = 'Invaid User ID and Password !!'
         return render(request,"Login.html",{'LoginStatus' : LoginStatus})
@@ -103,11 +104,17 @@ def GetUserDetail(request):
     personalDetail = RegisterUser.objects.all()
     return render(request,"UserDetail.html",{'UserData':Join_Query,'RecCnt':recCnt,'CurUserId':request.session['_PkId']})
 
+
+#Donor Operation
+
 def DonorList(request):
     ResponceStatus = ''
     PkUserId = request.session['_PkId']
     MaxRegId = random_number(5,5)
-    Join_Query = DonorRegistration.objects.raw('''Select * from tbl_DonorList''')
+    if(request.session["UserRoleId"] == 1):
+        Join_Query = DonorRegistration.objects.raw('''Select * from tbl_DonorList''')
+    else:
+        Join_Query = DonorRegistration.objects.raw('''Select * from tbl_DonorList where isActive=1''')
     return render(request,'dnrList.html',{ 'DonorListData' : Join_Query,'MyLatestId':MaxRegId,'ResponceStatus':ResponceStatus})
 
 def DonorResg(request):
@@ -162,42 +169,77 @@ def DeacDonor(request):
         MaxRegId = request.GET.get('DnrRegNoHid')
     return render(request,'dnrList.html',{ 'DonorListData':Join_Query,'ResponceStatus' : ResponceStatus,'MyLatestId':MaxRegId})
 
-#def DonorResg(request):
-#    if request.method == "POST":
-#        try:
-#            dnrCreation = DonorRegistration(DonorRegNumber =
-#            request.POST.get('txtDnrRegNo'),
-#                FullName = request.POST.get('txtDnrName'),
-#                Address = request.POST.get('txtDnrAddress'),
-#                Gender = request.POST.get('ddlDnrGender'),
-#                Age = request.POST.get('txtAge'),
-#                DOB = request.POST.get('txtDob'),
-#                BloodGroup = request.POST.get('ddlBldGrp'),
-#                Weight = request.POST.get('txtWeight'),
-#                EmailId = request.POST.get('txtEmailId'),
-#                ContactNo = request.POST.get('txtMobNo'),
-#                LastDonated = request.POST.get('txtLstBldDon'),
-#                Country = request.POST.get('txtCountry'),
-#                State = request.POST.get('txtState'),
-#                City = request.POST.get('txtCity'),
-#                CreatedBy = request.session['_UserId'],
-#                CreatedOn= str(datetime.date.today()),
-#                ModifiedBy= request.session['_UserId'],
-#                ModifiedOn= str(datetime.date.today()),
-#                isActive = 0)
-#            dnrCreation.save()
-#            ResponceStatus = "Donor Saved Successfully !!"
-#        except:
-#            ResponceStatus = "Something Went Wrong !!"
+def DeleteDonor(request):
+    DonorPkId = request.GET["DonorPkId"]
+    MaxRegId = random_number(5,5)
 
-#        return render(request,"dnrList.html",{'ResStatus':
-#        ResponceStatus,'MyLatestId' : request.POST.get('DnrRegNoHid')})
-#    else:
-#        MaxRegId = random_number(5,5)
-#        return render(request,"dnrList.html",{'MyLatestId' : MaxRegId })
+    try:
+        DonorData = DonorRegistration.objects.get(DnrRegId=DonorPkId)
+        DonorData .delete()
+        ResponceStatus = "Donor Deleted Successfully !!"
+
+        if(request.session["UserRoleId"] == 1):
+            Join_Query = DonorRegistration.objects.raw('''Select * from tbl_DonorList''')
+        else:
+            Join_Query = DonorRegistration.objects.raw('''Select * from tbl_DonorList where isActive=1''')
+    except Exception as e:
+        ResponceStatus = "Something went wrong !!"
+    return render(request,'dnrList.html',{ 'DonorListData':Join_Query,'ResponceStatus' : ResponceStatus,'MyLatestId':MaxRegId })
+
+def DonorEdit(request):
+    
+    ResponceStatus = ""
+    MaxRegId = random_number(5,5)
+
+    try:
+        if request.method == "POST":
+            DonorPkId = request.POST.get('HidDonorPkId')
+            DonorData = DonorRegistration.objects.get(DnrRegId=DonorPkId)
+
+            DonorData.DonorRegNumber = request.POST.get('txtEditDnrRegNo')
+            DonorData.FullName = request.POST.get('txtEditDnrName')
+            DonorData.Address = request.POST.get('txtEditDnrAddress')
+            DonorData.Gender = request.POST.get('ddlEditDnrGender')
+            DonorData.Age = request.POST.get('txtEditAge')
+            DonorData.DOB = request.POST.get('txtEditDob')
+            DonorData.BloodGroup = request.POST.get('ddlEditBldGrp')
+            DonorData.Weight = request.POST.get('txtEditWeight')
+            DonorData.EmailId = request.POST.get('txtEditEmailId')
+            DonorData.ContactNo = request.POST.get('txtEditMobNo')
+            DonorData.LastDonated = request.POST.get('txtEditLstBldDon')
+            DonorData.Country = request.POST.get('txtEditCountry')
+            DonorData.State = request.POST.get('txtEditState')
+            DonorData.City = request.POST.get('txtEditCity')
+            DonorData.ModifiedBy= request.session['_UserId']
+            DonorData.ModifiedOn= str(datetime.date.today())
+
+            DonorData.save()
+            DonorData = ""
+            ResponceStatus = "Updated Successfully !!"
+            StockData = ""
+        else:
+            DonorPkId = request.GET['DonorPkId']
+            DonorData = DonorRegistration.objects.get(DnrRegId=DonorPkId)
+
+        if(request.session["UserRoleId"] == 1):
+            Join_Query = DonorRegistration.objects.raw('''Select * from tbl_DonorList''')
+        else:
+            Join_Query = DonorRegistration.objects.raw('''Select * from tbl_DonorList where isActive=1''')
+
+    except Exception as e:
+        ResponceStatus = "Something went wrong !!"
+    return render(request,'dnrList.html',{ 'DonorListData':Join_Query,'ResponceStatus' : ResponceStatus,'MyLatestId':MaxRegId , 'DonorSpecificData':DonorData })
+
+#End of Donor Registration
+
 def SiteMaster(request):
     UsrId = request.session['_UserId']
-    return render(request,'SiteMaster.html',{ 'UsrId' : UsrId })
+    UserPkId = request.session['_PkId']
+
+    UserImage = UsersImage.objects.filter(UserId = UserPkId)
+    UserImage = UsersImage.objects.filter(UserId = UserPkId).latest('ImageId')
+
+    return render(request,'SiteMaster.html',{ 'UsrId' : UsrId, 'UserImage':UserImage })
 
 def random_number(min_char=5,max_char=8):
     allchar = string.ascii_letters.upper() + string.digits
@@ -374,7 +416,7 @@ def StockMasterEdit(request):
             StockData.ExpireOn = str(request.POST.get('EditExpiredOn'))
             StockData.ModifiedBy = str(request.session['_UserId'])
             StockData.ModifiedOn = str(datetime.date.today())
-            StockData.isActive = 1
+
             StockData.save()
             ResponceStatus = "Updated Successfully !!"
             StockData = ""
@@ -469,17 +511,23 @@ def EditProfile(request):
     try:
         UserData = RegisterUser.objects.get(UserID = UserPkId)
         UserImage = UsersImage.objects.filter(UserId = UserPkId)
-
-        if (UserImage.count() > 1):
-            UserImage = UserImage = UsersImage.objects.filter(UserId = UserPkId).latest('ImageId')
+        UserImage = UsersImage.objects.filter(UserId = UserPkId).latest('ImageId')
 
         ResponceStatus = ""
 
         if request.method == "POST":
 
             UserData.FullName = request.POST.get('fullname')
-            UserData.MobileNo = request.POST.get('contactNo')
-            UserData.EmailId = request.POST.get('emailId')
+            if(request.POST.get('contactNo') != ""):
+                UserData.MobileNo = request.POST.get('contactNo')
+            else:
+                UserData.MobileNo = 0
+
+            if(request.POST.get('emailId') != ""):
+                UserData.MobileNo = request.POST.get('emailId')
+            else:
+                UserData.EmailId = 0
+
             UserData.Gender = request.POST.get('gender')
             UserData.BloodGroup = request.POST.get('bloodgroup')
             UserData.Address = request.POST.get('address')
@@ -547,4 +595,11 @@ def ForgotPassword(request):
 
     return render(request,'ForogtPassword.html',{'ResponceStatus':ResponceStatus})
 
-#ENd of ChangePassword
+#End of ChangePassword
+
+#Mail Operations
+
+def MailMaster(request):
+    return render(request,"MailMaster.html")
+
+#End of Mail Operation

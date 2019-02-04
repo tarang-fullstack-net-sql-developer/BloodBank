@@ -4,8 +4,8 @@
 		<title>Detail</title>
 		<link href="{% static '/Content/bootstrap.min.css' %}" rel="stylesheet" type="text/css" />
 		<link href="{% static '/Content/bootstrap-theme.min.css' %}" rel="stylesheet" type="text/css" />
-		<link href="{% static '/CSS/line-awesome.css' %}" rel="stylesheet" type="text/css" />
-		<link href="{% static '/CSS/line-awesome-font-awesome.css' %}" rel="stylesheet" type="text/css" />
+		 <link href="{% static '/CSS/font-awesome.css' %}" rel="stylesheet" type="text/css" />
+		
 		<link href="{% static '/CSS/CustomStyle.css' %}" rel="stylesheet"/>
 		<link href="{% static '/CSS/animate.css' %}" rel="stylesheet" />
 		<!--JqueryDataTable CSS-->
@@ -23,7 +23,7 @@
 			<div class="row">
 				<div class="col-xs-12 col-sm-12">
 					<h2 class="h2">
-						<i class="la la-cubes text-primary"></i>&nbsp;<span class="ProjectsFont">Stock Detail</span>
+						<i class="fa fa-cubes text-primary"></i>&nbsp;<span class="ProjectsFont">Stock Detail</span>
 					</h2>
 					<h6 class="h6">
 						<span class="breadcrumb col-xs-12 table-bordered GlbFont bg-White">Home / Stocks</span>
@@ -34,31 +34,31 @@
 				<div class="col-xs-12">
 					<div style="border-radius: 10px 10px;">
 						<div class="table-responsive">
-							<table id="SmpleListStock" class="table table-bordered table-hover GlbFont">
+							<table id="SmpleListStock" class="table table-bordered table-hover GlbFont font-small">
 								<thead>
 									<tr class="bg-primary">
 										<th>S.No.
-											<i class="la la-sort-numeric-desc" style="float: right; margin-top: 2%; font-size: larger;"></i>
+											<i class="fa fa-sort-numeric-desc" style="float: right; margin-top: 2%; font-size: larger;"></i>
 										</th>
 										<th>Blood Type
-											<i class="la la-sort-alpha-desc" style="float: right; margin-top: 2%; font-size: larger;"></i>
+											<i class="fa fa-sort-alpha-desc" style="float: right; margin-top: 2%; font-size: larger;"></i>
 										</th>
 										<th>Quantity (Pck)
-											<i class="la la-sort-alpha-desc" style="float: right; margin-top: 2%; font-size: larger;"></i>
+											<i class="fa fa-sort-alpha-desc" style="float: right; margin-top: 2%; font-size: larger;"></i>
 										</th>
 										<th>Purchased On
-											<i class="la la-sort-numeric-desc" style="float: right; margin-top: 2%; font-size: larger;"></i>
+											<i class="fa fa-sort-numeric-desc" style="float: right; margin-top: 2%; font-size: larger;"></i>
 										<th>Expire On
-											<i class="la la-sort-numeric-desc" style="float: right; margin-top: 2%; font-size: larger;"></i>
+											<i class="fa fa-sort-numeric-desc" style="float: right; margin-top: 2%; font-size: larger;"></i>
 										</th>
 										<th>Register By
-											<i class="la la-sort-numeric-desc" style="float: right; margin-top: 2%; font-size: larger;"></i>
+											<i class="fa fa-sort-numeric-desc" style="float: right; margin-top: 2%; font-size: larger;"></i>
 										</th>
 										<th>Status
-											<i class="la la-sort-alpha-desc" style="float: right; margin-top: 2%; font-size: larger;"></i>
+											<i class="fa fa-sort-alpha-desc" style="float: right; margin-top: 2%; font-size: larger;"></i>
 										</th>
 										<th>Action
-											<i class="la la-sort-numeric-desc" style="float: right; margin-top: 2%; font-size: larger;"></i>
+											<i class="fa fa-sort-numeric-desc" style="float: right; margin-top: 2%; font-size: larger;"></i>
 										</th>
 									</tr>
 								</thead>
@@ -77,8 +77,8 @@
 											<span id="Deac_{{item.pk}}" href="#" class="ActiveLink">Active</span>
 										</td> {% endif %} 
 										<td>
-											<i id="Edit_{{item.pk}}" class="la la-edit cursor-pointer editSample"></i>&nbsp; 
-											<i id="Delete_{{item.pk}}" class="la la-trash-o cursor-pointer deleteSample"></i>
+											<i id="Edit_{{item.pk}}" class="fa fa-edit cursor-pointer editSample"></i>&nbsp; 
+											<i id="Delete_{{item.pk}}" class="fa fa-trash-o cursor-pointer deleteSample"></i>
 										</td>
 									</tr> {% endfor %} 
 								</tbody>
@@ -90,7 +90,7 @@
 			<div class="row">
 				<div class="col-xs-12">
 					<button id="OpenModal" href="#" class="btn btn-success GlbFont" style="font-size: larger;">
-						<i class="la la-user-plus"></i>&nbsp;Add new Sample 
+						<i class="fa fa-user-plus"></i>&nbsp;Add new Sample 
 					</button>
 				</div>
 			</div>

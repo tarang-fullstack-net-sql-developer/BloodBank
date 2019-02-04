@@ -7,8 +7,8 @@
     {% load static %}
 	<link href="{% static '/Content/bootstrap.min.css' %}" rel="stylesheet" type="text/css" />
 	<link href="{% static '/Content/bootstrap-theme.min.css' %}" rel="stylesheet" type="text/css" />
-	<link href="{% static '/CSS/line-awesome.css' %}" rel="stylesheet" type="text/css" />
-	<link href="{% static '/CSS/line-awesome-font-awesome.css' %}" rel="stylesheet" type="text/css" />
+	 <link href="{% static '/CSS/font-awesome.css' %}" rel="stylesheet" type="text/css" />
+	
 	<link  href="{% static '/CSS/CustomStyle.css' %}" rel="stylesheet"/>
 	<link  href="{% static '/Scripts/jQueryDatePicker/jquery-ui.css' %}" rel="stylesheet"/>
     <link href="{% static '/CSS/animate.css' %}" rel="stylesheet" />
@@ -24,7 +24,7 @@
 			<div class="row">
 				<div class="col-xs-12 col-sm-12 GlbFont">
 					<h2 class="h2 ProjectsFont">
-						<i class="la la-phone-square"></i>&nbsp;User Messages
+						<i class="fa fa-phone-square"></i>&nbsp;User Messages
 					</h2>
 					<h6 class="h6">
 						<span class="breadcrumb col-xs-12 table-bordered bg-White">Home / Comments</span>
@@ -50,15 +50,15 @@
                                     <span class="CommentFooter">
                                         {% if item.isActive == 0 %}
                                             <span id="UnhideCmt_{{item.ContactPkId}}" title="Un-Hide" onclick="CntctUs.EleClickEvent('hide-Cmt',this, 1, 'Un-Hide')">
-                                                <i class="la la-eye"></i>
+                                                <i class="fa fa-eye"></i>
                                             </span>
                                         {% else %}
                                             <span id="hideCmt_{{item.ContactPkId}}" title="Hide" class="hideCmt" onclick="CntctUs.EleClickEvent('hide-Cmt',this, 0, 'Hide')">
-                                                <i class="la la-eye-slash"></i>
+                                                <i class="fa fa-eye-slash"></i>
                                             </span>
                                         {% endif %}                                        
                                         <span id="deleteCmt_{{item.ContactPkId}}" title="Delete" class="deleteCmt" onclick="CntctUs.EleClickEvent('del-Cmt',this, 1, 'Deleted')">
-                                            <i class="la la-trash"></i>
+                                            <i class="fa fa-trash"></i>
                                         </span>
                                     </span>
                                 </div>

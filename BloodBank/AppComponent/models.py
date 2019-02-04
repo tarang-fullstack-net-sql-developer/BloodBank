@@ -24,6 +24,7 @@ class LoginUser(models.Model):
     LogUserId = models.AutoField(primary_key=True)
     UserId = models.CharField(max_length=20)
     Password = models.CharField(max_length=20)
+    UserRoleId = models.BigIntegerField(default=0)
     CreatedBy = models.CharField(max_length=20)
     CreatedOn = models.CharField(max_length=20)
     ModifiedBy = models.CharField(max_length=20)
@@ -143,3 +144,16 @@ class UsersImage(models.Model):
     UserId = models.BigIntegerField()
     class Meta:
         db_table = "tbl_UersImage"
+
+
+class UserRoles(models.Model):
+    RolePkId =models.AutoField(primary_key=True)
+    Name = models.CharField(max_length=20)
+    Description = models.CharField(max_length=20)
+    isActive = models.BooleanField(default=0)
+    CreatedOn = models.CharField(max_length=20)
+    CreatedBy = models.CharField(max_length=20)
+    ModifiedOn = models.CharField(max_length=20)
+    ModifiedBy = models.CharField(max_length=20)
+    class Meta:
+        db_table = "tbl_UserRole"

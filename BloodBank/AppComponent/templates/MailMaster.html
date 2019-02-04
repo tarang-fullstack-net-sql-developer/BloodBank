@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Mail-Master</title>
+    {% load static %} 
+    <link href="{% static '/Content/bootstrap.min.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static '/Content/bootstrap-theme.min.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static '/CSS/font-awesome.css' %}" rel="stylesheet" type="text/css" />
+     
+    <link href="{% static '/CSS/CustomStyle.css' %}" rel="stylesheet"/>
+    <link href="{% static '/CSS/animate.css' %}" rel="stylesheet" />
+    <!--JqueryDataTable CSS-->
+    <link href="{% static '/CSS/jquery.dataTables.css' %}" rel="stylesheet" />
+    <!--End JqueryDataTabCSS-->
+    <script src="{% static '/Scripts/jquery-1.12.4.min.js' %}" type="text/javascript"></script>
+    <script src="{% static '/Scripts/bootstrap.min.js' %}" type="text/javascript"></script>
+    <script src="{% static '/Scripts/Chart.min.js' %}" type="text/javascript"></script>
+    <script src="{% static '/Scripts/utils.js' %}" type="text/javascript"></script>
+
+    <link  href="{% static '/Scripts/jQueryDatePicker/jquery-ui.css' %}" rel="stylesheet"/>
+    <script src="{% static '/Scripts/jQueryDatePicker/jquery-ui.js' %}" type="text/javascript"></script>
+</head>
+<body class="compBody">
+    <div class="container-fluid GlbFont">
+        <div class="row">
+           <div class="col-xs-12 col-sm-12 GlbFont">
+              <h2 class="h2 ProjectsFont">
+                 <i class="fa fa-envelope-open text-primary"></i>&nbsp;Mails
+              </h2>
+              <h6 class="h6">
+                 <span class="breadcrumb col-xs-12 table-bordered bg-White">Home / Mails</span>
+              </h6>
+           </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-5 col-md-4 col-lg-4 form-group">
+                <div class="container-fluid bg-White table-bordered MailItemContainer TextShadow">
+                    <div class="row form-group">
+                        <div class="col-xs-12">
+                             <label class="MailItem GlbFont text-danger"><i class="fa fa-envelope"></i>&nbsp;Compose</label>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-xs-12">
+                           <label class="MailItem GlbFont text-warning"><i class="fa fa-inbox"></i>&nbsp;Inbox</label>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-xs-12">
+                             <label class="MailItem GlbFont text-success"><i class="fa fa-location-arrow"></i>&nbsp;Sent Mail</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                             <label class="MailItem GlbFont text-info"><i class="fa fa-save"></i>&nbsp;Draft</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-7 col-md-8 col-lg-8">
+                <div class="container-fluid bg-White table-bordered MailItemContainer TextShadow">
+                    Main Content
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

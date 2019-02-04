@@ -7,8 +7,7 @@
     
     <link href="{% static '/Content/bootstrap.min.css' %}" rel="stylesheet" type="text/css" />
     <link href="{% static '/Content/bootstrap-theme.min.css' %}" rel="stylesheet" type="text/css" />
-    <link href="{% static '/CSS/line-awesome.css' %}" rel="stylesheet" type="text/css" />
-	<link href="{% static '/CSS/line-awesome-font-awesome.css' %}" rel="stylesheet" type="text/css" />
+     <link href="{% static '/CSS/font-awesome.css' %}" rel="stylesheet" type="text/css" />
     <link  href="{% static '/CSS/CustomStyle.css' %}" rel="stylesheet"/>
     <link href="{% static '/CSS/animate.css' %}" rel="stylesheet" />
 
@@ -35,7 +34,7 @@
                             <div class="col-xs-12 GlbFont" style="padding: 10px; background-color:  #8d9fbb;color: white;">
                                 <h4 class="h4">
                                     <span>
-                                        <i class="la la-location-arrow"></i>&nbsp;Log In
+                                        <i class="fa fa-location-arrow"></i>&nbsp;Log In
                                     </span>
                                 </h4>
                             </div>
@@ -49,7 +48,7 @@
                                     <div class="col-xsl-12 form-group">
                                         <!--<input id="userTxt" name="userTxt" type="text" class="form-control input-lg text-fs-larger" style="box-shadow: 4px 8px 18px 0px rgba(8, 8, 8, 0.6196078431372549);" required />-->
                                         <div class="input-group GlbFont">
-                                            <span class="input-group-addon"><i class="label-control la la-user text-fs-larger" id="userIdIndicator">
+                                            <span class="input-group-addon"><i class="label-control fa fa-user text-fs-larger" id="userIdIndicator">
                                             </i></span>
                                             <input type="text" name="userTxt" id="userTxt" class="input-lg form-control" required  autofocus/>
                                         </div>
@@ -62,7 +61,7 @@
                                     <div class="col-xsl-12 form-group">
     <!--                                    <input id="userPass" name="userPass" type="password" class="form-control input-lg text-password" style="box-shadow: 4px 8px 18px 0px rgba(8, 8, 8, 0.6196078431372549);" required />-->
                                         <div class="input-group GlbFont">
-                                            <i class="label-control la la-key input-group-addon" id="passwordIndicator">
+                                            <i class="label-control fa fa-key input-group-addon" id="passwordIndicator">
                                             </i>
                                             <input type="password" name="userPass" id="userPass" class="form-control input-lg textbox-outline" required/>
                                         </div>
@@ -86,10 +85,10 @@
         </div>
         <div id="MessageModal" class="modal animated CustomModal CustomBoxDailog CustomBoxSuccess">
             <div class="GlbFont CustomBoxHeader">
-               <i class="la la-envelope"></i>&nbsp;&nbsp;&nbsp;Message
+               <i class="fa fa-envelope"></i>&nbsp;&nbsp;&nbsp;Message
             </div>
             <div class="panel-body GlbFont boldFont CustomBoxContent">
-                <i class="la la-check"></i>&nbsp;<span>
+                <i class="fa fa-check"></i>&nbsp;<span>
                     {{ LoginStatus }}
                 </span>
             </div>

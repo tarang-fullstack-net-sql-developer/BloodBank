@@ -8,8 +8,8 @@
 	<title>UserHome</title>
 	<link href="{% static '/Content/bootstrap.min.css' %}" rel="stylesheet" type="text/css" />
 	<link href="{% static '/Content/bootstrap-theme.min.css' %}" rel="stylesheet" type="text/css" />
-	<link href="{% static '/CSS/line-awesome.css' %}" rel="stylesheet" type="text/css" />
-	<link href="{% static '/CSS/line-awesome-font-awesome.css' %}" rel="stylesheet" type="text/css" />
+	 <link href="{% static '/CSS/font-awesome.css' %}" rel="stylesheet" type="text/css" />
+	
 	<link  href="{% static '/CSS/CustomStyle.css' %}" rel="stylesheet"/>
 	<link  href="{% static '/Scripts/jQueryDatePicker/jquery-ui.css' %}" rel="stylesheet"/>
 	
@@ -24,7 +24,7 @@
 			<div class="row">
 				<div class="col-xs-12 col-sm-12 GlbFont">
 					<h2 class="h2 ProjectsFont">
-						<i class="la la-xing-square"></i>&nbsp;My Profile
+						<i class="fa fa-xing-square"></i>&nbsp;My Profile
 					</h2>
 					<h6 class="h6">
 						<span class="breadcrumb col-xs-12 table-bordered bg-White">Home / Edit Profile</span>
@@ -47,7 +47,7 @@
 					</div>
                     <div class="file-field cursor-pointer">
                         <a class="btn-floating peach-gradient mt-0 float-left cursor-pointer">
-                          <i title="Update Image" class="la la-paperclip cursor-pointer" aria-hidden="true"></i>
+                          <i title="Update Image" class="fa fa-paperclip cursor-pointer" aria-hidden="true"></i>
                             <input name="ProfilePic" type="file" class="cursor-pointer" onchange="UserProfile.PreviewImage(event)" title="Update Profile Image">
                             <input type="hidden" name="UserProfImg" id="UserProfImg" />
                             <input type="hidden" name="ImageName" id="ImageName" />
@@ -59,7 +59,7 @@
 			<div class="row">
 				<div class="col-xs-12 col-sm-6 col-md-4">
 					<div class="ContactForm form-group TextShadow">
-						<label class="ContactFormHeader"><i title="Edit" class="la la-user"></i>&nbsp;Full Name<i style="float: right; margin-left: 3px;" class="la la-edit cursor-pointer" title="edit"></i>&nbsp;</label>
+						<label class="ContactFormHeader"><i title="Edit" class="fa fa-user"></i>&nbsp;Full Name<i style="float: right; margin-left: 3px;" class="fa fa-edit cursor-pointer" title="edit"></i>&nbsp;</label>
 						<div class="row">
 							<div class="col-xs-12 ContactFormfeildCont">
 								<input type="text" class="ContactFormTxt disabled" name="fullname" value="{{UserData.FullName}}" />
@@ -69,7 +69,7 @@
 				</div>
                 <div class="col-xs-12 col-sm-6 col-md-4">
 					<div class="ContactForm form-group TextShadow">
-						<label class="ContactFormHeader"><i class="la la-tty"></i>&nbsp;Contact No<i style="float: right; margin-left: 3px;" class="la la-edit cursor-pointer" title="edit"></i>&nbsp;</label>
+						<label class="ContactFormHeader"><i class="fa fa-tty"></i>&nbsp;Contact No<i style="float: right; margin-left: 3px;" class="fa fa-edit cursor-pointer" title="edit"></i>&nbsp;</label>
 						<div class="row">
 							<div class="col-xs-12 ContactFormfeildCont">
                                 {% if UserData.MobileNo == 0 %}
@@ -83,7 +83,7 @@
 				</div>
 				<div class="col-xs-12 col-sm-6 col-md-4">
 					<div class="ContactForm form-group TextShadow">
-						<label class="ContactFormHeader"><i class="la la-envelope"></i>&nbsp;Email Id<i style="float: right; margin-left: 3px;" class="la la-edit cursor-pointer" title="edit"></i>&nbsp;</label>
+						<label class="ContactFormHeader"><i class="fa fa-envelope"></i>&nbsp;Email Id<i style="float: right; margin-left: 3px;" class="fa fa-edit cursor-pointer" title="edit"></i>&nbsp;</label>
 						<div class="row">
 							<div class="col-xs-12 ContactFormfeildCont">
 								<input type="text" class="ContactFormTxt" name="emailId" value="{{UserData.EmailId}}"/>
@@ -93,7 +93,7 @@
 				</div>
 				<div class="col-xs-12 col-sm-6 col-md-4">
 					<div class="ContactForm form-group TextShadow">
-						<label class="ContactFormHeader"><i class="la la-tty"></i>&nbsp;Gender<i style="float: right; margin-left: 3px;" class="la la-edit cursor-pointer" title="edit"></i>&nbsp;</label>
+						<label class="ContactFormHeader"><i class="fa fa-tty"></i>&nbsp;Gender<i style="float: right; margin-left: 3px;" class="fa fa-edit cursor-pointer" title="edit"></i>&nbsp;</label>
 						<div class="row">
 							<div class="col-xs-12 ContactFormfeildCont">
                                 <select name="gender" class="ContactFormTxt" id="gender">
@@ -107,7 +107,7 @@
 				</div>
                 <div class="col-xs-12 col-sm-6 col-md-4">
 					<div class="ContactForm form-group TextShadow">
-						<label class="ContactFormHeader"><i class="la la-tty"></i>&nbsp;Blood Group<i style="float: right; margin-left: 3px;" class="la la-edit cursor-pointer" title="edit"></i>&nbsp;</label>
+						<label class="ContactFormHeader"><i class="fa fa-tty"></i>&nbsp;Blood Group<i style="float: right; margin-left: 3px;" class="fa fa-edit cursor-pointer" title="edit"></i>&nbsp;</label>
 						<div class="row">
 							<div class="col-xs-12 ContactFormfeildCont">
 								<select name="bloodgroup" class="ContactFormTxt" id="bloodgroup">
@@ -126,7 +126,7 @@
 				</div>
                 <div class="col-xs-12 col-sm-6 col-md-4">
 					<div class="ContactForm form-group TextShadow">
-						<label class="ContactFormHeader"><i class="la la-tty"></i>&nbsp;Address<i style="float: right; margin-left: 3px;" class="la la-edit cursor-pointer" title="edit"></i>&nbsp;</label>
+						<label class="ContactFormHeader"><i class="fa fa-tty"></i>&nbsp;Address<i style="float: right; margin-left: 3px;" class="fa fa-edit cursor-pointer" title="edit"></i>&nbsp;</label>
 						<div class="row">
 							<div class="col-xs-12 ContactFormfeildCont">
 								<input type="text" class="ContactFormTxt" name="address" value="{{UserData.Address}}"/>
@@ -136,7 +136,7 @@
 				</div>
 				<div class="col-xs-12 col-sm-6 col-md-4">
 					<div class="ContactForm form-group TextShadow">
-						<label class="ContactFormHeader"><i class="la la-tty"></i>&nbsp;City<i style="float: right; margin-left: 3px;" class="la la-edit cursor-pointer" title="edit"></i>&nbsp;</label>
+						<label class="ContactFormHeader"><i class="fa fa-tty"></i>&nbsp;City<i style="float: right; margin-left: 3px;" class="fa fa-edit cursor-pointer" title="edit"></i>&nbsp;</label>
 						<div class="row">
 							<div class="col-xs-12 ContactFormfeildCont">
 								<input type="text" class="ContactFormTxt" name="city" value="{{UserData.City}}"/>
@@ -146,7 +146,7 @@
 				</div>
                 <div class="col-xs-12 col-sm-6 col-md-4">
 					<div class="ContactForm form-group TextShadow">
-						<label class="ContactFormHeader"><i class="la la-tty"></i>&nbsp;State<i style="float: right; margin-left: 3px;" class="la la-edit cursor-pointer" title="edit"></i>&nbsp;</label>
+						<label class="ContactFormHeader"><i class="fa fa-tty"></i>&nbsp;State<i style="float: right; margin-left: 3px;" class="fa fa-edit cursor-pointer" title="edit"></i>&nbsp;</label>
 						<div class="row">
 							<div class="col-xs-12 ContactFormfeildCont">
 								<input type="text" class="ContactFormTxt" name="state" value="{{UserData.State}}"/>
@@ -156,7 +156,7 @@
 				</div>
 				<div class="col-xs-12 col-sm-6 col-md-4">
 					<div class="ContactForm form-group TextShadow">
-						<label class="ContactFormHeader"><i class="la la-envelope"></i>&nbsp;Country<i style="float: right; margin-left: 3px;" class="la la-edit cursor-pointer" title="edit"></i>&nbsp;</label>
+						<label class="ContactFormHeader"><i class="fa fa-envelope"></i>&nbsp;Country<i style="float: right; margin-left: 3px;" class="fa fa-edit cursor-pointer" title="edit"></i>&nbsp;</label>
 						<div class="row">
 							<div class="col-xs-12 ContactFormfeildCont">
 								<input type="text" class="ContactFormTxt" name="country" value="{{UserData.Country}}"/>
