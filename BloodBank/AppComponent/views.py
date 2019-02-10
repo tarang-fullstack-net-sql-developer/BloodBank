@@ -7,6 +7,12 @@ from django.db.models import Q
 from django.core.mail import send_mail
 from django.conf import settings
 
+#Email Library
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+import smtplib
+#End of Email Library
+
 # Create your views here.
 from django.http import HttpResponse
 from django.template import loader
@@ -17,6 +23,8 @@ from AppComponent.models import StockDetail
 from AppComponent.models import LoginHistory
 from AppComponent.models import ContactUs
 from AppComponent.models import UsersImage
+from AppComponent.models import MailMaster
+from AppComponent.models import UserRoles
 from django.db.models import *
 
 import string
@@ -96,17 +104,7 @@ def UserHome(request):
     UsrId = request.session['_UserId']
     return render(request,'UserHome.html',{ 'UsrId' : UsrId })
 
-def GetUserDetail(request):
-    recCnt = 1
-    PkUserId = request.session['_PkId']
-    Join_Query = LoginUser.objects.raw('''Select * from tbl_UserLogin,tbl_UserRegistration 
-            where tbl_UserLogin.LogUserId = tbl_UserRegistration.UserID and tbl_UserLogin.LogUserId != ''' + str(request.session['_PkId']))
-    personalDetail = RegisterUser.objects.all()
-    return render(request,"UserDetail.html",{'UserData':Join_Query,'RecCnt':recCnt,'CurUserId':request.session['_PkId']})
-
-
 #Donor Operation
-
 def DonorList(request):
     ResponceStatus = ''
     PkUserId = request.session['_PkId']
@@ -210,8 +208,8 @@ def DonorEdit(request):
             DonorData.Country = request.POST.get('txtEditCountry')
             DonorData.State = request.POST.get('txtEditState')
             DonorData.City = request.POST.get('txtEditCity')
-            DonorData.ModifiedBy= request.session['_UserId']
-            DonorData.ModifiedOn= str(datetime.date.today())
+            DonorData.ModifiedBy = request.session['_UserId']
+            DonorData.ModifiedOn = str(datetime.date.today())
 
             DonorData.save()
             DonorData = ""
@@ -231,24 +229,38 @@ def DonorEdit(request):
     return render(request,'dnrList.html',{ 'DonorListData':Join_Query,'ResponceStatus' : ResponceStatus,'MyLatestId':MaxRegId , 'DonorSpecificData':DonorData })
 
 #End of Donor Registration
-
 def SiteMaster(request):
     UsrId = request.session['_UserId']
     UserPkId = request.session['_PkId']
 
     UserImage = UsersImage.objects.filter(UserId = UserPkId)
-    UserImage = UsersImage.objects.filter(UserId = UserPkId).latest('ImageId')
+    if(UserImage.count() > 0):
+        UserImage = UsersImage.objects.filter(UserId = UserPkId).latest('ImageId')
 
     return render(request,'SiteMaster.html',{ 'UsrId' : UsrId, 'UserImage':UserImage })
 
+#User Section
 def random_number(min_char=5,max_char=8):
     allchar = string.ascii_letters.upper() + string.digits
     randNumber = "".join(choice(allchar) for x in range(randint(min_char, max_char)))
     return randNumber
 
+def GetUserDetail(request):
+    recCnt = 1
+
+    RoleList = GetUserRoleList(request)
+
+    PkUserId = request.session['_PkId']
+    Join_Query = LoginUser.objects.raw('''Select * from tbl_UserLogin,tbl_UserRegistration 
+            where tbl_UserLogin.LogUserId = tbl_UserRegistration.UserID and tbl_UserLogin.LogUserId != ''' + str(request.session['_PkId']))
+    personalDetail = RegisterUser.objects.all()
+    return render(request,"UserDetail.html",{'UserData':Join_Query,'RecCnt':recCnt,'CurUserId':request.session['_PkId'],'UserRoleList':RoleList})
+
 def AddUser(request):
+    RoleList = ''
     try:
         RetData = LoginUser.objects.filter(Q(UserId = request.POST.get('UserId')))
+        RoleList = GetUserRoleList(request)
 
         Join_Query = LoginUser.objects.raw('''Select * from tbl_UserLogin,tbl_UserRegistration 
             where tbl_UserLogin.LogUserId = tbl_UserRegistration.UserID and tbl_UserLogin.LogUserId != ''' + str(request.session['_PkId']))
@@ -257,8 +269,10 @@ def AddUser(request):
             ResponceStatus = "User Id Already Exists !!"
             return render(request,"UserDetail.html",{'ResponceStatus': ResponceStatus,'UserData':Join_Query})
 
-        lognUser = LoginUser(UserId = request.POST.get('UserId'),
+        lognUser = LoginUser(
+                UserId = request.POST.get('UserId'),
                 Password = request.POST.get('password'),
+                UserRoleId = request.POST.get('UserRole'),
                 CreatedBy = request.session['_UserId'],
                 CreatedOn= str(datetime.date.today()),
                 ModifiedBy= request.session['_UserId'],
@@ -285,7 +299,7 @@ def AddUser(request):
 
     except Exception as e:
         ResponceStatus = "Something went wrong !!"
-    return render(request,'UserDetail.html',{ 'ResponceStatus' : ResponceStatus,'UserData':Join_Query })
+    return render(request,'UserDetail.html',{ 'ResponceStatus' : ResponceStatus,'UserData':Join_Query ,'UserRoleList':RoleList})
 
 def CreateLoginHistory(LgUserId):
     lgnHist = LoginHistory(UserId = LgUserId,
@@ -294,7 +308,11 @@ def CreateLoginHistory(LgUserId):
 
 def DeleteUser(request):
     UserPkId = request.GET["UserPkId"]
+    RoleList = ''
     try:
+
+        RoleList = GetUserRoleList(request)
+
         UserData = RegisterUser.objects.get(UserID=UserPkId)
         UserData .delete()
 
@@ -306,14 +324,18 @@ def DeleteUser(request):
             where tbl_UserLogin.LogUserId = tbl_UserRegistration.UserID and tbl_UserLogin.LogUserId != ''' + str(request.session['_PkId']))
     except Exception as e:
         ResponceStatus = "Something went wrong !!"
-    return render(request,'UserDetail.html',{ 'ResponceStatus' : ResponceStatus,'UserData':Join_Query,'CurUserId':request.session['_PkId']})
+    return render(request,'UserDetail.html',{ 'ResponceStatus' : ResponceStatus,'UserData':Join_Query,'CurUserId':request.session['_PkId'],'UserRoleList':RoleList})
 
 def DeacUser(request):
     UserPkId = request.GET["UserPkId"]
     Status = request.GET["Status"]
     Message = request.GET["Message"]
+    RoleList = ''
 
     try:
+
+        RoleList = GetUserRoleList(request)
+
         LoginData = LoginUser.objects.get(LogUserId=UserPkId)
         LoginData.isActive = Status
         LoginData.save()
@@ -323,11 +345,27 @@ def DeacUser(request):
             where tbl_UserLogin.LogUserId = tbl_UserRegistration.UserID and tbl_UserLogin.LogUserId != ''' + str(request.session['_PkId']))
     except Exception as e:
         ResponceStatus = "Something went wrong !!"
-    return render(request,'UserDetail.html',{ 'ResponceStatus' : ResponceStatus,'UserData':Join_Query,'CurUserId':request.session['_PkId']})
+    return render(request,'UserDetail.html',{ 'ResponceStatus' : ResponceStatus,'UserData':Join_Query,'CurUserId':request.session['_PkId'],'UserRoleList':RoleList})
 
 def UserHistory(request):
     Join_Query = LoginHistory.objects.values("UserId").annotate(FirstLog=Min('LoggedOn')).annotate(LatstLog=Max('LoggedOn')).annotate(TtlLog=Count('UserId'))
     return render(request,'UserHistory.html',{ 'ResponceStatus' : Join_Query,'CurUserId':request.session['_PkId']})
+#End User Section
+
+#UserRole Section
+
+def GetUserRoleList(request):
+
+    RoleList = ''
+    try:
+        RoleList = UserRoles.objects.raw('''Select * from tbl_UserRole where isActive = 1''')
+        ResponceStatus = "Successfully"
+    except Exception as e:
+        ResponceStatus = "Something Went Wrong"
+
+    return RoleList
+
+#UserRole End Section
 
 #Blood Stock Detail
 def StockMasterList(request):
@@ -511,8 +549,9 @@ def EditProfile(request):
     try:
         UserData = RegisterUser.objects.get(UserID = UserPkId)
         UserImage = UsersImage.objects.filter(UserId = UserPkId)
-        UserImage = UsersImage.objects.filter(UserId = UserPkId).latest('ImageId')
-
+        if(UserImage.count() > 0):
+            UserImage = UsersImage.objects.filter(UserId = UserPkId).latest('ImageId')
+    
         ResponceStatus = ""
 
         if request.method == "POST":
@@ -524,9 +563,9 @@ def EditProfile(request):
                 UserData.MobileNo = 0
 
             if(request.POST.get('emailId') != ""):
-                UserData.MobileNo = request.POST.get('emailId')
+                UserData.EmailId = request.POST.get('emailId')
             else:
-                UserData.EmailId = 0
+                UserData.EmailId = ''
 
             UserData.Gender = request.POST.get('gender')
             UserData.BloodGroup = request.POST.get('bloodgroup')
@@ -547,7 +586,9 @@ def EditProfile(request):
                 ImgUpld.save()
             #Fetching Latest Data
             UserData = RegisterUser.objects.get(UserID = UserPkId)
-            UserImage = UsersImage.objects.filter(UserId = UserPkId).latest('ImageId')
+            UserImage = UsersImage.objects.filter(UserId = UserPkId)
+            if(UserImage.count() > 0):
+                UserImage = UsersImage.objects.filter(UserId = UserPkId).latest('ImageId')
             #Fetching Latest Data
             ResponceStatus = "Detail Updated Successsfully !!"
     except Exception as e:
@@ -556,7 +597,6 @@ def EditProfile(request):
 #End of User Profile
 
 #User ChnagePassword
-
 def ChangePassword(request):
 
     try:
@@ -598,8 +638,51 @@ def ForgotPassword(request):
 #End of ChangePassword
 
 #Mail Operations
+def MailHomeMaster(request):
 
-def MailMaster(request):
-    return render(request,"MailMaster.html")
+    UserMailId = RegisterUser.objects.get(UserID = request.session["_PkId"])
+    ttlMailReceive = MailMaster.objects.filter(SentTo = UserMailId.EmailId)
+    ttlMailSent = MailMaster.objects.filter(From = UserMailId.EmailId)
+
+    return render(request,"MailMaster.html",{'MailSent':ttlMailSent,'MailSentCnt':ttlMailSent.count(),'MailRecieved':ttlMailReceive,'MailReceivedCnt':ttlMailReceive.count()})
+
+def MailSentMaster(request):
+    try:
+        UserMailId = RegisterUser.objects.get(UserID = request.session["_PkId"])
+
+        UserMailId = RegisterUser.objects.get(UserID = request.session["_PkId"])
+        ttlMailReceive = MailMaster.objects.filter(SentTo = UserMailId.EmailId)
+        ttlMailSent = MailMaster.objects.filter(From = UserMailId.EmailId)
+
+        Mail_Sent = MailMaster(SentTo = request.POST.get("mailToHidden"),
+            CcAcnt = request.POST.get("mailCcHidden"),
+            BccAcnt = request.POST.get("mailBCCHidden"),
+            Subject = request.POST.get("mailSubjectTxt"),
+            Message = request.POST.get("messageHid"),
+            From = UserMailId.EmailId,
+            SentOn = str(datetime.datetime.now()),
+            isDelivered = 1,
+            CreatedOn = str(datetime.datetime.now()),
+            CreatedBy = request.session["_PkId"],
+            ModifiedOn = str(datetime.datetime.now()),
+            ModifiedBy = request.session["_PkId"])
+        Mail_Sent.save()
+
+        ResponceStatus = "Mail Sent Successfully !!"
+    except Exception as e:
+        ResponceStatus = "Something Went Wrong !!"
+    return render(request,"MailMaster.html",{'ResponceStatus':ResponceStatus,'MailSent':ttlMailSent,'MailSentCnt':ttlMailSent.count(),'MailRecieved':ttlMailReceive,'MailReceivedCnt':ttlMailReceive.count()})
 
 #End of Mail Operation
+
+
+#Send Mail
+#def SendEmail(request,Subject,Message,MailFrom):
+
+#    mailObj = MIMEMultipart()
+#    mailObj["From"] = Email
+#    mailObj["Subject"] = Subject
+#    mailObj["To"] = Subject
+
+#    return ""
+#End of Send Mail

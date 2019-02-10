@@ -5,7 +5,7 @@
 		<title>Detail</title>
 		<link href="{% static '/Content/bootstrap.min.css' %}" rel="stylesheet" type="text/css" />
 		<link href="{% static '/Content/bootstrap-theme.min.css' %}" rel="stylesheet" type="text/css" />
-		 <link href="{% static '/CSS/font-awesome.css' %}" rel="stylesheet" type="text/css" />
+		<link href="{% static '/CSS/font-awesome.css' %}" rel="stylesheet" type="text/css" />
 		
 		<link href="{% static '/CSS/CustomStyle.css' %}" rel="stylesheet"/>
 		<link href="{% static '/CSS/animate.css' %}" rel="stylesheet" />
@@ -37,7 +37,7 @@
 				<div class="col-xs-12">
 					<div style="border-radius: 10px 10px;">
 						<div class="table-responsive">
-							<table id="userTab" class="table table-bordered table-hover GlbFont font-small" style="background-color: white;">
+							<table id="userTab" class="table table-bordered table-hover GlbFont" style="background-color: white;">
 								<thead>
 									<tr class="bg-primary">
 										<th>S.No. 
@@ -122,19 +122,19 @@
 						<div class="col-md-4">
 							<div class="form-group">
 								<label for="field-4" class="control-label">Full Name</label>
-								<input type="text" name="fullName" class="form-control" id="field-4" placeholder="Jhon" />
+								<input type="text" name="fullName" class="form-control" id="field-4" placeholder="Jhon" required />
 							</div>
 						</div>
 						<div class="col-md-4">
 							<div class="form-group">
 								<label for="field-5" class="control-label">UserId</label>
-								<input type="text" name="UserId" class="form-control" id="field-5" placeholder="jhonVb" />
+								<input type="text" name="UserId" class="form-control" id="field-5" placeholder="jhonVb" required />
 							</div>
 						</div>
 						<div class="col-md-4">
 							<div class="form-group">
 								<label for="field-6" class="control-label">Password</label>
-								<input type="text" name="password" class="form-control" id="field-6" placeholder="****"/>
+								<input type="text" name="password" class="form-control" id="field-6" placeholder="****" required/>
 							</div>
 						</div>
 					</div>
@@ -187,15 +187,25 @@
 						<div class="col-md-4">
 							<div class="form-group">
 								<label for="field-6" class="control-label">City</label>
-								<input type="text" name="city" class="form-control" id="field-6" placeholder="Newyork"/>
+								<input type="text" name="city" class="form-control" id="field-6" placeholder="Newyork" required/>
 							</div>
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-xs-12">
+						<div class="col-xs-8">
 							<div class="form-group">
 								<label for="field-3" class="control-label">Address</label>
 								<input type="text" name="address" class="form-control" id="field-3" placeholder="Address"/>
+							</div>
+						</div>
+                        <div class="col-xs-4">
+							<div class="form-group">
+								<label for="field-3" class="control-label">Role</label>
+								<select name="UserRole" class="form-control">
+                                    {% for Role in UserRoleList %}
+                                        <option value="{{Role.RolePkId}}">{{Role.Name}}</option>
+                                    {% endfor %}
+                                </select>
 							</div>
 						</div>
 					</div>

@@ -53,10 +53,20 @@
     <Content Include="AppComponent\static\CSS\animate.css" />
     <Content Include="AppComponent\static\CSS\bootstrap.min.css" />
     <Content Include="AppComponent\static\CSS\CustomStyle.css" />
+    <Content Include="AppComponent\static\CSS\editor.css" />
+    <Content Include="AppComponent\static\CSS\font-awesome.css" />
+    <Content Include="AppComponent\static\CSS\font-awesome.min.css" />
     <Content Include="AppComponent\static\CSS\jquery.dataTables.css" />
     <Content Include="AppComponent\static\CSS\jqvmap.css" />
     <Content Include="AppComponent\static\CSS\line-awesome-font-awesome.css" />
     <Content Include="AppComponent\static\CSS\line-awesome.css" />
+    <Content Include="AppComponent\static\CSS\richtext.min.css" />
+    <Content Include="AppComponent\static\fonts\fontawesome-webfont.eot" />
+    <Content Include="AppComponent\static\fonts\fontawesome-webfont.svg" />
+    <Content Include="AppComponent\static\fonts\fontawesome-webfont.ttf" />
+    <Content Include="AppComponent\static\fonts\fontawesome-webfont.woff" />
+    <Content Include="AppComponent\static\fonts\fontawesome-webfont.woff2" />
+    <Content Include="AppComponent\static\fonts\FontAwesome.otf" />
     <Content Include="AppComponent\static\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="AppComponent\static\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="AppComponent\static\fonts\glyphicons-halflings-regular.ttf" />
@@ -101,6 +111,7 @@
     <Content Include="AppComponent\static\Scripts\jQueryDatePicker\jquery-ui.js" />
     <Content Include="AppComponent\static\Scripts\jQueryMap.html" />
     <Content Include="AppComponent\static\Scripts\Login\Login.js" />
+    <Content Include="AppComponent\static\Scripts\MailMaster\MailMaster.js" />
     <Content Include="AppComponent\static\Scripts\SampleReg\SampleReg.js" />
     <Content Include="AppComponent\static\Scripts\SignUp\SignUp.js" />
     <Content Include="AppComponent\static\Scripts\UserDetail\UserDetail.js" />
@@ -398,6 +409,7 @@
     <Folder Include="AppComponent\static\Scripts\Index\" />
     <Folder Include="AppComponent\static\Scripts\jQueryDatePicker\" />
     <Folder Include="AppComponent\static\Scripts\Login\" />
+    <Folder Include="AppComponent\static\Scripts\MailMaster\" />
     <Folder Include="AppComponent\static\Scripts\SampleReg\" />
     <Folder Include="AppComponent\static\Scripts\SignUp\" />
     <Folder Include="AppComponent\static\Scripts\UserDetail\" />

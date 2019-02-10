@@ -47,20 +47,22 @@
                                 </div>
                                 <div class="panel-footer">
                                     <span>Posted On: </span> {{item.PostedOn}}
-                                    <span class="CommentFooter">
-                                        {% if item.isActive == 0 %}
-                                            <span id="UnhideCmt_{{item.ContactPkId}}" title="Un-Hide" onclick="CntctUs.EleClickEvent('hide-Cmt',this, 1, 'Un-Hide')">
-                                                <i class="fa fa-eye"></i>
+                                    {% if request.session.UserRoleId == 1 %}
+                                        <span class="CommentFooter">
+                                            {% if item.isActive == 0 %}
+                                                <span id="UnhideCmt_{{item.ContactPkId}}" title="Un-Hide" onclick="CntctUs.EleClickEvent('hide-Cmt',this, 1, 'Un-Hide')">
+                                                    <i class="fa fa-eye"></i>
+                                                </span>
+                                            {% else %}
+                                                <span id="hideCmt_{{item.ContactPkId}}" title="Hide" class="hideCmt" onclick="CntctUs.EleClickEvent('hide-Cmt',this, 0, 'Hide')">
+                                                    <i class="fa fa-eye-slash"></i>
+                                                </span>
+                                            {% endif %}                                        
+                                            <span id="deleteCmt_{{item.ContactPkId}}" title="Delete" class="deleteCmt" onclick="CntctUs.EleClickEvent('del-Cmt',this, 1, 'Deleted')">
+                                                <i class="fa fa-trash"></i>
                                             </span>
-                                        {% else %}
-                                            <span id="hideCmt_{{item.ContactPkId}}" title="Hide" class="hideCmt" onclick="CntctUs.EleClickEvent('hide-Cmt',this, 0, 'Hide')">
-                                                <i class="fa fa-eye-slash"></i>
-                                            </span>
-                                        {% endif %}                                        
-                                        <span id="deleteCmt_{{item.ContactPkId}}" title="Delete" class="deleteCmt" onclick="CntctUs.EleClickEvent('del-Cmt',this, 1, 'Deleted')">
-                                            <i class="fa fa-trash"></i>
                                         </span>
-                                    </span>
+                                    {% endif %}
                                 </div>
                             </div>
                     </div>

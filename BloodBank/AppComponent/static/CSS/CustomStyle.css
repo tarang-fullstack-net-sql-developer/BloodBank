@@ -623,25 +623,173 @@ input:focus, textarea:focus, select:focus {
 
 .MailItemContainer {
     padding: 15px;
-    border-radius: 10px;
     font-size: medium;
-    height: 500px;
+    width: 102.5%;
+    height: 580px;
+    overflow-y: scroll;
 }
 
-.MailItem {
+.MailItem-active, .MailItem-active:hover {
+    background-color: #afecd8;
+}
+
+.MailItem-label {
+    font-size: medium;
+    font-weight: 600 !important;
+    font-family: Palatino Linotype;
+}
+
+.border-bottom-only {
+    border-top-width: 0px;
+    border-right-width: 0px;
+    border-left-width: 0px;
+    border-radius: 0px;
+}
+
+.MailItem-button {
+    user-select: none;
+    font-size: 16px;
+    letter-spacing: 1px;
+    font-variant: small-caps;
+    outline: none;
+    color: white;
+    border: none;
+}
+
+.MailButton-Send {
+    background-color: #1abc9c;
+    border-color: #1abc9c;
+}
+
+.MailButton-Cancel {
+    background-color: #f1556c;
+    border-color: #f1556c;
+}
+
+.btn-label-right {
+    padding: .6rem .9rem;
+    background-color: rgba(50,58,70,.1);
+    position: relative;
+    right: -11px;
+}
+
+#mailMessageTxt {
     padding: 10px;
-    border: 1px solid silver;
-    border-radius: 15px;
-    background-color: white;
-    width: 80%;
+    font-size: medium;
+}
+
+.font-small {
+    font-size: small !important;
+}
+
+.font-larger {
+    font-size: large;
+}
+
+.MailList {
+    display: table-cell;
+    padding: 5px;
+    font-weight: normal;
+}
+
+    .MailList i {
+        margin-left: 10px;
+    }
+
+.MailListdivider {
+    display: table-cell;
+    color: transparent;
+}
+
+
+.MailInputs {
+    margin-bottom: -10px !important;
+}
+
+.MailMessageHeader {
+    background-color: #ffffe0;
     border: 1px solid #337ab7;
 }
 
-    .MailItem:hover {
-        background-color: #F0F0F0;
-        cursor: pointer;
+.MaillabelBorder {
+    /*background-color: #faf0e6;*/
+    border: 1px solid #337ab7;
+}
+
+.side-nav-fixed {
+    /*background-color: #323639;*/
+    background-color: #e5e8ef;
+    height: 1500px;
+    padding: 0px;
+}
+
+    .side-nav-fixed ul {
+        display: inline;
+        color: White;
+        margin: 0px !important;
+        padding: 0px;
+        width: 100%;
     }
 
-.font-small {
-    font-size: small;
+        .side-nav-fixed ul li {
+            padding: 15px;
+            display: block;
+            color: black;
+        }
+
+.nav-active {
+    background-color: #d5d7de;
+    cursor: pointer;
+}
+
+.side-nav-fixed ul li span {
+    margin-top: 3px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.side-nav-fixed ul li:hover {
+    background-color: #d5d7de;
+    cursor: pointer;
+    color: black !important;
+}
+
+.MailListItems, #HeaderMails {
+    list-style: none;
+    padding: 0px;
+}
+
+    .MailListItems li {
+        padding: 5px;
+    }
+
+        .MailListItems li:hover {
+            background-color: #ddd !important;
+            cursor: pointer;
+            color: black !important;
+        }
+
+    #HeaderMails li {
+        padding: 6px !important;
+    }
+
+        #HeaderMails li:hover {
+            color: white;
+        }
+
+.p-t-10 {
+    padding-top: 10px !important;
+}
+
+.p-l-r {
+    padding: 0px 15px 0px 5px !important;
+}
+
+.p-5 {
+    padding: 5px !important;
+}
+
+.DescriptionTxt {
+    overflow: hidden;
+    width: 150px;
+    height: 20px;
 }

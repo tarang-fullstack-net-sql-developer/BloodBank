@@ -145,7 +145,6 @@ class UsersImage(models.Model):
     class Meta:
         db_table = "tbl_UersImage"
 
-
 class UserRoles(models.Model):
     RolePkId =models.AutoField(primary_key=True)
     Name = models.CharField(max_length=20)
@@ -157,3 +156,20 @@ class UserRoles(models.Model):
     ModifiedBy = models.CharField(max_length=20)
     class Meta:
         db_table = "tbl_UserRole"
+
+class MailMaster(models.Model):
+    PkId =models.AutoField(primary_key=True)
+    SentTo = models.CharField(max_length=20)
+    CcAcnt = models.TextField()
+    BccAcnt = models.TextField()
+    Subject = models.TextField()
+    Message = models.TextField()
+    From = models.CharField(max_length=20)
+    SentOn = models.CharField(max_length=20)
+    isDelivered = models.BooleanField()
+    CreatedOn = models.CharField(max_length=20)
+    CreatedBy = models.CharField(max_length=20)
+    ModifiedOn = models.CharField(max_length=20)
+    ModifiedBy = models.CharField(max_length=20)
+    class Meta:
+        db_table = "tbl_MailMaster"

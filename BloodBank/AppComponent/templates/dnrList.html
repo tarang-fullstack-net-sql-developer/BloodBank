@@ -114,7 +114,7 @@
     <form id="addDonorFrm" method="post" action="/Donor-Creation/"> {% csrf_token %} 
         <input type="hidden" value="{{ MyLatestId }}" name="DnrRegNoHid" />
         <div id="backDrop" class="CustMask hidden"></div>
-        <div id="dnrReg-Modal" class="CustomModal animated hidden flipInX" style="height: 480px; width: 1200px;">
+        <div id="dnrReg-Modal" class="CustomModal animated hidden flipInX" style="height: 500px; width: 100%; padding: 5px; margin-left: -5px;">
             <div class="CustomModalHeader bg-success TextShadow"> Donor Creation </div>
             <div class="DnrCreFrm CustomModalBody TextShadow">
                 <div class="row form-group">
@@ -244,7 +244,7 @@
     <form id="EditDonorFrm" method="post" action="/donor-edit/"> {% csrf_token %} 
         <div id="backDrop" class="CustMask hidden"></div>
         <input type="hidden" name="HidDonorPkId" value="{{DonorSpecificData.pk}}" />
-        <div id="dnrEditReg-Modal" class="CustomModal animated hidden flipInX" style="height: 480px; width: 1200px;">
+        <div id="dnrEditReg-Modal" class="CustomModal animated hidden flipInX" style="height: 500px; width: 100%; padding: 5px; margin-left: -5px;">
             <div class="CustomModalHeader bg-success TextShadow"> Update Donor </div>
             <div class="DnrCreFrm CustomModalBody TextShadow">
                 <div class="row form-group">

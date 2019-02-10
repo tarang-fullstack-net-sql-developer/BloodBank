@@ -3,7 +3,8 @@ from django.contrib import admin
 from django.urls import path
 from AppComponent import views
 
-urlpatterns = [path('', views.loginUser),
+urlpatterns = [
+    path('', views.loginUser),
     path('admin/', admin.site.urls),
     path('hello/', views.hello),
     path('login-user/', views.loginUser),
@@ -39,5 +40,6 @@ urlpatterns = [path('', views.loginUser),
     path('password-reset/', views.ForgotPassword),
 
     #Mail OPeration
-    path('Mail-Master/',views.MailMaster)
+    path('Mail-Master/',views.MailHomeMaster),
+    path('Mail-Sent/',views.MailSentMaster)
 ]
