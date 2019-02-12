@@ -43,7 +43,7 @@
         <div class="row">
             <div class="col-xs-12 col-sm-5 col-md-4 col-lg-4 form-group hidden">
                 <div class="container-fluid bg-White table-bordered MailItemContainer TextShadow">
-                    <div class="row form-group">
+                    <div class="row form-group bg-white">
                         <div class="col-xs-12">
                              <label class="MailItem GlbFont text-danger MailItem-active" data-target="#ComposeMailTab">
                                 <i class="fa fa-folder-open"></i>&nbsp;Compose&nbsp;
@@ -86,7 +86,7 @@
             <div class="col-xs-12">
                 <div class="container-fluid GlbFont table-bordered" style="overflow: hidden; height: 575px;">
                     <div class="row">
-                        <div id="MailSideBarMenu" class="col-xs-2 col-sm-3 col-md-3 col-lg-2 hidden-xs side-nav-fixed GlbFont">
+                        <div id="MailSideBarMenu" class="col-xs-2 col-sm-3 col-md-3 col-lg-2 hidden-xs side-nav-fixed GlbFont bg-White">
                             <ul style="list-style: none;">
                                 <li class="nav-active MailItem" data-target="#ComposeMailTab">
                                     <i class="fa fa-folder-open p-5"></i>&nbsp;Compose
@@ -112,46 +112,48 @@
                                 {% csrf_token %}
                                 <div class="container-fluid MailItemContainer">
                                     <div class="row">
-                                        <div class="col-xs-3 col-sm-3 col-lg-2">
+                                        <div class="col-xs-3 col-sm-3 col-lg-2 hidden">
                                             <div class="text-center input-group CustomTextBox MaillabelBorder form-group">
                                                 <label class="MailItem-label">To</label>
                                             </div>
                                         </div>
-                                        <div class="col-xs-9 col-sm-9 col-lg-10">
+                                        <!--<div class="col-xs-12 col-sm-9 col-lg-10">-->
+                                        <div class="col-xs-12">
                                             <div class="input-group CustomTextBox bg-White form-group">
                                                 <p class="hidden" id="toMailList" style="display: table-cell;width: 1px;">
                                                 </p>
-                                                <input type="text" name="mailToTxt" class="border-less-txt font-small MailInputs" autofocus/>
+                                                <input type="text" name="mailToTxt" class="border-less-txt font-small MailInputs" autofocus placeholder="To"/>
                                                 <input type="hidden" id="mailToHidden" name="mailToHidden"/>
                                                 <span class="label-control cursor-pointer mailAdvBtn" id="toMailBtn">
                                                     <i class="fa fa-plus-circle font-larger"></i>
                                                 </span>
                                             </div>
+ 
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-xs-3 col-sm-3 col-lg-2">
+                                        <div class="col-xs-3 col-sm-3 col-lg-2 hidden">
                                             <div class="text-center input-group CustomTextBox MaillabelBorder form-group">
                                                 <label class="MailItem-label">Subject</label>
                                             </div>
                                         </div>
-                                        <div class="col-xs-9 col-sm-9 col-lg-10">
+                                        <div class="col-xs-12">
                                             <div class="input-group CustomTextBox bg-White form-group">
-                                                <input type="text" name="mailSubjectTxt" class="border-less-txt font-small MailInputs" />
+                                                <input type="text" name="mailSubjectTxt" class="border-less-txt font-small MailInputs" placeholder="Subject"/>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-xs-3 col-sm-3 col-lg-2">
+                                        <div class="col-xs-3 col-sm-3 col-lg-2 hidden">
                                             <div class="text-center input-group CustomTextBox MaillabelBorder form-group">
                                                 <label class="MailItem-label">Add CC</label>
                                             </div>
                                         </div>
-                                        <div class="col-xs-9 col-sm-9 col-lg-10">
+                                        <div class="col-xs-12">
                                             <div class="input-group CustomTextBox bg-White form-group">
                                                 <p class="hidden" id="cclist" style="display: table-cell;width: 1px;">
                                                 </p>
-                                                <input type="text" name="mailCCtxt" id="mailCCtxt" class="border-less-txt font-small MailInputs" required />
+                                                <input type="text" name="mailCCtxt" id="mailCCtxt" class="border-less-txt font-small MailInputs" required placeholder="CC"/>
                                                 <input type="hidden" id="mailCcHidden" name="mailCcHidden"/>
                                                 <span class="label-control cursor-pointer" id="addCccBtn">
                                                     <i class="fa fa-plus-circle font-larger mailAdvBtn"></i>
@@ -160,17 +162,17 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-xs-3 col-sm-3 col-lg-2">
+                                        <div class="col-xs-3 col-sm-3 col-lg-2 hidden"">
                                             <div class="text-center input-group CustomTextBox MaillabelBorder form-group">
                                                 <label class="MailItem-label">Add Bcc</label>
                                             </div>
                                         </div>
-                                        <div class="col-xs-9 col-sm-9 col-lg-10">
+                                        <div class="col-xs-12">
                                             <div class="input-group CustomTextBox bg-White form-group">
                                                 <p class="hidden" id="bcclist" style="display: table-cell;width: 1px;">
                                                     <span class="badge"></span>
                                                 </p>
-                                                <input type="text" name="mailBcc" id="mailBcc" class="border-less-txt font-small MailInputs" required />
+                                                <input type="text" name="mailBcc" id="mailBcc" class="border-less-txt font-small MailInputs" required placeholder="BCc"/>
                                                 <input type="hidden" id="mailBCCHidden" name="mailBCCHidden"/>
                                                 <span class="label-control cursor-pointer" id="addBccBtn">
                                                     <i class="fa fa-plus-circle font-larger mailAdvBtn"></i>
@@ -180,7 +182,7 @@
                                     </div>
                                     <div class="row form-group">
                                         <div class="col-xs-12">
-                                            <div class="text-center input-group CustomTextBox MailMessageHeader form-group">
+                                            <div class="hidden text-center input-group CustomTextBox MailMessageHeader form-group">
                                                 <label class="MailItem-label">Message</label>
                                             </div>
                                             <div id="txtEditor"></div>
@@ -218,160 +220,46 @@
                             </form>
                         </div>
                         <div id="SentMailTab" class="col-xs-12 col-sm-9 col-md-9 col-lg-10 p-5 hidden MailDataTab" style="background-color: White;">
-                            <div class="p-l-r hidden" style="width: 102.5%;overflow-y: scroll;overflow-x: hidden;">
-                                <ul id="HeaderMails">
-                                    <li class="bg-primary">
-                                        <div class="row">
-                                            <div class="col-xs-1">
-                                                <input type="checkbox" class="m-t" />&nbsp;Select
-                                            </div>
-                                            <div class="col-xs-1">
-                                                <i class="fa fa-star p-t-5"></i>&nbsp;Favourite
-                                            </div>
-                                            <div class="col-xs-2">
-                                                <b>Subject</b>
-                                            </div>
-                                            <div class="col-xs-3">
-                                                Message</div>
-                                            <div class="col-xs-3">
-                                                Sent On</div>
-                                            <div class="col-xs-2">
-                                                Action</div>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="p-l-r" style="height: 580px; width:102.5%; overflow-y: scroll; overflow-x: hidden; margin-top:-11px;">
-                                <div class="table-responsive p-t-10">
-                                    <table class="table table-condensed table-hover table-striped" style="border: 1px solid silver;">
-                                        <thead>
-                                            <tr class="bg-primary">
-                                                <th>
-                                                    <input id="chkAll" type="checkbox" class="m-t" />
-                                                </th>
-                                                <th>
-                                                    <span for="chkAll">Favourite</span>
-                                                </th>
-                                                <th>
-                                                    Subject
-                                                </th>
-                                                <th>
-                                                    Message
-                                                </th>
-                                                <th>
-                                                    Sent On
-                                                </th>
-                                                <th>
-                                                    Action
-                                                </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {% for SentMailItem in MailSent %}
-                                                <tr>
-                                                    <td>
-                                                        <input type="checkbox" class="m-t" />
-                                                    </td>
-                                                    <td>
-                                                        <i class="fa fa-star p-t-5"></i>
-                                                    </td>
-                                                    <td>
-                                                        {{SentMailItem.Subject}}
-                                                    </td>
-                                                    <td>
-                                                        <div class="DescriptionTxt">
-                                                            {{SentMailItem.Message | safe}}
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                            {{SentMailItem.SentOn}}
-                                                    </td>
-                                                    <td>
-                                                        <i class="fa fa-edit p-5"></i><i class="fa fa-trash p-5"></i>
-                                                    </td>
-                                                </tr>
-                                            {% endfor %}
-                                        </tbody>
-                                    </table>
+                            <div style="height: 580px; width:108%; overflow-y: scroll; overflow-x: hidden; margin:-11px 0px 0px -5px;">
+                                <div class="MailLIst">
+                                    {% for SentMailItem in MailSent %}
+                                        <ul>
+                                            <li style="width: 10%;" class="GlbFont">
+                                                <input type="checkbox" />
+                                            </li>
+                                            <li style="width: 15%;" class="GlbFont"><i class="fa fa-star-o" style="font-size: large;"></i></li>
+                                            <li style="width: 35%;" class="GlbFont">
+                                                <div style="white-space: nowrap; height: 25px; text-overflow: ellipsis; width: 90%; overflow: hidden;">
+                                                    {{SentMailItem.Subject}}</div>
+                                            </li>
+                                            <li style="width: 40%;" class="GlbFont">
+                                                <div style="height: 25px;float:right;white-space: nowrap; text-overflow: ellipsis; width: 90%; overflow: hidden;">
+                                                    {{SentMailItem.SentOn}}</div>
+                                            </li>
+                                        </ul>
+                                    {% endfor %}
                                 </div>
                             </div>
                         </div>
                         <div id="InboxMailTab" class="col-xs-12 col-sm-9 col-md-9 col-lg-10 p-5 hidden MailDataTab" style="background-color: White;">
-                            <div class="p-l-r hidden" style="width: 102.5%;overflow-y: scroll;overflow-x: hidden;">
-                                <ul id="HeaderMails">
-                                    <li class="bg-primary">
-                                        <div class="row">
-                                            <div class="col-xs-1">
-                                                <input type="checkbox" class="m-t" />&nbsp;Select
-                                            </div>
-                                            <div class="col-xs-1">
-                                                <i class="fa fa-star p-t-5"></i>&nbsp;Favourite
-                                            </div>
-                                            <div class="col-xs-2">
-                                                <b>Subject</b>
-                                            </div>
-                                            <div class="col-xs-3">
-                                                Message</div>
-                                            <div class="col-xs-3">
-                                                Sent On</div>
-                                            <div class="col-xs-2">
-                                                Action</div>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="p-l-r" style="height: 580px; width:102.5%; overflow-y: scroll; overflow-x: hidden; margin-top:-11px;">
-                                <div class="table-responsive p-t-10">
-                                    <table class="table table-condensed table-hover table-striped" style="border: 1px solid silver;">
-                                        <thead>
-                                            <tr class="bg-primary">
-                                                <th>
-                                                    <input id="chkAll" type="checkbox" class="m-t" />
-                                                </th>
-                                                <th>
-                                                    <span for="chkAll">Favourite</span>
-                                                </th>
-                                                <th>
-                                                    Subject
-                                                </th>
-                                                <th>
-                                                    Message
-                                                </th>
-                                                <th>
-                                                    Sent On
-                                                </th>
-                                                <th>
-                                                    Action
-                                                </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {% for MailRecieved in MailRecieved %}
-                                                <tr>
-                                                    <td>
-                                                        <input type="checkbox" class="m-t" />
-                                                    </td>
-                                                    <td>
-                                                        <i class="fa fa-star p-t-5"></i>
-                                                    </td>
-                                                    <td>
-                                                        {{MailRecieved.Subject}}
-                                                    </td>
-                                                    <td>
-                                                        <div class="DescriptionTxt">
-                                                            {{MailRecieved.Message | safe}}
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                            {{MailRecieved.CreatedOn}}
-                                                    </td>
-                                                    <td>
-                                                        <i class="fa fa-edit p-5"></i><i class="fa fa-trash p-5"></i>
-                                                    </td>
-                                                </tr>
-                                            {% endfor %}
-                                        </tbody>
-                                    </table>
+                            <div style="height: 580px; width:108%; overflow-y: scroll; overflow-x: hidden; margin:-11px 0px 0px -5px;">
+                                <div class="MailLIst">
+                                    {% for MailRecieved in MailRecieved %}
+                                        <ul>
+                                            <li style="width: 10%;" class="GlbFont">
+                                                <input type="checkbox" />
+                                            </li>
+                                            <li style="width: 15%;" class="GlbFont"><i class="fa fa-star-o" style="font-size: large;"></i></li>
+                                            <li style="width: 35%;" class="GlbFont">
+                                                <div style="white-space: nowrap; height: 25px; text-overflow: ellipsis; width: 90%; overflow: hidden;">
+                                                    {{MailRecieved.Subject}}</div>
+                                            </li>
+                                            <li style="width: 40%;" class="GlbFont">
+                                                <div style="height: 25px;float:right;white-space: nowrap; text-overflow: ellipsis; width: 90%; overflow: hidden;">
+                                                    {{MailRecieved.CreatedOn}}</div>
+                                            </li>
+                                        </ul>
+                                    {% endfor %}
                                 </div>
                             </div>
                         </div>

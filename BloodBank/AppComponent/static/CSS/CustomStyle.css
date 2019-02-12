@@ -793,3 +793,36 @@ input:focus, textarea:focus, select:focus {
     width: 150px;
     height: 20px;
 }
+
+
+.MailLIst {
+    background-color: White;
+    margin: 6px 0px 0px 0px !important;
+    width: 100%;
+}
+
+    .MailLIst ul li {
+        padding: 3px;
+        font-size: medium;
+    }
+
+        .MailLIst ul li:hover {
+            color: black;
+            cursor: pointer;
+        }
+
+    .MailLIst ul {
+        display: flex;
+        list-style: none;
+        margin: 0px !important;
+        width: 100%;
+        border-bottom: 1px rgba(100,121,143,0.122) solid;
+        line-height: 30px;
+        border-collapse: collapse;
+        padding: 2px 0px 0px 5px !important;
+    }
+
+        .MailLIst ul:hover {
+            cursor: pointer;
+            box-shadow: 0px 9px 20px 0px #b9afafc9;
+        }

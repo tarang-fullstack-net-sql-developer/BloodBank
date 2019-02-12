@@ -643,6 +643,12 @@ def MailHomeMaster(request):
     UserMailId = RegisterUser.objects.get(UserID = request.session["_PkId"])
     ttlMailReceive = MailMaster.objects.filter(SentTo = UserMailId.EmailId)
     ttlMailSent = MailMaster.objects.filter(From = UserMailId.EmailId)
+    #for MailRecItem in ttlMailReceive:
+    #    MailRecItem.SentOn = MailRecItem.SentOn.strftime("%H : %M : %S %p")
+
+    #ttlMailSent = MailMaster.objects.filter(From = UserMailId.EmailId)
+    #for MailSentItem in ttlMailSent:
+    #    MailSentItem.SentOn = MailSentItem.SentOn.strftime("%H : %M : %S %p")
 
     return render(request,"MailMaster.html",{'MailSent':ttlMailSent,'MailSentCnt':ttlMailSent.count(),'MailRecieved':ttlMailReceive,'MailReceivedCnt':ttlMailReceive.count()})
 
