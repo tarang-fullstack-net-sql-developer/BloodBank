@@ -5,7 +5,7 @@
     padding: 5px;
     /*background-color: #323639;*/
     background-color: #555;
-    box-shadow: 0px 7px 4px 0px black;
+    box-shadow: 0px 13px 20px 0px black;
 }
 
 .pageFooter {
@@ -150,19 +150,21 @@ body {
     height: 900px;
     position: relative;
     background: #394a59;
-    padding-top: 20px;
+    padding: 28px 0px 0px 0px !important;
     z-index: 0;
 }
 
-    #SideBarContainer a {
+    #SideBarContainer span {
         text-decoration: none;
-        padding: 3px;
+        padding: 3px 3px 3px 5px;
         color: White;
     }
 
     #SideBarContainer div:hover {
         cursor: pointer;
-        background-color: #5c628a;
+        /*background-color: #5c628a;*/
+        background-color: #556a7c;
+        box-shadow: 0px 9px 20px 0px #111;
     }
 
 .ProjectsFont {
@@ -753,6 +755,14 @@ input:focus, textarea:focus, select:focus {
     color: black !important;
 }
 
+.side-nav-fixed ul li:first-child {
+    background-color: #e5e8ef;
+}
+
+    .side-nav-fixed ul li:first-child:hover {
+        background-color: #e5e8ef;
+    }
+
 .MailListItems, #HeaderMails {
     list-style: none;
     padding: 0px;
@@ -826,3 +836,13 @@ input:focus, textarea:focus, select:focus {
             cursor: pointer;
             box-shadow: 0px 9px 20px 0px #b9afafc9;
         }
+
+
+.ComposeButton {
+    width: 100%;
+    padding: 10px;
+    background-color: #337ab7;
+    color: white;
+    font-size: medium;
+    border: 1px solid #337ab7;
+}

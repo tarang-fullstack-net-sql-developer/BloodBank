@@ -88,8 +88,8 @@
                     <div class="row">
                         <div id="MailSideBarMenu" class="col-xs-2 col-sm-3 col-md-3 col-lg-2 hidden-xs side-nav-fixed GlbFont bg-White">
                             <ul style="list-style: none;">
-                                <li class="nav-active MailItem" data-target="#ComposeMailTab">
-                                    <i class="fa fa-folder-open p-5"></i>&nbsp;Compose
+                                <li class="MailItem" data-target="#ComposeMailTab">
+                                    <button class="ComposeButton MailItem" data-target="#ComposeMailTab">Compose</button>
                                 </li>
                                 <li class="MailItem" data-target="#InboxMailTab"><i class="fa fa-inbox p-5"></i>&nbsp;Inbox
                                     {% if MailReceivedCnt > 0 %}

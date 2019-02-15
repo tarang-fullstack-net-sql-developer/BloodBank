@@ -372,7 +372,11 @@ def StockMasterList(request):
     ResponceStatus = ''
     PkUserId = request.session['_PkId']
     MaxRegId = random_number(5,5)
-    Join_Query = StockDetail.objects.raw('''Select * from tbl_StockDetail where isActive = 1''')
+    if(request.session["UserRoleId"] == 1):
+        Join_Query = StockDetail.objects.raw('''Select * from tbl_StockDetail''')
+    else:
+        Join_Query = StockDetail.objects.raw('''Select * from tbl_StockDetail where isActive = 1''')
+    
     return render(request,'StockMaster.html',{ 'StockListData' : Join_Query,'MyLatestId':MaxRegId,'ResponceStatus':ResponceStatus})
 
 def StockMasterResg(request):

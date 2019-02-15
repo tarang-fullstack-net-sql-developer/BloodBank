@@ -18,7 +18,8 @@
 		<link href="{% static '/Scripts/jQueryDatePicker/jquery-ui.css' %}" rel="stylesheet"/>
 		<script src="{% static '/Scripts/jQueryDatePicker/jquery-ui.js' %}" type="text/javascript"></script>
 	</head>
-	<body class="compBody"> {% csrf_token %} 
+	<body class="compBody"> {% csrf_token %}
+        <input type="hidden" id="StatusHid" value="1" />
 		<div class="container-fluid GlbFont">
 			<div class="row">
 				<div class="col-xs-12 col-sm-12">
@@ -30,6 +31,22 @@
 					</h6>
 				</div>
 			</div>
+            <div class="row form-group">
+                <div class="col-xl-12">
+                    <ul class="nav nav-pills navtab-bg nav-justified">
+                        <li class="nav-item">
+                            <a href="#" data-toggle="tab" aria-expanded="false" class="nav-link active show ActiveListTab">
+                                Activated List
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" data-toggle="tab" aria-expanded="true" class="nav-link DeActiveListTab">
+                                Deactivated List
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
 			<div class="row">
 				<div class="col-xs-12">
 					<div style="border-radius: 10px 10px;">
@@ -54,12 +71,14 @@
 										<th>Register By
 											<i class="fa fa-sort-numeric-desc" style="float: right; margin-top: 2%; font-size: larger;"></i>
 										</th>
-										<th>Status
-											<i class="fa fa-sort-alpha-desc" style="float: right; margin-top: 2%; font-size: larger;"></i>
-										</th>
-										<th>Action
-											<i class="fa fa-sort-numeric-desc" style="float: right; margin-top: 2%; font-size: larger;"></i>
-										</th>
+                                        {% if request.session.UserRoleId != 3 %}
+										    <th>Status
+											    <i class="fa fa-sort-alpha-desc" style="float: right; margin-top: 2%; font-size: larger;"></i>
+										    </th>
+										    <th>Action
+											    <i class="fa fa-sort-numeric-desc" style="float: right; margin-top: 2%; font-size: larger;"></i>
+										    </th>
+                                        {% endif %}
 									</tr>
 								</thead>
 								<tbody> {% for item in StockListData %} 
@@ -69,32 +88,42 @@
 										<td>{{item.Quantity}}</td>
 										<td>{{item.PurchasedOn}}</td>
 										<td>{{item.ExpireOn}}</td>
-										<td>{{item.CreatedBy}}</td> {% if item.isActive == 0 %} 
-										<td>
-											<span id="Deac_{{item.pk}}" href="#" class="InActiveLink">In-Active</span>
-										</td> {% else %} 
-										<td>
-											<span id="Deac_{{item.pk}}" href="#" class="ActiveLink">Active</span>
-										</td> {% endif %} 
-										<td>
-											<i id="Edit_{{item.pk}}" class="fa fa-edit cursor-pointer editSample"></i>&nbsp; 
-											<i id="Delete_{{item.pk}}" class="fa fa-trash-o cursor-pointer deleteSample"></i>
-										</td>
-									</tr> {% endfor %} 
+										<td>{{item.CreatedBy}}</td>
+                                    {% if request.session.UserRoleId != 3 %}
+                                        {% if item.isActive == 0 %} 
+										    <td>
+											    <span id="Deac_{{item.pk}}" href="#" class="InActiveLink">In-Active</span>
+										    </td> 
+                                        {% else %} 
+										    <td>
+											    <span id="Deac_{{item.pk}}" href="#" class="ActiveLink">Active</span>
+										    </td> 
+                                        {% endif %} 
+										    <td>
+											    <i id="Edit_{{item.pk}}" class="fa fa-edit cursor-pointer editSample"></i>&nbsp; 
+											    <i id="Delete_{{item.pk}}" class="fa fa-trash-o cursor-pointer deleteSample"></i>
+										    </td>
+                                    {% endif %}
+									</tr> 
+                                {% endfor %} 
 								</tbody>
 							</table>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div class="row">
-				<div class="col-xs-12">
-					<button id="OpenModal" href="#" class="btn btn-success GlbFont" style="font-size: larger;">
-						<i class="fa fa-user-plus"></i>&nbsp;Add new Sample 
-					</button>
-				</div>
-			</div>
+            {% if request.session.UserRoleId != 3 %}
+			    <div class="row">
+				    <div class="col-xs-12">
+					    <button id="OpenModal" href="#" class="btn btn-success GlbFont" style="font-size: larger;">
+						    <i class="fa fa-user-plus"></i>&nbsp;Add new Sample 
+					    </button>
+				    </div>
+			    </div>
+            {% endif %}
 		</div>
+
+    {% if request.session.UserRoleId != 3 %}
 		<form id="SmpleRegFrm" method="post" action="/Smp-Reg/">{% csrf_token %} 
 			<div id="backDrop" class="CustMask hidden"></div>
 			<div id="SampleReg-Modal" class="CustomModal animated hidden flipInX" style="height: 305px;">
@@ -152,7 +181,6 @@
 				</div>
 			</div>
 		</form>
-
 		<form id="SmpleRegEditFrm" method="post" action="/Smp-Edit/">{% csrf_token %} 
 			<div id="backDrop" class="CustMask hidden"></div>
 			<div id="SampleEditReg-Modal" class="CustomModal animated hidden flipInX" style="height: 305px;">
@@ -211,7 +239,6 @@
 				</div>
 			</div>
 		</form>
-
 		<div id="MessageModal" class="modal animated CustomModal CustomBoxDailog CustomBoxSuccess">
 			<div class="GlbFont CustomBoxHeader">
 				<i class="fa fa-envelope"></i>&nbsp;&nbsp;&nbsp;Message 
@@ -224,6 +251,7 @@
 				<button type="button" class="CustomBoxBtn" id="btnNext" data-dismiss="#MessageModal">Next</button>
 			</div>
 		</div>
+    {% endif %}
 		<script src="{% static '/Scripts/jquery.dataTables.min.js' %}" type="text/javascript"></script>
 		<script src="{% static '/Scripts/SampleReg/SampleReg.js' %}" type="text/javascript"></script>
 		<script type="text/javascript">

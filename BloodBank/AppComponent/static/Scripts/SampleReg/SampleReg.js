@@ -51,11 +51,11 @@ $(".deleteSample").on("click", function () {
 
 $(".InActiveLink").on("click", function () {
     var eleSrc = (this).id.split("_")[1];
-    window.location = "/Deac-Donor?SmpPkId=" + eleSrc + "&Status=1&Message=Activated";
+    window.location = "/Smp-Dec?SmpPkId=" + eleSrc + "&Status=1&Message=Activated";
 });
 $(".ActiveLink").on("click", function () {
     var eleSrc = (this).id.split("_")[1];
-    window.location = "/Deac-Donor?SmpPkId=" + eleSrc + "&Status=0&Message=De-Activated";
+    window.location = "/Smp-Dec?SmpPkId=" + eleSrc + "&Status=0&Message=De-Activated";
 });
 
 
