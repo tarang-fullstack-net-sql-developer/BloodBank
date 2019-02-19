@@ -370,13 +370,14 @@ def GetUserRoleList(request):
 #Blood Stock Detail
 def StockMasterList(request):
     ResponceStatus = ''
+    listType = 1
     PkUserId = request.session['_PkId']
     MaxRegId = random_number(5,5)
-    if(request.session["UserRoleId"] == 1):
-        Join_Query = StockDetail.objects.raw('''Select * from tbl_StockDetail''')
-    else:
-        Join_Query = StockDetail.objects.raw('''Select * from tbl_StockDetail where isActive = 1''')
-    
+    try:
+        listType = request.GET['ListType']
+    except Exception as e:
+        listType = 1
+    Join_Query = StockDetail.objects.raw('''Select * from tbl_StockDetail where isActive = ''' + str(listType))
     return render(request,'StockMaster.html',{ 'StockListData' : Join_Query,'MyLatestId':MaxRegId,'ResponceStatus':ResponceStatus})
 
 def StockMasterResg(request):
@@ -470,6 +471,11 @@ def StockMasterEdit(request):
         ResponceStatus = "Something went wrong !!"
     return render(request,'StockMaster.html',{ 'StockListData' : Join_Query,'SpecificData':StockData,'ResponceStatus' : ResponceStatus})
 
+def StockMasterTabList(request):
+    listType = request.GET['ListType']
+    Join_Query = StockDetail.objects.filter(isActive = str(listType))
+    ResultData = serializers.serialize('json', Join_Query)
+    return HttpResponse(ResultData,content_type="application/json")
 #End of Blood Stock Detail
 
 
