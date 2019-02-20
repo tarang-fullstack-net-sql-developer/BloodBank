@@ -370,20 +370,21 @@ def GetUserRoleList(request):
 #Blood Stock Detail
 def StockMasterList(request):
     ResponceStatus = ''
-    listType = 1
     PkUserId = request.session['_PkId']
     MaxRegId = random_number(5,5)
-    try:
-        listType = request.GET['ListType']
-    except Exception as e:
-        listType = 1
-    Join_Query = StockDetail.objects.raw('''Select * from tbl_StockDetail where isActive = ''' + str(listType))
+    if(request.session['UserRoleId'] != 3):
+        Join_Query = StockDetail.objects.raw('''Select * from tbl_StockDetail''')
+    else:
+        Join_Query = StockDetail.objects.raw('''Select * from tbl_StockDetail where isActive=1''')
     return render(request,'StockMaster.html',{ 'StockListData' : Join_Query,'MyLatestId':MaxRegId,'ResponceStatus':ResponceStatus})
 
 def StockMasterResg(request):
     if request.method == "POST":
         try:
-            Join_Query = StockDetail.objects.raw('''Select * from tbl_StockDetail where isActive = 1''')
+            if(request.session['UserRoleId'] != 3):
+                Join_Query = StockDetail.objects.raw('''Select * from tbl_StockDetail''')
+            else:
+                Join_Query = StockDetail.objects.raw('''Select * from tbl_StockDetail where isActive=1''')
             isExist = StockDetail.objects.filter(Q(Sample = request.POST.get('ddlSamplType')))
             ResponceStatus = "Sample Already Registered !!"
 
@@ -414,7 +415,6 @@ def StockMasterDeac(request):
     Status = request.GET["Status"]
     Message = request.GET["Message"]
     MaxRegId = random_number(5,5)
-
     try:
         StockData = StockDetail.objects.get(StockId=SmpPkId)
         StockData.isActive = Status
@@ -422,21 +422,26 @@ def StockMasterDeac(request):
         ResponceStatus = "Sample " + Message + " Successfully !!"
 
         recCnt = 1
-        Join_Query = StockDetail.objects.raw('''Select * from tbl_StockDetail where isActive = 1''')
+        if(request.session['UserRoleId'] != 3):
+            Join_Query = StockDetail.objects.raw('''Select * from tbl_StockDetail''')
+        else:
+            Join_Query = StockDetail.objects.raw('''Select * from tbl_StockDetail where isActive=1''')
     except Exception as e:
         ResponceStatus = "Something went wrong !!"
     return render(request,'StockMaster.html',{ 'StockListData':Join_Query,'ResponceStatus' : ResponceStatus})
 
 def StockMasterDelete(request):
     SmplePkId = request.GET["SmpPkId"]
-
     try:
         StockData = StockDetail.objects.get(StockId=SmplePkId)
         StockData.delete()
         ResponceStatus = "Sample Deleted Successfully !!"
 
         recCnt = 1
-        Join_Query = StockDetail.objects.raw('''Select * from tbl_StockDetail where isActive = 1''')
+        if(request.session['UserRoleId'] != 3):
+            Join_Query = StockDetail.objects.raw('''Select * from tbl_StockDetail''')
+        else:
+            Join_Query = StockDetail.objects.raw('''Select * from tbl_StockDetail where isActive=1''')
     except Exception as e:
         ResponceStatus = "Something went wrong !!"
     return render(request,'StockMaster.html',{ 'StockListData':Join_Query,'ResponceStatus' : ResponceStatus})
@@ -445,9 +450,6 @@ def StockMasterEdit(request):
     
     PkUserId = request.session['_PkId']
     ResponceStatus = ""
-
-    #StockPkId
-
     try:
         if request.method == "POST":
             SmplePkId = request.POST.get('HidStockPkId')
@@ -466,18 +468,14 @@ def StockMasterEdit(request):
         else:
             SmplePkId = request.GET["SmpPkId"]
             StockData = StockDetail.objects.get(StockId=SmplePkId)
-        Join_Query = StockDetail.objects.raw('''Select * from tbl_StockDetail where isActive = 1''')
+        if(request.session['UserRoleId'] != 3):
+            Join_Query = StockDetail.objects.raw('''Select * from tbl_StockDetail''')
+        else:
+            Join_Query = StockDetail.objects.raw('''Select * from tbl_StockDetail where isActive=1''')
     except Exception as e:
         ResponceStatus = "Something went wrong !!"
     return render(request,'StockMaster.html',{ 'StockListData' : Join_Query,'SpecificData':StockData,'ResponceStatus' : ResponceStatus})
-
-def StockMasterTabList(request):
-    listType = request.GET['ListType']
-    Join_Query = StockDetail.objects.filter(isActive = str(listType))
-    ResultData = serializers.serialize('json', Join_Query)
-    return HttpResponse(ResultData,content_type="application/json")
 #End of Blood Stock Detail
-
 
 #Contact Us
 def ContactUsMaster(request):

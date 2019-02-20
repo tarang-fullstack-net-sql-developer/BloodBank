@@ -27,8 +27,6 @@ urlpatterns = [
     path('Smp-Dec/', views.StockMasterDeac),
     path('Smp-Delete/', views.StockMasterDelete),
     path('Smp-Edit/', views.StockMasterEdit),
-    path('Stock-list/', views.StockMasterTabList),
-
 
     path('Contact-Us/', views.ContactUsMaster),
     path('Comment-List/', views.CommentList),
