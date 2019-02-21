@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+import uuid
 import datetime
 from django.core import serializers
 from django.http import HttpResponse
@@ -25,6 +26,7 @@ from AppComponent.models import ContactUs
 from AppComponent.models import UsersImage
 from AppComponent.models import MailMaster
 from AppComponent.models import UserRoles
+from AppComponent.models import BloodRquestMaster
 from django.db.models import *
 
 import string
@@ -700,3 +702,26 @@ def MailSentMaster(request):
 
 #    return ""
 #End of Send Mail
+
+
+#Request Blood Master
+def RequestBlood(request):
+    ResponceStatus = ""
+    try:
+        if request.method == "POST":
+            BldReqMast = BloodRquestMaster(
+                        BloodType = request.POST.get("ddlBldGrp"),
+                        Gender = request.POST.get("ddlGender"),
+                        Quantity = request.POST.get("QuantityTxt"),
+                        DeliverDate = request.POST.get("DeliverdBy"),
+                        UniqueCode = uuid.uuid4(),
+                        UserId = request.session["_PkId"],
+                        CreatedBy = request.session['_UserId'],
+                        ModifiedBy = request.session['_UserId'])
+            BldReqMast.save()
+            ResponceStatus = "Request Submitted Successfully !!"
+    except Exception as e:
+        ResponceStatus = "Something Went Wrong !!"
+
+    UserDetail = RegisterUser.objects.get(UserID = request.session["_PkId"])
+    return render(request,'RequestBlood.html',{'UserDetail':UserDetail,'ResponceStatus':ResponceStatus})

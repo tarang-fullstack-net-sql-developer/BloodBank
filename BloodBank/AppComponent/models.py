@@ -1,5 +1,6 @@
 from __future__ import unicode_literals  
 from django.db import models  
+import datetime
   
 class Student(models.Model):  
     first_name = models.CharField(max_length=20)  
@@ -173,3 +174,20 @@ class MailMaster(models.Model):
     ModifiedBy = models.CharField(max_length=20)
     class Meta:
         db_table = "tbl_MailMaster"
+
+class BloodRquestMaster(models.Model):
+    PkId =models.AutoField(primary_key=True)
+    BloodType = models.CharField(max_length=20)
+    Gender = models.TextField()
+    Quantity = models.TextField()
+    DeliverDate = models.TextField()
+    ReqStatus = models.BooleanField(default=False)
+    UniqueCode = models.TextField()
+    UserId = models.TextField()
+    CreatedOn = models.CharField(max_length=20,default=str(datetime.date.today()))
+    CreatedBy = models.CharField(max_length=20)
+    ModifiedOn = models.CharField(max_length=20,default=str(datetime.date.today()))
+    ModifiedBy = models.CharField(max_length=20)
+    isActive = models.BooleanField(default=True)
+    class Meta:
+        db_table = "tbl_BloodReqMaster"

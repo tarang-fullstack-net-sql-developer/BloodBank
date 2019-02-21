@@ -97,6 +97,7 @@
     <Content Include="AppComponent\static\Scripts\ChangePassword\ChangePassword.js" />
     <Content Include="AppComponent\static\Scripts\Chart.js" />
     <Content Include="AppComponent\static\Scripts\Chart.min.js" />
+    <Content Include="AppComponent\static\Scripts\BloodRequest\BloodRequest.js" />
     <Content Include="AppComponent\static\Scripts\ContactUs\ContactUs.js" />
     <Content Include="AppComponent\static\Scripts\dnrList\dnrList.js" />
     <Content Include="AppComponent\static\Scripts\DonorRegistration\DonorRegistration.js" />
@@ -382,6 +383,7 @@
     <Content Include="AppComponent\templates\Index.html" />
     <Content Include="AppComponent\templates\Login.html" />
     <Content Include="AppComponent\templates\MailMaster.html" />
+    <Content Include="AppComponent\templates\RequestBlood.html" />
     <Content Include="AppComponent\templates\SignUp.Html" />
     <Content Include="AppComponent\templates\SiteMaster.html" />
     <Content Include="AppComponent\templates\StockMaster.html" />
@@ -402,6 +404,7 @@
     <Folder Include="AppComponent\static\Image\" />
     <Folder Include="AppComponent\static\Scripts\" />
     <Folder Include="AppComponent\static\Scripts\ChangePassword\" />
+    <Folder Include="AppComponent\static\Scripts\BloodRequest\" />
     <Folder Include="AppComponent\static\Scripts\ContactUs\" />
     <Folder Include="AppComponent\static\Scripts\dnrList\" />
     <Folder Include="AppComponent\static\Scripts\DonorRegistration\" />
