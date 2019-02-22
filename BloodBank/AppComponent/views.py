@@ -9,14 +9,19 @@ from django.core.mail import send_mail
 from django.conf import settings
 
 #Email Library
+import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
-import smtplib
 #End of Email Library
 
-# Create your views here.
 from django.http import HttpResponse
 from django.template import loader
+from django.db.models import *
+import string
+from random import *
+import base64
+
+# Create your views here.
 from AppComponent.models import LoginUser
 from AppComponent.models import RegisterUser
 from AppComponent.models import DonorRegistration
@@ -27,12 +32,6 @@ from AppComponent.models import UsersImage
 from AppComponent.models import MailMaster
 from AppComponent.models import UserRoles
 from AppComponent.models import BloodRquestMaster
-from django.db.models import *
-
-import string
-from random import *
-
-import base64
   
 def hello(request):
     return HttpResponse("<h2>Hello, Welcome to Django!</h2>")
@@ -653,13 +652,7 @@ def MailHomeMaster(request):
     UserMailId = RegisterUser.objects.get(UserID = request.session["_PkId"])
     ttlMailReceive = MailMaster.objects.filter(SentTo = UserMailId.EmailId)
     ttlMailSent = MailMaster.objects.filter(From = UserMailId.EmailId)
-    #for MailRecItem in ttlMailReceive:
-    #    MailRecItem.SentOn = MailRecItem.SentOn.strftime("%H : %M : %S %p")
-
-    #ttlMailSent = MailMaster.objects.filter(From = UserMailId.EmailId)
-    #for MailSentItem in ttlMailSent:
-    #    MailSentItem.SentOn = MailSentItem.SentOn.strftime("%H : %M : %S %p")
-
+    
     return render(request,"MailMaster.html",{'MailSent':ttlMailSent,'MailSentCnt':ttlMailSent.count(),'MailRecieved':ttlMailReceive,'MailReceivedCnt':ttlMailReceive.count()})
 
 def MailSentMaster(request):
@@ -691,37 +684,61 @@ def MailSentMaster(request):
 
 #End of Mail Operation
 
-
-#Send Mail
-#def SendEmail(request,Subject,Message,MailFrom):
-
-#    mailObj = MIMEMultipart()
-#    mailObj["From"] = Email
-#    mailObj["Subject"] = Subject
-#    mailObj["To"] = Subject
-
-#    return ""
-#End of Send Mail
-
-
 #Request Blood Master
 def RequestBlood(request):
     ResponceStatus = ""
     try:
         if request.method == "POST":
-            BldReqMast = BloodRquestMaster(
-                        BloodType = request.POST.get("ddlBldGrp"),
-                        Gender = request.POST.get("ddlGender"),
-                        Quantity = request.POST.get("QuantityTxt"),
-                        DeliverDate = request.POST.get("DeliverdBy"),
-                        UniqueCode = uuid.uuid4(),
-                        UserId = request.session["_PkId"],
-                        CreatedBy = request.session['_UserId'],
-                        ModifiedBy = request.session['_UserId'])
-            BldReqMast.save()
-            ResponceStatus = "Request Submitted Successfully !!"
+            DyUniqueCode = str(DynUniqueCode(10))
+            MailMessage = "Your Request for Blood Request is Submitted Successfully \n\n Request No.: " + DyUniqueCode;
+            isMailSent = SendEmail(request,"Blood Request",MailMessage,request.POST.get("EmailId"))
+            if(isMailSent):
+                BldReqMast = BloodRquestMaster(
+                            BloodType = request.POST.get("ddlBldGrp"),
+                            Gender = request.POST.get("ddlGender"),
+                            Quantity = request.POST.get("QuantityTxt"),
+                            DeliverDate = request.POST.get("DeliverdBy"),
+                            UniqueCode = DyUniqueCode,
+                            UserId = request.session["_PkId"],
+                            CreatedBy = request.session['_UserId'],
+                            ModifiedBy = request.session['_UserId'])
+                BldReqMast.save()
+                ResponceStatus = "Request Submitted Successfully !!"
+            else:
+                ResponceStatus = "Something Went Wrong !!\nPlease Try again later !!"
     except Exception as e:
         ResponceStatus = "Something Went Wrong !!"
 
     UserDetail = RegisterUser.objects.get(UserID = request.session["_PkId"])
     return render(request,'RequestBlood.html',{'UserDetail':UserDetail,'ResponceStatus':ResponceStatus})
+
+
+#Send Mail
+def SendEmail(request,Subject,Message,MailTo):
+    IsMailSent = True
+    try:
+        #Create Mail Body
+        MailMessage = MIMEMultipart() 
+        MailMessage['From']= settings.EMAIL_HOST_USER
+        MailMessage['To']= MailTo
+        MailMessage['Subject']= Subject
+        MailMessage.attach(MIMEText(Message, 'plain'))
+
+        #Send Mail Securly
+        MailInstance = smtplib.SMTP(settings.EMAIL_HOST,settings.EMAIL_PORT)
+        MailInstance.ehlo()
+        MailInstance.starttls()
+        MailInstance.login(settings.EMAIL_HOST_USER,settings.EMAIL_HOST_PASSWORD)
+        MailInstance.send_message(MailMessage)
+        MailInstance.close()
+    except Exception as e:
+        IsMailSent = False
+    return IsMailSent
+#End of Send Mail
+
+#Generate UniqeCode String
+def DynUniqueCode(string_length):
+    random = str(uuid.uuid4())
+    random = random.upper()
+    random = random.replace("-","")
+    return random[0:string_length]
