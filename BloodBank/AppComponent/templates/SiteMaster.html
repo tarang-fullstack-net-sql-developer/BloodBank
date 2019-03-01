@@ -54,13 +54,6 @@
 										</li>
 										<li class="divider"></li>
 										<li>
-											<a href="#">
-												<i class="fa fa-th-list"></i> Order-Status
-										
-											</a>
-										</li>
-										<li class="divider"></li>
-										<li>
 											<a href="/login-user/">
 												<i class="fa fa-sign-out"></i> Sign-Out
 										
@@ -117,9 +110,14 @@
 						</div>  
 					{% endif %}
 					{% if request.session.UserRoleId == 3 %}
-                    <div class="GlbFont SideMenuItem boldFont">
+                        <div class="GlbFont SideMenuItem boldFont">
 							<span id="ContactUsTab" onclick="SideMenuClick.Navigate('/Request-Blood/');">
 								<i class="fa fa-hourglass-half"></i>&nbsp;Request Blood
+							</span>
+						</div>
+                        <div class="GlbFont SideMenuItem boldFont">
+							<span id="ContactUsTab" onclick="SideMenuClick.Navigate('/Request-Status/');">
+								<i class="fa fa-th-list"></i>&nbsp;Request Status
 							</span>
 						</div>
 						<div class="GlbFont SideMenuItem boldFont">

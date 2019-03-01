@@ -44,5 +44,6 @@ urlpatterns = [
     path('Mail-Sent/',views.MailSentMaster),
 
     #Request Blood
-    path('Request-Blood/',views.RequestBlood)
+    path('Request-Blood/',views.RequestBlood),
+    path('Request-Status/',views.RequestStatus)
 ]

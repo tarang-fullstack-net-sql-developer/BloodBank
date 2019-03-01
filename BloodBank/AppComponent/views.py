@@ -713,6 +713,21 @@ def RequestBlood(request):
     return render(request,'RequestBlood.html',{'UserDetail':UserDetail,'ResponceStatus':ResponceStatus})
 
 
+def RequestStatus(request):
+    try:
+        ResponceStatus = ""
+        if request.method == "POST":
+            return render(request,'RequestBloodStatus.html',{'ResponceStatus':ResponceStatus})
+
+
+        return render(request,'RequestBloodStatus.html',{'ResponceStatus':ResponceStatus})
+    except Exception as e:
+        ResponceStatus= "Something Went Wrong !!"
+    return ""
+
+#Request Blood Master
+
+
 #Send Mail
 def SendEmail(request,Subject,Message,MailTo):
     IsMailSent = True

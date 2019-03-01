@@ -384,6 +384,7 @@
     <Content Include="AppComponent\templates\Login.html" />
     <Content Include="AppComponent\templates\MailMaster.html" />
     <Content Include="AppComponent\templates\RequestBlood.html" />
+    <Content Include="AppComponent\templates\RequestBloodStatus.html" />
     <Content Include="AppComponent\templates\SignUp.Html" />
     <Content Include="AppComponent\templates\SiteMaster.html" />
     <Content Include="AppComponent\templates\StockMaster.html" />
