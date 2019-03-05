@@ -92,6 +92,7 @@
     <Content Include="AppComponent\static\Image\OnlineShopping.jpg" />
     <Content Include="AppComponent\static\Image\StudentHelpDesk.jpg" />
     <Content Include="AppComponent\static\Image\user_delete.png" />
+    <Content Include="AppComponent\static\Scripts\BloodStatus\BloodStatus.js" />
     <Content Include="AppComponent\static\Scripts\bootstrap.js" />
     <Content Include="AppComponent\static\Scripts\bootstrap.min.js" />
     <Content Include="AppComponent\static\Scripts\ChangePassword\ChangePassword.js" />
@@ -404,6 +405,7 @@
     <Folder Include="AppComponent\static\fonts\" />
     <Folder Include="AppComponent\static\Image\" />
     <Folder Include="AppComponent\static\Scripts\" />
+    <Folder Include="AppComponent\static\Scripts\BloodStatus\" />
     <Folder Include="AppComponent\static\Scripts\ChangePassword\" />
     <Folder Include="AppComponent\static\Scripts\BloodRequest\" />
     <Folder Include="AppComponent\static\Scripts\ContactUs\" />

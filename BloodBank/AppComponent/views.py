@@ -13,7 +13,6 @@ import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 #End of Email Library
-
 from django.http import HttpResponse
 from django.template import loader
 from django.db.models import *
@@ -270,8 +269,7 @@ def AddUser(request):
             ResponceStatus = "User Id Already Exists !!"
             return render(request,"UserDetail.html",{'ResponceStatus': ResponceStatus,'UserData':Join_Query})
 
-        lognUser = LoginUser(
-                UserId = request.POST.get('UserId'),
+        lognUser = LoginUser(UserId = request.POST.get('UserId'),
                 Password = request.POST.get('password'),
                 UserRoleId = request.POST.get('UserRole'),
                 CreatedBy = request.session['_UserId'],
@@ -354,7 +352,6 @@ def UserHistory(request):
 #End User Section
 
 #UserRole Section
-
 def GetUserRoleList(request):
 
     RoleList = ''
@@ -690,11 +687,10 @@ def RequestBlood(request):
     try:
         if request.method == "POST":
             DyUniqueCode = str(DynUniqueCode(10))
-            MailMessage = "Your Request for Blood Request is Submitted Successfully \n\n Request No.: " + DyUniqueCode;
+            MailMessage = "Your Request for Blood Request is Submitted Successfully \n\n Request No.: " + DyUniqueCode
             isMailSent = SendEmail(request,"Blood Request",MailMessage,request.POST.get("EmailId"))
             if(isMailSent):
-                BldReqMast = BloodRquestMaster(
-                            BloodType = request.POST.get("ddlBldGrp"),
+                BldReqMast = BloodRquestMaster(BloodType = request.POST.get("ddlBldGrp"),
                             Gender = request.POST.get("ddlGender"),
                             Quantity = request.POST.get("QuantityTxt"),
                             DeliverDate = request.POST.get("DeliverdBy"),
@@ -716,14 +712,21 @@ def RequestBlood(request):
 def RequestStatus(request):
     try:
         ResponceStatus = ""
+        UserDetail = None
+        UniqueCodeStatus = None
+        BloodRequestStatus = None
+        isFound = 0
         if request.method == "POST":
-            return render(request,'RequestBloodStatus.html',{'ResponceStatus':ResponceStatus})
-
-
-        return render(request,'RequestBloodStatus.html',{'ResponceStatus':ResponceStatus})
+            UniqueCode = request.POST.get("UniqueCode")
+            try:
+                BloodRequestStatus = BloodRquestMaster.objects.get(UniqueCode = UniqueCode)
+                UserDetail = RegisterUser.objects.get(UserID = BloodRequestStatus.UserId)
+                isFound = 1
+            except BloodRquestMaster.DoesNotExist as e:
+                ResponceStatus = "Request Not Found !!"
     except Exception as e:
-        ResponceStatus= "Something Went Wrong !!"
-    return ""
+        ResponceStatus = "Something Went Wrong !!"
+    return render(request,'RequestBloodStatus.html',{'ResponceStatus':ResponceStatus,'BloodRequestStatus':BloodRequestStatus,'UserDetail':UserDetail,'IsFound':isFound})
 
 #Request Blood Master
 
@@ -734,9 +737,9 @@ def SendEmail(request,Subject,Message,MailTo):
     try:
         #Create Mail Body
         MailMessage = MIMEMultipart() 
-        MailMessage['From']= settings.EMAIL_HOST_USER
-        MailMessage['To']= MailTo
-        MailMessage['Subject']= Subject
+        MailMessage['From'] = settings.EMAIL_HOST_USER
+        MailMessage['To'] = MailTo
+        MailMessage['Subject'] = Subject
         MailMessage.attach(MIMEText(Message, 'plain'))
 
         #Send Mail Securly

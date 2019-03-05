@@ -66,7 +66,7 @@ $(".datepicker").datepicker({
     changeYear: true,
     minDate: new Date(1980, 10 - 1, 25),
     yearRange: '1980:2030',
-    inline: true
+    inline: true,
 });
 
 $(document).on("contextmenu", function (event) { event.preventDefault(); });

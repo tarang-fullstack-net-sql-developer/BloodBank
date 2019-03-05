@@ -17,67 +17,111 @@
 	<script src="{% static '/Scripts/jQueryDatePicker/jquery-ui.js' %}" type="text/javascript"></script>
 </head>
 <body class="compBody">
-    <div class="container-fluid GlbFont">
-		<div class="row">
-			<div class="col-xs-12 col-sm-12 GllbFont">
-				<h2 class="h2 ProjectsFont">
-					<i class="fa fa-hourglass-half"></i>&nbsp;Request Blood Status
-				</h2>
-				<h6 class="h6">
-					<span class="breadcrumb col-xs-12 table-bordered bg-White">Home / Blood Status</span>
-				</h6>
-			</div>
-		</div>
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="breadcrumb table-bordered bg-White">
-                    <div class="row">
-                        <label class="ContactFormHeader boldFont">Enter Unique Code</label>
-                        <div class="col-sm-6 col-md-4 col-xs-12">
-                            <div class="input-group form-group"">
-                                <input type="text" class="form-control form-control-sm" placeholder="Unique Code" autocomplete="off" />
-                                <span class="input-group-btn">
-                                    <button class="btn btn-info" type="button"><span class="fa fa-check" aria-hidden="true"></span>&nbsp;Status</button>
-                                </span>
+    <form method="post" action="/Request-Status/">
+        {% csrf_token %}
+        <div class="container-fluid GlbFont">
+		    <div class="row">
+			    <div class="col-xs-12 col-sm-12 GllbFont">
+				    <h2 class="h2 ProjectsFont">
+					    <i class="fa fa-hourglass-half"></i>&nbsp;Request Blood Status
+				    </h2>
+				    <h6 class="h6">
+					    <span class="breadcrumb col-xs-12 table-bordered bg-White">Home / Blood Status</span>
+				    </h6>
+			    </div>
+		    </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="breadcrumb table-bordered bg-White">
+                        <div class="row">
+                            <label class="ContactFormHeader boldFont">Enter Unique Code</label>
+                            <div class="col-sm-6 col-md-4 col-xs-12">
+                                <div class="input-group form-group">
+                                    <input type="text" class="form-control w-lg" placeholder="Unique Code" name="UniqueCode" id="UniqueCode" value="{{BloodRequestStatus.UniqueCode}}" autocomplete="off" />
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-info" type="submit"><span class="fa fa-check" aria-hidden="true"></span>&nbsp;Status</button>
+                                    </span>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-xs-12">
-                <div class="breadcrumb table-bordered bg-White">
-                    <div class="row">
-                        <label class="ContactFormHeader boldFont">Blood Request Detail<span class="pull-right">Requested By : tarangch</span></label>
-                        <div class="col-md-3 col-sm-6 col-xs-12">
-					        <div class="form-group">
-						        <label for="field-4" class="control-label form-group">Blood Type</label>
-						        <span name="ddlBldGrp" class="form-control">
-                                    A-Positive&nbsp;(A+)
-                                </span>
-					        </div>
-				        </div>
-				        <div class="col-md-3 col-sm-6 col-xs-12">
-					        <div class="form-group">
-						        <label for="field-5" class="control-label form-group">Gender</label>
-						        <span name="ddlGender" class="form-control">Male</span>
-					        </div>
-				        </div>
-				        <div class="col-md-3 col-sm-6 col-xs-12">
-					        <div class="form-group">
-						        <label for="field-6" class="control-label form-group">Quantity</label>
-						        <span name="QuantityTxt" class="form-control">150</span>
-					        </div>
-				        </div>
-                        <div class="col-md-3 col-sm-6 col-xs-12">
-					        <div class="form-group">
-						        <label for="field-6" class="control-label form-group">Deliverd By</label>
-						        <span name="DeliverdBy" class="form-control">2019-05-78</span>
-					        </div>
-				        </div>
-                    </div>  
-                </div>
+                <div id="BloodRequestDetailModal" class="hidden">
+                        <div class="col-xs-12" id="BloodRequestDetailModal">
+                            <div class="breadcrumb table-bordered bg-White">
+                                <div class="row">
+                                    <label class="ContactFormHeader boldFont">Blood Request Detail<span class="pull-right">Requested By : {{UserDetail.FullName}}</span></label>
+                                    <div class="col-md-3 col-sm-6 col-xs-12">
+					                    <div class="form-group">
+						                    <label for="field-4" class="control-label form-group">Blood Type</label>
+						                    <span name="ddlBldGrp" class="form-control">
+                                                {{BloodRequestStatus.BloodType}}
+                                            </span>
+					                    </div>
+				                    </div>
+				                    <div class="col-md-3 col-sm-6 col-xs-12">
+					                    <div class="form-group">
+						                    <label for="field-5" class="control-label form-group">Requested For</label>
+						                    <span name="ddlGender" class="form-control">{{BloodRequestStatus.Gender}}</span>
+					                    </div>
+				                    </div>
+				                    <div class="col-md-3 col-sm-6 col-xs-12">
+					                    <div class="form-group">
+						                    <label for="field-6" class="control-label form-group">Quantity</label>
+						                    <span name="QuantityTxt" class="form-control">{{BloodRequestStatus.Quantity}}</span>
+					                    </div>
+				                    </div>
+                                    <div class="col-md-3 col-sm-6 col-xs-12">
+					                    <div class="form-group">
+						                    <label for="field-6" class="control-label form-group">Deliverd By</label>
+						                    <span name="DeliverdBy" class="form-control">{{BloodRequestStatus.DeliverDate}}</span>
+					                    </div>
+				                    </div>
+                                </div>  
+                            </div>
+                        </div>
+                        <div class="col-xs-12" id="BloodRequestDetailModal">
+                            <div class="breadcrumb table-bordered bg-White">
+                                <div class="row">
+                                    <label class="ContactFormHeader boldFont">Status Report</label>
+                                    <div class="col-md-3 col-sm-6 col-xs-12">
+					                    <div class="form-group">
+						                    <label for="field-4" class="control-label form-group">Blood Type</label>
+                                            {% if BloodRequestStatus.ReqStatus == 0 %}
+                                                <span name="BldGrpStatus" class="form-control">Pending</span>
+                                            {%else%}
+                                                <span name="BldGrpStatus" class="form-control">Approved</span>
+                                            {%endif%}
+					                    </div>
+				                    </div>
+                                </div>  
+                            </div>
+                        </div>
+                    </div>
             </div>
         </div>
-    </div>
+        <div id="backDrop" class="CustMask hidden"></div>
+        <div id="MessageModal" class="modal animated CustomModal CustomBoxDailog CustomBoxSuccess">
+            <div class="GlbFont CustomBoxHeader">
+                <i class="fa fa-envelope"></i>&nbsp;&nbsp;&nbsp;Message 
+            </div>
+            <div class="panel-body GlbFont boldFont CustomBoxContent">
+                <i class="fa fa-check"></i>&nbsp; 
+                <span> {{ ResponceStatus }} </span>
+            </div>
+            <div style="background-color: #f1f1f1; width: 100%; height: 40px;">
+                <button type="button" class="CustomBoxBtn" id="btnNext" data-dismiss="#MessageModal">Next</button>
+            </div>
+        </div>
+    </form>
+    <script src="../static/Scripts/BloodStatus/BloodStatus.js"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function () {
+            var ResponceStatus = "{{ ResponceStatus }}";
+            var IsFound = "{{ IsFound }}";
+            BldReqStatus.ShowMessage(ResponceStatus);
+            BldReqStatus.ShowStatusDetail(IsFound);
+        });
+    </script>
 </body>
 </html>
