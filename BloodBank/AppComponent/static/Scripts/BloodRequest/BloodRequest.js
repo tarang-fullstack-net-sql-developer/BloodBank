@@ -11,6 +11,10 @@
         $("#MessageModal").hide();
     });
 
+    $("#btnSubmit").on('click', function () {
+        $("#loaderIndicator").show();
+    });
+
     $(".datepicker").datepicker({
         dateFormat: 'yy-mm-dd',
         showButtonPanel: true,

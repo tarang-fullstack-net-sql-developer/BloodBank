@@ -45,5 +45,6 @@ urlpatterns = [
 
     #Request Blood
     path('Request-Blood/',views.RequestBlood),
-    path('Request-Status/',views.RequestStatus)
+    path('Request-Status/',views.RequestStatus),
+    path('BloodReq-List/',views.BloodReqList)
 ]

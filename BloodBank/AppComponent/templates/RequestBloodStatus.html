@@ -39,7 +39,7 @@
                                 <div class="input-group form-group">
                                     <input type="text" class="form-control w-lg" placeholder="Unique Code" name="UniqueCode" id="UniqueCode" value="{{BloodRequestStatus.UniqueCode}}" autocomplete="off" />
                                     <span class="input-group-btn">
-                                        <button class="btn btn-info" type="submit"><span class="fa fa-check" aria-hidden="true"></span>&nbsp;Status</button>
+                                        <button class="btn btn-info" id="btnStatus" type="submit"><span class="fa fa-check" aria-hidden="true"></span>&nbsp;Status</button>
                                     </span>
                                 </div>
                             </div>
@@ -87,11 +87,7 @@
                                     <div class="col-md-3 col-sm-6 col-xs-12">
 					                    <div class="form-group">
 						                    <label for="field-4" class="control-label form-group">Blood Type</label>
-                                            {% if BloodRequestStatus.ReqStatus == 0 %}
-                                                <span name="BldGrpStatus" class="form-control">Pending</span>
-                                            {%else%}
-                                                <span name="BldGrpStatus" class="form-control">Approved</span>
-                                            {%endif%}
+                                            <span name="BldGrpStatus" class="form-control">{{BloodRequestStatus.ReqStatus}}</span>
 					                    </div>
 				                    </div>
                                 </div>  
@@ -101,6 +97,7 @@
             </div>
         </div>
         <div id="backDrop" class="CustMask hidden"></div>
+        <img src="{% static '/Image/DisgustingSpiffyIguana-small.gif' %}" class="divLoading" id="loaderIndicator" />
         <div id="MessageModal" class="modal animated CustomModal CustomBoxDailog CustomBoxSuccess">
             <div class="GlbFont CustomBoxHeader">
                 <i class="fa fa-envelope"></i>&nbsp;&nbsp;&nbsp;Message 

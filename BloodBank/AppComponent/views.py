@@ -696,6 +696,7 @@ def RequestBlood(request):
                             DeliverDate = request.POST.get("DeliverdBy"),
                             UniqueCode = DyUniqueCode,
                             UserId = request.session["_PkId"],
+                            ReqStatus = "Pending",
                             CreatedBy = request.session['_UserId'],
                             ModifiedBy = request.session['_UserId'])
                 BldReqMast.save()
@@ -707,7 +708,6 @@ def RequestBlood(request):
 
     UserDetail = RegisterUser.objects.get(UserID = request.session["_PkId"])
     return render(request,'RequestBlood.html',{'UserDetail':UserDetail,'ResponceStatus':ResponceStatus})
-
 
 def RequestStatus(request):
     try:
@@ -728,6 +728,27 @@ def RequestStatus(request):
         ResponceStatus = "Something Went Wrong !!"
     return render(request,'RequestBloodStatus.html',{'ResponceStatus':ResponceStatus,'BloodRequestStatus':BloodRequestStatus,'UserDetail':UserDetail,'IsFound':isFound})
 
+def BloodReqList(request):
+    ResponceStatus = ""
+    BloodRequestList = None
+    try:
+        try:
+            UniqueCode = request.GET["UniqueCode"]
+            StatusTo = request.GET["StatusTo"]
+            ActiveState = request.GET["ActiveState"]
+            Message = request.GET["Message"]
+
+            BloodDetail = BloodRquestMaster.objects.get(UniqueCode = UniqueCode)
+            BloodDetail.ReqStatus = StatusTo
+            BloodDetail.isActive = ActiveState
+            BloodDetail.save()
+            ResponceStatus = Message
+            BloodRequestList = BloodRquestMaster.objects.all()
+        except Exception as e:
+            BloodRequestList = BloodRquestMaster.objects.all()
+    except Exception as e:
+        ResponceStatus = "Internal Server Error !!"
+    return render(request,'RequestBloodList.html',{'ResponceStatus':ResponceStatus,'BloodRequestList':BloodRequestList})
 #Request Blood Master
 
 

@@ -18,6 +18,11 @@
         $("#MessageModal").hide();
     });
 
+    $("#btnStatus").on('click', function () {
+        $("#backDrop").toggleClass("hidden");
+        $("#loaderIndicator").show();
+    });
+
     return {
         ShowMessage: ValidateMessage,
         ShowStatusDetail: ShowStatusDetail

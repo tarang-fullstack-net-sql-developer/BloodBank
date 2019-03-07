@@ -1,0 +1,111 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    {% load static %}
+	<link href="{% static '/Content/bootstrap.min.css' %}" rel="stylesheet" type="text/css" />
+	<link href="{% static '/Content/bootstrap-theme.min.css' %}" rel="stylesheet" type="text/css" />
+	 <link href="{% static '/CSS/font-awesome.css' %}" rel="stylesheet" type="text/css" />
+	
+	<link  href="{% static '/CSS/CustomStyle.css' %}" rel="stylesheet"/>
+	<link  href="{% static '/Scripts/jQueryDatePicker/jquery-ui.css' %}" rel="stylesheet"/>
+	
+	<script src="{% static '/Scripts/jquery-1.12.4.min.js' %}" type="text/javascript"></script>
+	<script src="{% static '/Scripts/bootstrap.min.js' %}" type="text/javascript"></script>
+	<script src="{% static '/Scripts/jQueryDatePicker/jquery-ui.js' %}" type="text/javascript"></script>
+</head>
+<body class="compBody">
+    <div class="container-fluid GlbFont">
+		    <div class="row">
+			    <div class="col-xs-12 col-sm-12 GllbFont">
+				    <h2 class="h2 ProjectsFont">
+					    <i class="fa fa-hourglass-half"></i>&nbsp;Blood Request List
+				    </h2>
+				    <h6 class="h6">
+					    <span class="breadcrumb col-xs-12 table-bordered bg-White">Home / Request List</span>
+				    </h6>
+			    </div>
+		    </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="row">
+                        {% for BldList in BloodRequestList%}
+                        {% if BldList.isActive == 0 or BldList.ReqStatus != "Pending" %}
+                            <div class="col-xs-12 col-sm-6 disable-Section">
+                        {% else %}
+                            <div class="col-xs-12 col-sm-6">
+                        {% endif %}
+                       
+					        <div class="ContactForm form-group">
+                                <label class="ContactFormHeader"><b>Request Code&nbsp;:</b>&nbsp;&nbsp;{{BldList.UniqueCode}}<span style="float: right; margin-left: 3px;"><b>Status&nbsp;:</b>&nbsp;&nbsp;{{BldList.ReqStatus}}</span>&nbsp;</label>
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+						                <div class="">
+							                <label class="control-label">Blood Type :</label>
+								            <span class="form-control">{{BldList.BloodType}}</span>
+						                </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+						                <div class="">
+							                <label class="control-label">Requested By :</label>
+								            <span class="form-control">{{BldList.CreatedBy}}</span>
+						                </div>
+                                    </div>
+                                    <div class="col-xs-12 form-group hidden-sm hidden-xs"></div>
+                                    <div class="col-md-4 col-sm-6 col-xs-12">
+						                <div class="">
+							                <label class="control-label">Requested Date :</label>
+								            <span class="form-control">{{BldList.ModifiedOn}}</span>
+						                </div>
+                                    </div>
+                                    <div class="col-md-4 col-sm-6 col-xs-12">
+						                <div class="">
+							                <label class="control-label">Requested For :</label>
+								            <span class="form-control">{{BldList.Gender}}</span>
+						                </div>
+                                    </div>
+                                    <div class="col-md-4 col-sm-6 col-xs-12">
+						                <div class="">
+							                <label class="control-label">Requested On :</label>
+								            <span class="form-control">{{BldList.DeliverDate}}</span>
+						                </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <a href="javascript:void(0);" class="btn btn-success approvedLink" id="btnApproved_{{BldList.UniqueCode}}">Approved</a>&nbsp;
+                                        <a href="javascript:void(0);" class="btn btn-danger declinedLink" id="btnDDeclined_{{BldList.UniqueCode}}">Declined</a>
+                                    </div>
+                                </div>
+					        </div>
+				        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="backDrop" class="CustMask hidden"></div>
+        <div id="MessageModal" class="modal animated CustomModal CustomBoxDailog CustomBoxSuccess">
+            <div class="GlbFont CustomBoxHeader">
+                <i class="fa fa-envelope"></i>&nbsp;&nbsp;&nbsp;Message 
+            </div>
+            <div class="panel-body GlbFont boldFont CustomBoxContent">
+                <i class="fa fa-check"></i>&nbsp; 
+                <span> {{ ResponceStatus }} </span>
+            </div>
+            <div style="background-color: #f1f1f1; width: 100%; height: 40px;">
+                <button type="button" class="CustomBoxBtn" id="btnNext" data-dismiss="#MessageModal">Next</button>
+            </div>
+        </div>
+        <script src="../static/Scripts/BloodRequestList/BloodRequestList.js"></script>
+        <script type="text/javascript"> 
+            $(document).ready(function () {
+                var ResponceStatus = "{{ ResponceStatus }}";
+                BldReqList.ShowMessage(ResponceStatus);
+                BldReqList.ControlEvent();
+            });
+    </script>
+</body>
+</html>

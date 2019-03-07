@@ -114,12 +114,13 @@
 					        </div>
 				        </div>
                         <div class="col-xs-12">
-					        <button type="submit" class="btn btn-primary">Submit</button>
+					        <button id="btnSubmit" type="submit" class="btn btn-primary">Submit</button>
 				        </div>
                     </div>
                 </div>
             </div>
             <div id="backDrop" class="CustMask hidden"></div>
+            <img src="{% static '/Image/DisgustingSpiffyIguana-small.gif' %}" class="divLoading" id="loaderIndicator" />
             <div id="MessageModal" class="modal animated CustomModal CustomBoxDailog CustomBoxSuccess">
                <div class="GlbFont CustomBoxHeader">
                   <i class="fa fa-envelope"></i>&nbsp;&nbsp;&nbsp;Message 

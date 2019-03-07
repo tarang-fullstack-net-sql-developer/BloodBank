@@ -181,7 +181,7 @@ class BloodRquestMaster(models.Model):
     Gender = models.TextField()
     Quantity = models.TextField()
     DeliverDate = models.TextField()
-    ReqStatus = models.BooleanField(default=False)
+    ReqStatus = models.TextField()
     UniqueCode = models.TextField()
     UserId = models.TextField()
     CreatedOn = models.CharField(max_length=20,default=str(datetime.date.today()))

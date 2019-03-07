@@ -79,6 +79,7 @@
     <Content Include="AppComponent\static\fonts\line-awesome.woff2" />
     <Content Include="AppComponent\static\Image\ComLogo.png" />
     <Content Include="AppComponent\static\Image\ComonyLogoTitle.png" />
+    <Content Include="AppComponent\static\Image\DisgustingSpiffyIguana-small.gif" />
     <Content Include="AppComponent\static\Image\download.jpg" />
     <Content Include="AppComponent\static\Image\Drift.png" />
     <Content Include="AppComponent\static\Image\images %281%29.jpg" />
@@ -92,6 +93,7 @@
     <Content Include="AppComponent\static\Image\OnlineShopping.jpg" />
     <Content Include="AppComponent\static\Image\StudentHelpDesk.jpg" />
     <Content Include="AppComponent\static\Image\user_delete.png" />
+    <Content Include="AppComponent\static\Scripts\BloodRequestList\BloodRequestList.js" />
     <Content Include="AppComponent\static\Scripts\BloodStatus\BloodStatus.js" />
     <Content Include="AppComponent\static\Scripts\bootstrap.js" />
     <Content Include="AppComponent\static\Scripts\bootstrap.min.js" />
@@ -385,6 +387,7 @@
     <Content Include="AppComponent\templates\Login.html" />
     <Content Include="AppComponent\templates\MailMaster.html" />
     <Content Include="AppComponent\templates\RequestBlood.html" />
+    <Content Include="AppComponent\templates\RequestBloodList.html" />
     <Content Include="AppComponent\templates\RequestBloodStatus.html" />
     <Content Include="AppComponent\templates\SignUp.Html" />
     <Content Include="AppComponent\templates\SiteMaster.html" />
@@ -405,6 +408,7 @@
     <Folder Include="AppComponent\static\fonts\" />
     <Folder Include="AppComponent\static\Image\" />
     <Folder Include="AppComponent\static\Scripts\" />
+    <Folder Include="AppComponent\static\Scripts\BloodRequestList\" />
     <Folder Include="AppComponent\static\Scripts\BloodStatus\" />
     <Folder Include="AppComponent\static\Scripts\ChangePassword\" />
     <Folder Include="AppComponent\static\Scripts\BloodRequest\" />
