@@ -87,6 +87,7 @@
             </div>
         </div>
         <div id="backDrop" class="CustMask hidden"></div>
+        <img src="{% static '/Image/DisgustingSpiffyIguana-small.gif' %}" class="divLoading" id="loaderIndicator" />
         <div id="MessageModal" class="modal animated CustomModal CustomBoxDailog CustomBoxSuccess">
             <div class="GlbFont CustomBoxHeader">
                 <i class="fa fa-envelope"></i>&nbsp;&nbsp;&nbsp;Message 
@@ -102,7 +103,7 @@
         <script src="../static/Scripts/BloodRequestList/BloodRequestList.js"></script>
         <script type="text/javascript"> 
             $(document).ready(function () {
-                var ResponceStatus = "{{ ResponceStatus }}";
+                var ResponceStatus = "{{ ResponceStatus | safe }}";
                 BldReqList.ShowMessage(ResponceStatus);
                 BldReqList.ControlEvent();
             });

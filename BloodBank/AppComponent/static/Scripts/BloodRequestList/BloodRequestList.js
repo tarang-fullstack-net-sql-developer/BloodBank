@@ -24,16 +24,14 @@
             $("#MessageModal").hide();
         });
 
-        $("#btnSubmit").on('click', function () {
-            $("#loaderIndicator").show();
-        });
-
         $(".approvedLink").on('click', function () {
             ApprovedReq();
+            $("#loaderIndicator").show();
         });
 
         $(".declinedLink").on('click', function () {
             DeclinedReq();
+            $("#loaderIndicator").show();
         });
     }
 

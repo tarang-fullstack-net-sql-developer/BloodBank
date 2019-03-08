@@ -742,8 +742,37 @@ def BloodReqList(request):
             BloodDetail.ReqStatus = StatusTo
             BloodDetail.isActive = ActiveState
             BloodDetail.save()
+
             ResponceStatus = Message
             BloodRequestList = BloodRquestMaster.objects.all()
+
+            CurUserDetail = RegisterUser.objects.get(UserID = request.session["_PkId"])
+            DestUserDetail = RegisterUser.objects.get(UserID = BloodDetail.UserId)
+            
+            #Save to MailBox
+            Mail_Sent = MailMaster(
+                SentTo = DestUserDetail.EmailId,
+                CcAcnt = "",
+                BccAcnt = "",
+                Subject = "Blood Status",
+                Message = "Blood Request : <u><b>" + UniqueCode + " has been declined.\n\n",
+                From = CurUserDetail.EmailId,
+                SentOn = str(datetime.datetime.now()),
+                isDelivered = 1,
+                CreatedOn = str(datetime.datetime.now()),
+                CreatedBy = request.session["_PkId"],
+                ModifiedOn = str(datetime.datetime.now()),
+                ModifiedBy = request.session["_PkId"])
+            Mail_Sent.save()
+
+            UserId = RegisterUser.objects.get(UserID  = BloodDetail.UserId)
+            if UserId.EmailId != "":
+                MailMessage = "Blood Request : <u><b>" + UniqueCode + " has been declined.\n\n"
+                MailMessage = MailMessage + "Reason: Blood Not Avilable"
+                MailStatus = SendEmail(request,"Blood Request Status",MailMessage,UserId.EmailId)
+                if(MailStatus == False):
+                    ResponceStatus = ResponceStatus + "\n\nMail Not Sent"
+
         except Exception as e:
             BloodRequestList = BloodRquestMaster.objects.all()
     except Exception as e:
