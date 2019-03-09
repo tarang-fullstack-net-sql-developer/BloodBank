@@ -31,21 +31,22 @@
         $("#MessageModal").hide();
     });
 
-    //$(".MailItem").on('click', function () {
-    //    var CurEle = window.event.srcElement;
-    //    var TtlItem = $(".MailItem");
-    //    $.each(TtlItem, function (index, obj) {
-    //        $(obj).removeClass("MailItem-active");
-    //    });
-    //    $(CurEle).toggleClass("MailItem-active");
-    //});
-
     $(".mailAdvBtn").on('click', function () {
         var eleSrc = window.event.srcElement;
         EleClickEvent(eleSrc);
     });
 
     $("#btnSend").on('click', function () {
+
+        $("#MailModeHid").val("1");
+
+        $("#messageHid").val($(".Editor-editor").html());
+        $("#mailSentFrm").submit();
+        $("#btnNext").focus();
+    });
+
+    $("#btnDraft").on('click', function () {
+        $("#MailModeHid").val("2");
         $("#messageHid").val($(".Editor-editor").html());
         $("#mailSentFrm").submit();
         $("#btnNext").focus();
@@ -60,6 +61,31 @@
         $(".MailDataTab").addClass("hidden");
         $(ShowTab).removeClass("hidden");
 
+    });
+
+
+    $(".MailListDataItems").on('click', function () {
+        var MailCurId = $(this).parent()[0].attributes["data-mailid"].value;
+        var MailMessage = $(this).parent()[0].attributes["data-Mailtype"].value;
+
+        var MailMessageUrl = "/Mail-Message?MailPkId=" + MailCurId + "&MailType=" + MailMessage
+        $.ajax({
+            url: MailMessageUrl,
+            type: 'GET',
+            success: function (result) {
+                $("#MailBody").html(result);
+                $("#backDrop").toggleClass("hidden");
+                $("#MailViewModal").show();
+            },
+            error: function (xhr) {
+                console.log(xhr);
+            }
+        });
+    });
+
+    $("#btnClose").on('click', function () {
+        $("#backDrop").hide();
+        $("#MailViewModal").hide();
     });
 
     //$('.content').richText();

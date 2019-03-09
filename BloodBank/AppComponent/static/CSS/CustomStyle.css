@@ -833,10 +833,8 @@ input:focus, textarea:focus, select:focus {
     }
 
         .MailLIst ul:hover {
-            cursor: pointer;
-            box-shadow: 0px 9px 20px 0px #b9afafc9;
+            background-color: #e9e3e3;
         }
-
 
 .ComposeButton {
     width: 100%;
@@ -862,4 +860,46 @@ input:focus, textarea:focus, select:focus {
 .disable-Section {
     pointer-events: none;
     opacity: 0.4;
+}
+
+
+.CustomMailModal {
+    position: fixed;
+    left: 0;
+    right: 0;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    overflow: hidden !important;
+    width: 90%;
+    box-shadow: 5px 7px 8px #000000;
+    width: 400px;
+    height: 340px;
+    background-color: #294050;
+    width: 90%;
+}
+
+.CustomMailBody {
+    height: 250px !important;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    width: 104.8%;
+    background-color: white;
+    padding-left: 25px;
+    padding-right: 40px;
+}
+
+.CustomMailHeader {
+    padding: 15px;
+    color: white;
+}
+
+.CustomMailBoxBtn {
+    background-color: #6c757d; /*#343a40;#002240;*/
+    padding: 5px;
+    width: 80px;
+    color: #ffffff;
+    border: 1px solid #6c757d;
+    margin: 5px;
+    float: right;
 }

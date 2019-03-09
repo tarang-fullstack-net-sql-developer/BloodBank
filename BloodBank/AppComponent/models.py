@@ -175,6 +175,23 @@ class MailMaster(models.Model):
     class Meta:
         db_table = "tbl_MailMaster"
 
+class SaveMailMaster(models.Model):
+    PkId =models.AutoField(primary_key=True)
+    SentTo = models.CharField(max_length=20)
+    CcAcnt = models.TextField()
+    BccAcnt = models.TextField()
+    Subject = models.TextField()
+    Message = models.TextField()
+    From = models.CharField(max_length=20)
+    UserId = models.TextField()
+    CreatedOn = models.CharField(max_length=20,default=str(datetime.date.today()))
+    CreatedBy = models.CharField(max_length=20)
+    ModifiedOn = models.CharField(max_length=20,default=str(datetime.date.today()))
+    ModifiedBy = models.CharField(max_length=20)
+    isActive = models.BooleanField(default=True)
+    class Meta:
+        db_table = "tbl_SaveMailMaster"
+
 class BloodRquestMaster(models.Model):
     PkId =models.AutoField(primary_key=True)
     BloodType = models.CharField(max_length=20)

@@ -29,6 +29,7 @@ from AppComponent.models import LoginHistory
 from AppComponent.models import ContactUs
 from AppComponent.models import UsersImage
 from AppComponent.models import MailMaster
+from AppComponent.models import SaveMailMaster
 from AppComponent.models import UserRoles
 from AppComponent.models import BloodRquestMaster
   
@@ -649,20 +650,26 @@ def MailHomeMaster(request):
     UserMailId = RegisterUser.objects.get(UserID = request.session["_PkId"])
     ttlMailReceive = MailMaster.objects.filter(SentTo = UserMailId.EmailId)
     ttlMailSent = MailMaster.objects.filter(From = UserMailId.EmailId)
+    ttlMailSaved = SaveMailMaster.objects.filter(UserId = UserMailId.UserID)
     
-    return render(request,"MailMaster.html",{'MailSent':ttlMailSent,'MailSentCnt':ttlMailSent.count(),'MailRecieved':ttlMailReceive,'MailReceivedCnt':ttlMailReceive.count()})
+    return render(request,"MailMaster.html",{'MailSent':ttlMailSent,'MailSentCnt':ttlMailSent.count(),'MailRecieved':ttlMailReceive,'MailReceivedCnt':ttlMailReceive.count(),'MailsSaved':ttlMailSaved,'MailSavedCount':ttlMailSaved.count()})
 
 def MailSentMaster(request):
     try:
-        UserMailId = RegisterUser.objects.get(UserID = request.session["_PkId"])
+
+        MailMode = request.POST.get("MailModeHid")
+        if MailMode == '2':
+            return MailDraftMaster(request)
 
         UserMailId = RegisterUser.objects.get(UserID = request.session["_PkId"])
         ttlMailReceive = MailMaster.objects.filter(SentTo = UserMailId.EmailId)
         ttlMailSent = MailMaster.objects.filter(From = UserMailId.EmailId)
+        ttlMailSaved = SaveMailMaster.objects.filter(UserId = UserMailId.UserID)
 
-        Mail_Sent = MailMaster(SentTo = request.POST.get("mailToHidden"),
-            CcAcnt = request.POST.get("mailCcHidden"),
-            BccAcnt = request.POST.get("mailBCCHidden"),
+        Mail_Sent = MailMaster(
+            SentTo = request.POST.get("mailToTxt"),
+            CcAcnt = request.POST.get("mailCCtxt"),
+            BccAcnt = request.POST.get("mailBcctxt"),
             Subject = request.POST.get("mailSubjectTxt"),
             Message = request.POST.get("messageHid"),
             From = UserMailId.EmailId,
@@ -674,10 +681,63 @@ def MailSentMaster(request):
             ModifiedBy = request.session["_PkId"])
         Mail_Sent.save()
 
+        ttlMailReceive = MailMaster.objects.filter(SentTo = UserMailId.EmailId)
+        ttlMailSent = MailMaster.objects.filter(From = UserMailId.EmailId)
+        ttlMailSaved = SaveMailMaster.objects.filter(UserId = UserMailId.UserID)
+
         ResponceStatus = "Mail Sent Successfully !!"
     except Exception as e:
         ResponceStatus = "Something Went Wrong !!"
-    return render(request,"MailMaster.html",{'ResponceStatus':ResponceStatus,'MailSent':ttlMailSent,'MailSentCnt':ttlMailSent.count(),'MailRecieved':ttlMailReceive,'MailReceivedCnt':ttlMailReceive.count()})
+    return render(request,"MailMaster.html",{'ResponceStatus':ResponceStatus,'MailSent':ttlMailSent,'MailSentCnt':ttlMailSent.count(),'MailRecieved':ttlMailReceive,'MailReceivedCnt':ttlMailReceive.count(),'MailsSaved':ttlMailSaved,'MailSavedCount':ttlMailSaved.count()})
+
+def MailDraftMaster(request):
+    try:
+        UserMailId = RegisterUser.objects.get(UserID = request.session["_PkId"])
+        ttlMailReceive = MailMaster.objects.filter(SentTo = UserMailId.EmailId)
+        ttlMailSent = MailMaster.objects.filter(From = UserMailId.EmailId)
+        ttlMailSaved = SaveMailMaster.objects.filter(UserId = UserMailId.UserID)
+
+        DraftMail = SaveMailMaster(
+                        SentTo = request.POST.get("mailToTxt"),
+                        CcAcnt = request.POST.get("mailCCtxt"),
+                        BccAcnt = request.POST.get("mailBcctxt"),
+                        Subject = request.POST.get("mailSubjectTxt"),
+                        Message = request.POST.get("messageHid"),
+                        From = UserMailId.EmailId,
+                        UserId = UserMailId.UserID,
+                        CreatedOn = str(datetime.datetime.now()),
+                        CreatedBy = request.session["_PkId"],
+                        ModifiedOn = str(datetime.datetime.now()),
+                        ModifiedBy = request.session["_PkId"],
+                        isActive = 1
+                    )
+        DraftMail.save()
+
+        ttlMailReceive = MailMaster.objects.filter(SentTo = UserMailId.EmailId)
+        ttlMailSent = MailMaster.objects.filter(From = UserMailId.EmailId)
+        ttlMailSaved = SaveMailMaster.objects.filter(UserId = UserMailId.UserID)
+        ResponceStatus = "Mail Saved Successfully !!"
+    except Exception as e:
+        ResponceStatus = "Something Went Wrong !!"
+    return render(request,"MailMaster.html",{'ResponceStatus':ResponceStatus,'MailSent':ttlMailSent,'MailSentCnt':ttlMailSent.count(),'MailRecieved':ttlMailReceive,'MailReceivedCnt':ttlMailReceive.count(),'MailsSaved':ttlMailSaved,'MailSavedCount':ttlMailSaved.count()})
+
+def GetMailMessage(request):
+    try:
+        MailCurId = request.GET["MailPkId"]
+        MailType = request.GET["MailType"]
+
+        if MailType == 1:
+            MailMast = MailMaster.objects.get(PkId = MailCurId)
+        else:
+            MailMast = SaveMailMaster.objects.get(PkId = MailCurId)
+
+        return HttpResponse(MailMast.Message)
+
+    except Exception as e:
+        return HttpResponse(e)
+    
+
+    #MailCurId
 
 #End of Mail Operation
 
@@ -750,8 +810,7 @@ def BloodReqList(request):
             DestUserDetail = RegisterUser.objects.get(UserID = BloodDetail.UserId)
             
             #Save to MailBox
-            Mail_Sent = MailMaster(
-                SentTo = DestUserDetail.EmailId,
+            Mail_Sent = MailMaster(SentTo = DestUserDetail.EmailId,
                 CcAcnt = "",
                 BccAcnt = "",
                 Subject = "Blood Status",
