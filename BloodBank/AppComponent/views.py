@@ -726,12 +726,14 @@ def GetMailMessage(request):
         MailCurId = request.GET["MailPkId"]
         MailType = request.GET["MailType"]
 
-        if MailType == 1:
-            MailMast = MailMaster.objects.get(PkId = MailCurId)
+        if MailType == '1' or MailType == '2':
+            MailMast = MailMaster.objects.filter(PkId = MailCurId)
         else:
-            MailMast = SaveMailMaster.objects.get(PkId = MailCurId)
+            MailMast = SaveMailMaster.objects.filter(PkId = MailCurId)
 
-        return HttpResponse(MailMast.Message)
+        MailMast_Json = serializers.serialize('json', MailMast)
+
+        return HttpResponse(MailMast_Json)
 
     except Exception as e:
         return HttpResponse(e)

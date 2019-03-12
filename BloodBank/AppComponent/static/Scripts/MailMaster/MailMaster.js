@@ -65,15 +65,27 @@
 
 
     $(".MailListDataItems").on('click', function () {
-        var MailCurId = $(this).parent()[0].attributes["data-mailid"].value;
+        var MailCurId = $(this).parent()[0].attributes["data-MailId"].value;
         var MailMessage = $(this).parent()[0].attributes["data-Mailtype"].value;
 
         var MailMessageUrl = "/Mail-Message?MailPkId=" + MailCurId + "&MailType=" + MailMessage
         $.ajax({
             url: MailMessageUrl,
             type: 'GET',
+            contentType: "application/json; charset=utf-8",
             success: function (result) {
-                $("#MailBody").html(result);
+
+                result = JSON.parse(result); //[0].fields.From
+
+                $("#MailBody").html(result[0].fields.Message);
+
+                if (new Number(MailMessage) == 1 || new Number(MailMessage) == 3)
+                    $("#MailHeader").html("To : " + result[0].fields.From);
+                else
+                    $("#MailHeader").html("From : " + result[0].fields.From);
+
+
+                $("#MailTimer").html(result[0].fields.CreatedOn);
                 $("#backDrop").toggleClass("hidden");
                 $("#MailViewModal").show();
             },

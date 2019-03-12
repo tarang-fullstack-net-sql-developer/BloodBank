@@ -30,8 +30,14 @@
 
 .SideMenuItem {
     padding: 8px;
-    font-size: medium;
     color: White;
+}
+
+.Dir-Arrow {
+    margin-top: 3px !important;
+    float: right;
+    padding: 0px 10px;
+    font-weight: bolder;
 }
 
 body {
@@ -106,6 +112,7 @@ body {
     #SidMenu li:hover {
         cursor: pointer;
         background-color: #5c628a;
+        color: white;
     }
 
         #SidMenu li:hover a {
@@ -149,22 +156,25 @@ body {
     width: 108%;
     height: 900px;
     position: relative;
-    background: #394a59;
-    padding: 28px 0px 0px 0px !important;
+    background: white;
+    padding: 35px 0px 0px 0px !important;
     z-index: 0;
-    font-size: small;
 }
+
+    #SideBarContainer div {
+        color: black;
+    }
 
     #SideBarContainer span {
         text-decoration: none;
         padding: 3px 3px 3px 5px;
-        color: White;
     }
 
     #SideBarContainer div:hover {
         cursor: pointer;
         /*background-color: #5c628a;*/
-        background-color: #556a7c;
+        background-color: #111;
+        color: white !important;
     }
 
 .ProjectsFont {

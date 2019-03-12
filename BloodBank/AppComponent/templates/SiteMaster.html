@@ -72,69 +72,69 @@
 				<div class="navbar-collapse" id="SideBarContainer">
 					<div class="GlbFont SideMenuItem boldFont nav-item">
 						<span id="HomeTab" href="#" onclick="SideMenuClick.Navigate('/UserHome/');">
-							<i class="fa fa-home"></i>&nbsp;Home
+							<i class="fa fa-home"></i>&nbsp;Home<i class="fa fa-angle-right Dir-Arrow"></i>
 						</span>
 					</div>
 					{% if request.session.UserRoleId != 3 %}
 						<div class="GlbFont SideMenuItem boldFont">
 							<span id="TeamTab" href="#" onclick="SideMenuClick.Navigate('/donor-list/');">
-								<i class="fa fa-check-circle"></i>&nbsp;Donor List
+								<i class="fa fa-check-circle"></i>&nbsp;Donor List<i class="fa fa-angle-right Dir-Arrow"></i>
 							</span>
 						</div>
                         <div class="GlbFont SideMenuItem boldFont">
 							<span id="TeamTab" href="#" onclick="SideMenuClick.Navigate('/BloodReq-List/');">
-								<i class="fa fa-check-circle"></i>&nbsp;Blood Requests
+								<i class="fa fa-hourglass-half"></i>&nbsp;Blood Requests<i class="fa fa-angle-right Dir-Arrow"></i>
 							</span>
 						</div>
 					{% endif %}
 					<div class="GlbFont SideMenuItem boldFont">
 						<span id="StockTab" onclick="SideMenuClick.Navigate('/Stock-Detail/');">
-							<i class="fa fa-cubes"></i>&nbsp;Stock Detail
+							<i class="fa fa-cubes"></i>&nbsp;Stock Detail<i class="fa fa-angle-right Dir-Arrow"></i>
 						</span>
 					</div>
                     <div class="GlbFont SideMenuItem boldFont">
 						<span id="MailTab" onclick="SideMenuClick.Navigate('/Mail-Master/');">
-							<i class="fa fa-envelope-o"></i>&nbsp;Mail Box
+							<i class="fa fa-envelope-o"></i>&nbsp;Mail Box<i class="fa fa-angle-right Dir-Arrow"></i>
 						</span>
 					</div>
 					{% if request.session.UserRoleId == 1 %}
 						<div class="GlbFont SideMenuItem boldFont">
 							<span id="TeamTab" href="#" onclick="SideMenuClick.Navigate('/GetUserDetail/');">
-								<i class="fa fa-weixin"></i>&nbsp;User Detail
+								<i class="fa fa-weixin"></i>&nbsp;User Detail<i class="fa fa-angle-right Dir-Arrow"></i>
 							</span>
 						</div>
 						<div class="GlbFont SideMenuItem boldFont">
 							<span id="TeamTab" href="#" onclick="SideMenuClick.Navigate('/user-history/');">
-								<i class="fa fa-history"></i>&nbsp;Login History
+								<i class="fa fa-history"></i>&nbsp;Login History<i class="fa fa-angle-right Dir-Arrow"></i>
 							</span>
 						</div>
 						<div class="GlbFont SideMenuItem boldFont">
 							<span id="ContactUsTab" onclick="SideMenuClick.Navigate('/Contact-Us/');">
-								<i class="fa fa-phone-square"></i>&nbsp;Contact Us
+								<i class="fa fa-phone-square"></i>&nbsp;Contact Us<i class="fa fa-angle-right Dir-Arrow"></i>
 							</span>
 						</div>  
 					{% endif %}
 					{% if request.session.UserRoleId == 3 %}
                         <div class="GlbFont SideMenuItem boldFont">
 							<span id="ContactUsTab" onclick="SideMenuClick.Navigate('/Request-Blood/');">
-								<i class="fa fa-hourglass-half"></i>&nbsp;Request Blood
+								<i class="fa fa-hourglass-half"></i>&nbsp;Request Blood<i class="fa fa-angle-right Dir-Arrow"></i>
 							</span>
 						</div>
                         <div class="GlbFont SideMenuItem boldFont">
 							<span id="ContactUsTab" onclick="SideMenuClick.Navigate('/Request-Status/');">
-								<i class="fa fa-th-list"></i>&nbsp;Request Status
+								<i class="fa fa-th-list"></i>&nbsp;Request Status<i class="fa fa-angle-right Dir-Arrow"></i>
 							</span>
 						</div>
 						<div class="GlbFont SideMenuItem boldFont">
 							<span id="ContactUsTab" onclick="SideMenuClick.Navigate('/Contact-Us/');">
-								<i class="fa fa-phone-square"></i>&nbsp;Contact Us
+								<i class="fa fa-phone-square"></i>&nbsp;Contact Us<i class="fa fa-angle-right Dir-Arrow"></i>
 							</span>
 						</div>
 					{% endif %}
 					{% if request.session.UserRoleId != 3 %}
 						<div class="GlbFont SideMenuItem boldFont">
 							<span id="CommentListTab" onclick="SideMenuClick.Navigate('/Comment-List/');">
-								<i class="fa fa-question-circle"></i>&nbsp;Comment List
+								<i class="fa fa-question-circle"></i>&nbsp;Comment List<i class="fa fa-angle-right Dir-Arrow"></i>
 							</span>
 						</div>
 					{% endif %}
