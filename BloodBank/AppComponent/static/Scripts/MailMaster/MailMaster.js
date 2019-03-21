@@ -80,7 +80,7 @@
                 $("#MailBody").html(result[0].fields.Message);
 
                 if (new Number(MailMessage) == 1 || new Number(MailMessage) == 3)
-                    $("#MailHeader").html("To : " + result[0].fields.From);
+                    $("#MailHeader").html("To : " + result[0].fields.SentTo);
                 else
                     $("#MailHeader").html("From : " + result[0].fields.From);
 

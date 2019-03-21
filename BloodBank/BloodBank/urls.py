@@ -1,4 +1,5 @@
 
+
 from django.contrib import admin
 from django.urls import path
 from AppComponent import views
@@ -47,5 +48,6 @@ urlpatterns = [
     #Request Blood
     path('Request-Blood/',views.RequestBlood),
     path('Request-Status/',views.RequestStatus),
-    path('BloodReq-List/',views.BloodReqList)
+    path('BloodReq-List/',views.BloodReqList),
+    path('BloodReq-Edit/',views.BloodReqEdit),
 ]

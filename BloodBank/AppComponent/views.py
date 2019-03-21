@@ -1,3 +1,4 @@
+
 from django.shortcuts import render, redirect
 import uuid
 import datetime
@@ -32,6 +33,7 @@ from AppComponent.models import MailMaster
 from AppComponent.models import SaveMailMaster
 from AppComponent.models import UserRoles
 from AppComponent.models import BloodRquestMaster
+from AppComponent.models import TupleList
   
 def hello(request):
     return HttpResponse("<h2>Hello, Welcome to Django!</h2>")
@@ -103,7 +105,124 @@ def SignUpUser(request):
 
 def UserHome(request):
     UsrId = request.session['_UserId']
-    return render(request,'UserHome.html',{ 'UsrId' : UsrId })
+    UserPkId = request.session['_PkId']
+
+    UserMailId = RegisterUser.objects.get(UserID = request.session["_PkId"])
+    CurrentUseRoleId = request.session['UserRoleId']
+    DashBoardListItem = []
+
+
+    if CurrentUseRoleId == 1:
+        ttlUsers = LoginUser.objects.all()
+        ttlActiveUser = LoginUser.objects.filter(isActive = 1)
+        ttlUnActiveUser = LoginUser.objects.filter(isActive = 0)
+
+        UserDetail = TupleList()
+        UserDetail.Title = "Users : "
+        UserDetail.ClassName = "col-md-3 col-sm-6"
+        UserDetail.DisplayIcon = "fa fa-users"
+        UserDetail.ActiveLstCap = "Active : "
+        UserDetail.InActiveLstCap = "In-Active : "
+        UserDetail.TtlCount = ttlUsers.count()
+        UserDetail.TtlActiveCount = ttlActiveUser.count()
+        UserDetail.TtlInActiveCount = ttlUnActiveUser.count()
+        DashBoardListItem.append(UserDetail)
+
+    elif CurrentUseRoleId == 2:
+        #ttlMailMast = MailMaster.objects.all()
+        ttlMailMastInbox = MailMaster.objects.filter(SentTo = UserMailId.EmailId)
+        ttlMailMastSent = MailMaster.objects.filter(From = UserMailId.EmailId)
+        ttlMailMast = ttlMailMastInbox.count() + ttlMailMastSent.count()
+
+        MailMasterList = TupleList()
+        MailMasterList.Title = "Mail : "
+        MailMasterList.ClassName = "col-md-3 col-sm-6"
+        MailMasterList.DisplayIcon = "fa fa-envelope-o"
+        MailMasterList.ActiveLstCap = "Recieved : "
+        MailMasterList.InActiveLstCap = "Sent : "
+        MailMasterList.TtlCount = ttlMailMast
+        MailMasterList.TtlActiveCount = ttlMailMastInbox.count()
+        MailMasterList.TtlInActiveCount = ttlMailMastSent.count()
+        DashBoardListItem.append(MailMasterList)
+
+    elif CurrentUseRoleId == 3:
+        ttlMailMast = MailMaster.objects.all()
+        ttlMailMastInbox = MailMaster.objects.filter(SentTo = UserMailId.EmailId)
+        ttlMailMastSent = MailMaster.objects.filter(From = UserMailId.EmailId)
+
+        MailMasterList = TupleList()
+        MailMasterList.Title = "Mail : "
+        MailMasterList.ClassName = "col-md-6 col-sm-6"
+        MailMasterList.DisplayIcon = "fa fa-envelope-o"
+        MailMasterList.ActiveLstCap = "Recieved : "
+        MailMasterList.InActiveLstCap = "Sent : "
+        MailMasterList.TtlCount = ttlMailMast.count()
+        MailMasterList.TtlActiveCount = ttlMailMastInbox.count()
+        MailMasterList.TtlInActiveCount = ttlMailMastSent.count()
+        DashBoardListItem.append(MailMasterList)
+
+        ttlBloodRequest = BloodRquestMaster.objects.filter(UserId = UserPkId)
+        ttlPendingBldReq = BloodRquestMaster.objects.filter(Q(isActive = 1) & Q(UserId = UserPkId))
+        ttlUnActiveBldReq = BloodRquestMaster.objects.filter(Q(isActive = 0) & Q(UserId = UserPkId))
+
+        BloodRequest = TupleList()
+        BloodRequest.Title = "Blood-Request : "
+        BloodRequest.ClassName = "col-md-6 col-sm-6"
+        BloodRequest.DisplayIcon = "fa fa-tint"
+        BloodRequest.ActiveLstCap = "Active : "
+        BloodRequest.InActiveLstCap = "In-Active : "
+        BloodRequest.TtlCount = ttlBloodRequest.count()
+        BloodRequest.TtlActiveCount = ttlPendingBldReq.count()
+        BloodRequest.TtlInActiveCount = ttlUnActiveBldReq.count()
+        DashBoardListItem.append(BloodRequest)
+
+    if CurrentUseRoleId == 1 or CurrentUseRoleId == 2:
+        ttlDonors = DonorRegistration.objects.all()
+        ttlActiveDonors = DonorRegistration.objects.filter(isActive = 1)
+        ttlUnActiveDonor = DonorRegistration.objects.filter(isActive = 0)
+
+        DonorDetail = TupleList()
+        DonorDetail.Title = "Donor : "
+        DonorDetail.ClassName = "col-md-3 col-sm-6"
+        DonorDetail.DisplayIcon = "fa fa-beer"
+        DonorDetail.ActiveLstCap = "Active : "
+        DonorDetail.InActiveLstCap = "In-Active : "
+        DonorDetail.TtlCount = ttlDonors.count()
+        DonorDetail.TtlActiveCount = ttlActiveDonors.count()
+        DonorDetail.TtlInActiveCount = ttlUnActiveDonor.count()
+        DashBoardListItem.append(DonorDetail)
+
+        ttlStock = StockDetail.objects.all()
+        ttlActiveStock = StockDetail.objects.filter(isActive = 1)
+        ttlExpiredStock = StockDetail.objects.filter(isActive = 0)
+
+        StockDetailData = TupleList()
+        StockDetailData.Title = "Stock : "
+        StockDetailData.ClassName = "col-md-3 col-sm-6"
+        StockDetailData.DisplayIcon = "fa fa-cubes"
+        StockDetailData.ActiveLstCap = "Active : "
+        StockDetailData.InActiveLstCap = "In-Active : "
+        StockDetailData.TtlCount = ttlStock.count()
+        StockDetailData.TtlActiveCount = ttlActiveStock.count()
+        StockDetailData.TtlInActiveCount = ttlExpiredStock.count()
+        DashBoardListItem.append(StockDetailData)
+
+        ttlBloodRequest = BloodRquestMaster.objects.all()
+        ttlPendingBldReq = BloodRquestMaster.objects.filter(isActive = 1)
+        ttlUnActiveBldReq = BloodRquestMaster.objects.filter(isActive = 0)
+
+        BloodRequest = TupleList()
+        BloodRequest.Title = "Blood-Request : "
+        BloodRequest.ClassName = "col-md-3 col-sm-6"
+        BloodRequest.DisplayIcon = "fa fa-tint"
+        BloodRequest.ActiveLstCap = "Active : "
+        BloodRequest.InActiveLstCap = "In-Active : "
+        BloodRequest.TtlCount = ttlBloodRequest.count()
+        BloodRequest.TtlActiveCount = ttlPendingBldReq.count()
+        BloodRequest.TtlInActiveCount = ttlUnActiveBldReq.count()
+        DashBoardListItem.append(BloodRequest)
+
+    return render(request,'UserHome.html',{ 'UsrId' : UsrId , 'DashBoardListItem' : DashBoardListItem, 'BloodRequest' : ttlBloodRequest })
 
 #Donor Operation
 def DonorList(request):
@@ -666,8 +785,7 @@ def MailSentMaster(request):
         ttlMailSent = MailMaster.objects.filter(From = UserMailId.EmailId)
         ttlMailSaved = SaveMailMaster.objects.filter(UserId = UserMailId.UserID)
 
-        Mail_Sent = MailMaster(
-            SentTo = request.POST.get("mailToTxt"),
+        Mail_Sent = MailMaster(SentTo = request.POST.get("mailToTxt"),
             CcAcnt = request.POST.get("mailCCtxt"),
             BccAcnt = request.POST.get("mailBcctxt"),
             Subject = request.POST.get("mailSubjectTxt"),
@@ -697,8 +815,7 @@ def MailDraftMaster(request):
         ttlMailSent = MailMaster.objects.filter(From = UserMailId.EmailId)
         ttlMailSaved = SaveMailMaster.objects.filter(UserId = UserMailId.UserID)
 
-        DraftMail = SaveMailMaster(
-                        SentTo = request.POST.get("mailToTxt"),
+        DraftMail = SaveMailMaster(SentTo = request.POST.get("mailToTxt"),
                         CcAcnt = request.POST.get("mailCCtxt"),
                         BccAcnt = request.POST.get("mailBcctxt"),
                         Subject = request.POST.get("mailSubjectTxt"),
@@ -709,8 +826,7 @@ def MailDraftMaster(request):
                         CreatedBy = request.session["_PkId"],
                         ModifiedOn = str(datetime.datetime.now()),
                         ModifiedBy = request.session["_PkId"],
-                        isActive = 1
-                    )
+                        isActive = 1)
         DraftMail.save()
 
         ttlMailReceive = MailMaster.objects.filter(SentTo = UserMailId.EmailId)
@@ -728,6 +844,10 @@ def GetMailMessage(request):
 
         if MailType == '1' or MailType == '2':
             MailMast = MailMaster.objects.filter(PkId = MailCurId)
+
+            CurMailInst = MailMaster.objects.get(PkId = MailCurId)
+            CurMailInst.isRead = 1
+            CurMailInst.save()
         else:
             MailMast = SaveMailMaster.objects.filter(PkId = MailCurId)
 
@@ -748,11 +868,8 @@ def RequestBlood(request):
     ResponceStatus = ""
     try:
         if request.method == "POST":
-            DyUniqueCode = str(DynUniqueCode(10))
-            MailMessage = "Your Request for Blood Request is Submitted Successfully \n\n Request No.: " + DyUniqueCode
-            isMailSent = SendEmail(request,"Blood Request",MailMessage,request.POST.get("EmailId"))
-            if(isMailSent):
-                BldReqMast = BloodRquestMaster(BloodType = request.POST.get("ddlBldGrp"),
+            DyUniqueCode = str(DynUniqueCode(10))            
+            BldReqMast = BloodRquestMaster(BloodType = request.POST.get("ddlBldGrp"),
                             Gender = request.POST.get("ddlGender"),
                             Quantity = request.POST.get("QuantityTxt"),
                             DeliverDate = request.POST.get("DeliverdBy"),
@@ -761,10 +878,15 @@ def RequestBlood(request):
                             ReqStatus = "Pending",
                             CreatedBy = request.session['_UserId'],
                             ModifiedBy = request.session['_UserId'])
-                BldReqMast.save()
-                ResponceStatus = "Request Submitted Successfully !!"
+            BldReqMast.save()
+            ResponceStatus = "Request Submitted Successfully !!<br/><br/>Request No.: " + DyUniqueCode
+
+            MailMessage = "Your Request for Blood Request is Submitted Successfully !!\n\nRequest No.: " + DyUniqueCode
+            isMailSent = SendEmail(request,"Blood Request",MailMessage,request.POST.get("EmailId"))
+            if(isMailSent):
+                ResponceStatus = ResponceStatus + "<br/><br/>Mail Sent Successfully !!"
             else:
-                ResponceStatus = "Something Went Wrong !!\nPlease Try again later !!"
+                ResponceStatus = ResponceStatus + "<br/><br/>Error Occurred While Sending Mail !!"
     except Exception as e:
         ResponceStatus = "Something Went Wrong !!"
 
@@ -839,6 +961,32 @@ def BloodReqList(request):
     except Exception as e:
         ResponceStatus = "Internal Server Error !!"
     return render(request,'RequestBloodList.html',{'ResponceStatus':ResponceStatus,'BloodRequestList':BloodRequestList})
+
+def BloodReqEdit(request):
+    try:
+        ResponceStatus = ""
+
+        if request.method == "GET":
+            BldReqId = request.GET["BldreqId"]
+            BldReqDetail = BloodRquestMaster.objects.filter(PkId = BldReqId)
+            BldReqDetail_Result = serializers.serialize('json', BldReqDetail)
+            return HttpResponse(BldReqDetail_Result)
+        else:
+            BldReqId = request.POST.get('BldReqCode')
+            BldReqDetail = BloodRquestMaster.objects.get(PkId = BldReqId)
+            BldReqDetail.BloodType = request.POST.get('BldType')
+            BldReqDetail.Gender = request.POST.get('bldReqFor')
+            BldReqDetail.Quantity = request.POST.get('bldQuantity')
+            BldReqDetail.DeliverDate = request.POST.get('bldDelDate')
+            BldReqDetail.save()
+            ResponceStatus = "Detail Updated Successfully !!"
+            return HttpResponse(ResponceStatus)
+
+    except Exception as e:
+        ResponceStatus = "Internal Server Exception !!"
+        return HttpResponse(ResponceStatus)
+
+
 #Request Blood Master
 
 

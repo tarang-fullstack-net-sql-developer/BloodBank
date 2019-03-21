@@ -1,14 +1,19 @@
 ﻿var BldReq = (function () {
     var ValidateMessage = function (ResponceStatus) {
         if (ResponceStatus != "") {
+
+            $("#loaderIndicator").hide();
             $("#backDrop").toggleClass("hidden");
-            $("#MessageModal").show();
+
+            $(".MessageContainer").html(ResponceStatus);
+
+            $("#DailogBoxModal").show();
         }
     };
 
     $("#btnNext").on('click', function () {
         $("#backDrop").toggleClass("hidden");
-        $("#MessageModal").hide();
+        $("#DailogBoxModal").hide();
     });
 
     $("#btnSubmit").on('click', function () {

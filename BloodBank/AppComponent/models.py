@@ -20,7 +20,6 @@ class Admins(models.Model):
     class Meta:
         db_table = "tbl_Admin"
 
-
 class LoginUser(models.Model):
     LogUserId = models.AutoField(primary_key=True)
     UserId = models.CharField(max_length=20)
@@ -168,6 +167,7 @@ class MailMaster(models.Model):
     From = models.CharField(max_length=20)
     SentOn = models.CharField(max_length=20)
     isDelivered = models.BooleanField()
+    isRead = models.TextField()
     CreatedOn = models.CharField(max_length=20)
     CreatedBy = models.CharField(max_length=20)
     ModifiedOn = models.CharField(max_length=20)
@@ -208,3 +208,13 @@ class BloodRquestMaster(models.Model):
     isActive = models.BooleanField(default=True)
     class Meta:
         db_table = "tbl_BloodReqMaster"
+
+class TupleList():
+    Title = models.TextField()
+    ClassName = models.TextField()
+    DisplayIcon = models.TextField()
+    ActiveLstCap = models.TextField()
+    InActiveLstCap = models.TextField()
+    TtlCount = models.TextField()
+    TtlActiveCount = models.TextField()
+    TtlInActiveCount = models.TextField()
